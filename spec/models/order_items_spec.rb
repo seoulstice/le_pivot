@@ -17,6 +17,6 @@ describe "order item methods" do
   end
 
   it "can average quantity" do
-    expect(OrderItem.average_quantity).to eq(0)
+    expect(OrderItem.average_quantity).to eq(2)
   end
 end
