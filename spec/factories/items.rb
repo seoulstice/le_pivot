@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :item do
     title "Doves"
     description "Dead dove. Do not eat."
