@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe Category do
   describe 'validations' do
     describe 'invalid attributes' do
