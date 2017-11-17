@@ -1,4 +1,8 @@
 module Helpers
+  def paperclip_image
+    File.open("./spec/support/images/test_image.jpg")
+  end
+
   def create_items
     @category = Category.create(title: "Cats")
     @item = @category.items.create(title: "Black Cat Onesie",
