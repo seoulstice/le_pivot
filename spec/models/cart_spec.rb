@@ -51,7 +51,7 @@ RSpec.describe Cart do
 
   describe "#item_and_quantity"do
     it "returns a hash of item objects and quantity" do
-      category = Category.create(title: "Animals")
+      category = create(:category, title: "Animals")
       one_url = "http://pandathings.com/wp-content/uploads/2016/10/onesie-6-300x300.png"
       item_1 = category.items.create(title: "Funsie Onesie", description: "number one", price: 8.00)
       item_2 = category.items.create(title: "Funsie Twosie", description: "number two", price: 10.00)
