@@ -17,5 +17,6 @@
 /yarn-error.log
 
 .byebug_history
+/public/assets
+.DS_Store
 # Ignore secrets.yml file
-secrets.yml
