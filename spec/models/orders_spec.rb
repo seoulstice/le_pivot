@@ -4,38 +4,29 @@ RSpec.describe Order do
   describe 'validations' do
     describe 'invalid attributes' do
       it 'is invalid without a status' do
-        user = User.create!(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-        user.orders.create
-        expect(user.orders.first).to be_invalid
+        order = build(:order, status: nil)
+        expect(order).to be_invalid
       end
 
     end
     describe 'valid attributes' do
-      it 'is valid with a status' do
-        user = User.create!(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-        user.orders.create(status: "ordered")
-        expect(user.orders.first).to be_valid
+      it 'is valid' do
+        order = build(:order)
+        expect(order).to be_valid
       end
     end
   end
   describe 'realtionships' do
     it 'belongs to a user' do
-      user = User.create!(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-      order = user.orders.create(status: "ordered")
+      order = build(:order)
       expect(order).to respond_to(:user)
     end
+
     it 'has many items' do
-      user = User.create!(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-      order = user.orders.create(status: "ordered")
+      item = create(:item)
+      order = build(:order, items: [item])
       expect(order).to respond_to(:items)
-    end
-    it 'belongs to a items' do
-      user = User.create!(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-      order = user.orders.create(status: "ordered")
-      category = Category.create(title: "Animals")
-      one_url = "http://pandathings.com/wp-content/uploads/2016/10/onesie-6-300x300.png"
-      item = category.items.create(title: "Funsie Onesie", description: "number one", price: 8.00, image: one_url )
-      expect(item).to respond_to(:orders)
+      expect(order.items.first).to be_an(Item)
     end
   end
 
@@ -69,8 +60,7 @@ RSpec.describe Order do
     end
 
     it "can return the order date" do
-      user = User.create!(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-      order = user.orders.create!(status: "ordered", created_at: "2017-09-13 01:13:04 -0600")
+      order = create(:order, created_at: "2017-09-13 01:13:04 -0600")
 
       expect(order.date).to eq("Sep. 13, 2017")
     end
@@ -78,32 +68,35 @@ RSpec.describe Order do
 
   describe "class methods" do
     it "can count by status" do
-      user = User.create(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-      user.orders.create(status: "ordered")
-      user.orders.create(status: "ordered")
-      user.orders.create(status: "ordered")
-      user.orders.create(status: "paid")
-      user.orders.create(status: "paid")
-      user.orders.create(status: "cancelled")
+      create(:order, status: "ordered")
+      create(:order, status: "ordered")
+      create(:order, status: "paid")
+      create(:order, status: "cancelled")
 
-      status_count = {"paid"=>2, "ordered"=>3, "cancelled"=>1}
+      status_count = {"paid"=>1, "ordered"=>2, "cancelled"=>1}
 
       expect(Order.count_by_status).to eq(status_count)
     end
 
     it "can filter by status" do
-      user = User.create(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-      order_1 = user.orders.create(status: "ordered")
-      user.orders.create(status: "ordered")
-      user.orders.create(status: "ordered")
-      user.orders.create(status: "paid")
-      user.orders.create(status: "paid")
-      user.orders.create(status: "cancelled")
+      ordered   = create(:order, status: "ordered")
+      paid_1    = create(:order, status: "paid")
+      paid_2    = create(:order, status: "paid")
+      cancelled = create(:order, status: "cancelled")
 
-      collection = Order.filter_by_status("ordered")
+      all_ordered   = Order.filter_by_status("ordered")
+      all_paid      = Order.filter_by_status("paid")
+      all_cancelled = Order.filter_by_status("cancelled")
 
-      expect(collection.first).to eq(order_1)
-      expect(collection.count).to eq(3)
+      expect(all_ordered).to include(ordered)
+      expect(all_ordered.count).to eq(1)
+
+      expect(all_paid).to include(paid_1)
+      expect(all_paid).to include(paid_2)
+      expect(all_paid.count).to eq(2)
+
+      expect(all_cancelled).to include(cancelled)
+      expect(all_cancelled.count).to eq(1)
     end
   end
 end
