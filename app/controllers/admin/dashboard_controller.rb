@@ -1,5 +1,6 @@
 class Admin::DashboardController < ApplicationController
-before_action :require_admin
+  before_action :require_admin
+
   def index
     if params[:status] == "ordered" || params[:status] == "paid" || params[:status] == "cancelled" || params[:status] == "completed"
       @orders = Order.filter_by_status(params[:status])
@@ -8,5 +9,4 @@ before_action :require_admin
     end
     flash[:notice] = "You're logged in as an Administrator."
   end
-
 end
