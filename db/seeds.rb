@@ -3,94 +3,94 @@ Category.destroy_all
 User.destroy_all
 Order.destroy_all
 
-User.create(first_name: "Mimi", last_name: "Le", email: "mimi@mimi.com", password: "mimi", address: "666 Spooky Ave, Halloween City, NO 66666", role: 1)
-user_1 = User.create!(first_name: "Ricky", last_name: "Hoola", email: "ricky@ricky.com", password: "ricky", address: "1111 Hoola Hoop Drive, Big Island, HI 90505", role: 0)
-user_2 = User.create(first_name: "Sam", last_name: "Snider", email: "sam@sam.com", password: "sam", address: "1000 Sunny Dr., Sunshine, CO 10000", role: 0)
-user_3 = User.create(first_name: "Kali", last_name: "Bike Rider", email: "kali@biking.com", password: "bike", address: "1010 Biking Home, Cool CA 10101", role: 0)
+User.create(first_name: "Mary", last_name: "Moore", email: "mary@example.com", password: "mary", address: "666 Spooky Ave, Halloween City, NO 66666", role: 1)
+user_1 = User.create!(first_name: "Sandy", last_name: "Smith", email: "sandy@example.com", password: "sandy", address: "1111 Hoola Hoop Drive, Big Island, HI 90505", role: 0)
+user_2 = User.create(first_name: "Rick", last_name: "Rhodes", email: "rick@example.com", password: "rick", address: "1000 Sunny Dr., Sunshine, CO 10000", role: 0)
+user_3 = User.create(first_name: "Daniel", last_name: "Williams", email: "daniel@example.com", password: "daniel", address: "1010 Biking Home, Cool CA 10101", role: 0)
 
 description = "Lorem ipsum dolor sit amet, officiis quaerendum eu nam, voluptua deterruisset vix at. In dico sonet aliquip has, eos prima appellantur ea. Omnesque facilisi cu pro. Ut vix brute etiam repudiare. Esse animal explicari ad eam, vis ex oratio ornatus voluptatibus, movet sadipscing ea qui."
 
-unicorn = Category.create(title: "Unicorns")
-squirrel = Category.create(title: "Squirrels")
-giraffe = Category.create(title: "Giraffes")
-cat = Category.create(title: "Cats")
-penguin = Category.create(title: "Penguins")
-pokemon = Category.create(title: "Pokemon")
-zebra = Category.create(title: "Zebras")
-sloth = Category.create(title: "Sloths")
+suspense = Category.create(title: "Suspense")
+thriller = Category.create(title: "Thriller")
+western = Category.create(title: "Western")
+crime = Category.create(title: "Crime")
+horror = Category.create(title: "Horror")
+fantasy = Category.create(title: "Fantasy")
+mystery = Category.create(title: "Mystery")
+science_fiction = Category.create(title: "Science Fiction")
 
-unicorn.items.create(title: "Baby Unicorn",
+suspense.items.create(title: Faker::Book.title,
                       description: description,
                       price: 39.99,
-                      image: File.new("./app/assets/images/baby-unicorn-onesie.png"))
+                      image: File.new("./app/assets/images/book_cover.png"))
 
 
-unicorn.items.create(title: "Adult Unicorn",
+suspense.items.create(title: Faker::Book.title,
                       description: description,
                       price: 59.99,
-                     image: File.new("./app/assets/images/unicorn-onesie.png"))
+                     image: File.new("./app/assets/images/book_cover.png"))
 
 
-squirrel.items.create(title: "Adult Squirrel - Pink/White",
+thriller.items.create(title: Faker::Book.title,
                       description: description,
                       price: 59.99,
-                      image: File.new("./app/assets/images/flying-squirrel-onesie-1.png"))
+                      image: File.new("./app/assets/images/book_cover.png"))
 
 
-squirrel.items.create(title: "Adult Squirrel - Orange/Black",
+thriller.items.create(title: Faker::Book.title,
                       description: description,
                       price: 59.99,
-                      image: File.new("./app/assets/images/flying-squirrel-onesie-2.png"))
+                      image: File.new("./app/assets/images/book_cover.png"))
 
 
-giraffe.items.create(title: "Adult Giraffe",
+western.items.create(title: Faker::Book.title,
                       description: description,
                       price: 59.99,
-                      image: File.new("./app/assets/images/giraffe-onesie.png"))
+                      image: File.new("./app/assets/images/book_cover.png"))
 
 
-cat.items.create(title: "Adult Leopard",
+western.items.create(title: Faker::Book.title,
                       description: description,
                       price: 49.99,
-                      image: File.new("./app/assets/images/leopard-onesie.png"))
+                      image: File.new("./app/assets/images/book_cover.png"))
 
 
-cat.items.create(title: "Adult Tiger",
+crime.items.create(title: Faker::Book.title,
                       description: description,
                       price: 49.99,
-                      image: File.new("./app/assets/images/tiger-onesie.png"))
+                      image: File.new("./app/assets/images/book_cover.png"))
 
 
-penguin.items.create(title: "Adult Penguin",
+horror.items.create(title: Faker::Book.title,
                       description: description,
                       price: 49.99,
-                      image: File.new("./app/assets/images/penguin-onesie.png"))
+                      image: File.new("./app/assets/images/book_cover.png"))
 
 
-pokemon.items.create(title: "Young Pikachu - Boy",
+fantasy.items.create(title: Faker::Book.title,
                       description: description,
                       price: 29.99,
-                      image: File.new("./app/assets/images/pikachu-onesie-boy.png"))
+                      image: File.new("./app/assets/images/book_cover.png"))
 
 
-pokemon.items.create(title: "Young Pikachu - Girl",
+mystery.items.create(title: Faker::Book.title,
                       description: description,
                       price: 29.99,
-                      image: File.new("./app/assets/images/pikachu-onesie-girl.png"),
+                      image: File.new("./app/assets/images/book_cover.png"),
                       condition: 1)
 
 
-zebra.items.create(title: "Adult Zebra",
+science_fiction.items.create(title: Faker::Book.title,
                       description: description,
                       price: 29.99,
-                      image: File.new("./app/assets/images/zebra-onesie.png"),
+                      image: File.new("./app/assets/images/book_cover.png"),
                      condition: 1)
 
 
-sloth.items.create(title: "Adult Sloth",
+science_fiction.items.create(title: Faker::Book.title,
                       description: description,
                       price: 69.99,
-                      image: File.new("./app/assets/images/sloth-onesie.png"),
+                      image: File.new("./app/assets/images/book_cover.png"),
                       condition: 1)
 
 
