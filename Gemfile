@@ -18,7 +18,6 @@ gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
 gem 'friendly_id', '~> 5.1.0'
 gem "paperclip", "~> 5.0.0"
-gem 'omniauth-google-oauth2'
 gem 'chart-js-rails'
 
 group :development, :test do
