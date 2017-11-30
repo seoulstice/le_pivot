@@ -1,8 +1,8 @@
 <style>
-    .cart_image{
-      width: 3em;
-      height: 4em;
-    }
+.cart_image{
+  width: 3em;
+  height: 4em;
+}
 
       .checkout{
         text-align: right;
@@ -16,55 +16,55 @@
         margin-right: auto;
       }
 
-    h2{
-      text-align: center;
-      font-size: 3em;
-    }
+      h2{
+        text-align: center;
+        font-size: 3em;
+      }
 </style>
 <div class="container">
-    <% if current_user  %>
-        <h3> <%= current_user.first_name %>'s  Cart</h3>
-    <% else %>
-        <h3> Your Cart </h3>
-    <% end %>
-    <h6><%= link_to "Continue Shopping", items_path %></h6>
-	<center>
-	<!-- <div class="col-10"> -->
-	<table class="table table-hover">
-	  <thead>
-	    <tr>
-	      <th>Name</th>
-        <th></th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th></th>
-        <th></th>
-        <th>Subtotal</th>
-	    </tr>
-      <tbody>
-
-    <% @items.each do |item, quantity| %>
-      <div class="item-#{item.id}">
+  <% if current_user  %>
+    <h3> <%= current_user.first_name %>'s  Cart</h3>
+  <% else %>
+    <h3> Your Cart </h3>
+  <% end %>
+  <h6><%= link_to "Continue Shopping", items_path %></h6>
+  <center>
+    <!-- <div class="col-10"> -->
+    <table class="table table-hover">
+      <thead>
         <tr>
-        <th scope="row"><strong><%= link_to item.title, item_path(item) %></strong></th>
-        <td><%= image_tag item.image, :class => "cart_image"%></td>
-        <td>$<%= item.price %></td>
-        <td><%= quantity %></td>
-        <td><%= link_to "-", cart_path(id: item.id, condition: "decrease"), action: :update, method: :patch, class: "badge badge-danger" %>
-        <%= link_to "+", cart_path(id: item.id, condition: "increase"), action: :update, method: :patch, class: "badge badge-success" %></td>
-        <td><%= link_to "Remove", cart_path(id: item.id), method: :delete, class: "badge badge-danger" %></td>
-        <td>$<%= quantity * item.price %></td>
-      </tr>
-      </div>
-      <% end %>
-    </tbody>
+          <th>Name</th>
+          <th></th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th></th>
+          <th></th>
+          <th>Subtotal</th>
+        </tr>
+        <tbody>
+
+          <% @items.each do |item, quantity| %>
+            <div class="item-#{item.id}">
+              <tr>
+                <th scope="row"><strong><%= link_to item.title, item_path(item) %></strong></th>
+                <td><%= image_tag item.image, :class => "cart_image"%></td>
+                <td>$<%= item.price %></td>
+                <td><%= quantity %></td>
+                <td><%= link_to "-", cart_path(id: item.id, condition: "decrease"), action: :update, method: :patch, class: "badge badge-danger" %>
+                <%= link_to "+", cart_path(id: item.id, condition: "increase"), action: :update, method: :patch, class: "badge badge-success" %></td>
+                <td><%= link_to "Remove", cart_path(id: item.id), method: :delete, class: "badge badge-danger" %></td>
+                <td>$<%= quantity * item.price %></td>
+              </tr>
+            </div>
+          <% end %>
+        </tbody>
     </table>
     <div class="total">
       <% sum = 0 %>
       <% @items.each do |item, quantity| %>
-      <% sum += (item.price * quantity) %>
+        <% sum += (item.price * quantity) %>
       <% end %>
-      <p><b>Total: $<%= sum %></b></p>
+      <p><b>Total: <%= number_to_currency(sum) %></b></p>
     </div>
     <div class="checkout">
       <% if current_user %>
@@ -74,6 +74,6 @@
         <%= link_to "Create new account", new_user_path %>
       <% end %>
     </div>
-  <!-- </div> -->
-</center>
+    <!-- </div> -->
+  </center>
 </div>
