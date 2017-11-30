@@ -1,6 +1,56 @@
 .small{
-	size: 10px;
+  size: 10px;
 }
 footer{
-	float: bottom;
+  float: bottom;
+}
+.successfully_removed {
+  color: green;
+}
+.alert{
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+.logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+}
+
+.logo a:hover{
+  text-decoration: none;
+  color: #333;
+}
+
+div.container {
+  width:800px;
+  height:auto;
+  padding: 5px;
+}
+
+a {
+  color: black;
+}
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#left {
+  text-align: left;
+  float: left;
+}
+#right {
+  text-align: right;
+  /* Change this to whatever the width of your left column is*/
+}
+.clear {
+  clear: both;
+}
+
+.hero {
+  width: 800px;
 }
