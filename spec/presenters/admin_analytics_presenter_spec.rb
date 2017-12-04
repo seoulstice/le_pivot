@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AdminAnalyticsPresenter do
   let(:analytics) { AdminAnalyticsPresenter.new }
-  let!(:customer) { create(:user) }
+  let!(:customer) { create(:user, email: 'customer10000@example.com') }
 
   let(:customer_order_1) { create(:order, status: "completed", user: customer) }
   let(:customer_order_2) { create(:order, status: "completed", user: customer) }
@@ -52,13 +52,13 @@ describe AdminAnalyticsPresenter do
 
   describe '#orders_per_customer' do
     it 'returns user orders' do
-      expect(analytics.orders_per_customer).to eq({"gob6@example.com"=>2})
+      expect(analytics.orders_per_customer).to eq({"customer10000@example.com"=>2})
     end
   end
 
   describe '#items_ordered_per_customer' do
     it 'returns quanity of items order by customer' do
-      expect(analytics.items_ordered_per_customer).to eq({"gob7@example.com"=>4})
+      expect(analytics.items_ordered_per_customer).to eq({"customer10000@example.com"=>4})
     end
   end
 end
