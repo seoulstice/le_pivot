@@ -2,7 +2,7 @@
     <%= image_tag 'login.png' %>
   <div class="row">
     <div class="col-3">
-    <table class="table">
+    <table class="table login-form">
       <%= form_for(:session, url: login_path) do |f| %>
         <tr>
           <td class="table-light"><%= f.label :email %></td>

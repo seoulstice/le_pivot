@@ -3,6 +3,19 @@ module Helpers
     File.open("./spec/support/images/test_image.jpg")
   end
 
+  def login_user(email, password)
+    visit '/'
+
+    click_on "Login"
+
+    fill_in "session[email]", with: email
+    fill_in "session[password]", with: password
+
+    within(".login-form") do
+      click_on("Login")
+    end
+  end
+
   def create_items
     @category = Category.create(title: "Cats")
     @item = @category.items.create(title: "Black Cat Onesie",
