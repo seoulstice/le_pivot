@@ -11,6 +11,12 @@ require 'database_cleaner'
 require 'support/factory_girl'
 require 'helpers'
 
+SimpleCov.start "rails" do
+  add_filter "app/channels/application_cable/channel.rb"
+  add_filter "app/channels/application_cable/connection.rb"
+  add_filter "app/jobs/application_job.rb"
+end
+
 DatabaseCleaner.strategy = :truncation
 
 ActiveRecord::Migration.maintain_test_schema!
