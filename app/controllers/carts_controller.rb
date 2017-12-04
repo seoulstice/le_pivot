@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def index
-    @items = @cart.item_and_quantity
+    @items = @cart.cart_items
   end
 
   def create

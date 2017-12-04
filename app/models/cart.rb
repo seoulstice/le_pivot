@@ -30,12 +30,11 @@ class Cart
     contents[id.to_s].to_i
   end
 
-  def item_and_quantity
-    items = {}
-    contents.each do |item_id, quantity|
-      items[Item.find(item_id)] = quantity
+  def cart_items
+    contents.inject({}) do |result, (item_id, quantity)|
+      result[Item.find(item_id)] = quantity
+      result
     end
-    items
   end
 
   def delete_item(id)
