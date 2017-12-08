@@ -1,46 +1,34 @@
 require 'rails_helper'
 
 feature "Admin can view individual order pages" do
-  before(:each) do
+  scenario "when I visit an valid order page" do
+    user = create(:user, first_name: "Gob", last_name: "Bluth")
+    admin = create(:admin)
+    item_1 = create(:item, price: 11.00)
+    item_2 = create(:item, price: 10.00)
+    items_with_quantity_for_order = [ {item_1 => 1}, {item_2 => 2} ]
+    order = create(:order_with_items, items_with_quantity: items_with_quantity_for_order)
+    expected_total = "$31.00"
 
-    two_items
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    visit order_path(order)
 
-  end
-
-  scenario "As an admin, when I visit an individual order page" do
-    user = User.create(first_name: "Tester", last_name: "McTesty", email: "testerson@testmail.com", password: "testing", address: "235 Address Place, Address CO 91050")
-    order_1 = user.orders.create(status: "ordered")
-    OrderItem.create(order: order_1, item: @item_one, quantity: 1)
-    OrderItem.create(order: order_1, item: @item_two, quantity: 2)
-
-    full_name = user.first_name + " " + user.last_name
-
-    admin_user = User.create(first_name: "Admin", last_name: "McAdmin", email: "admin@admin.com", password: "boom", role: "admin")
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin_user)
-
-    visit order_path(order_1)
-
-    expect(page).to have_content(order_1.date)
-    expect(page).to have_content(full_name)
-
+    expect(page).to have_content(order.date)
+    expect(page).to have_content("Gob Bluth")
     expect(page).to have_content(user.address)
-
-    expect(page).to have_link(@item_one.title)
-    expect(page).to have_content(@item_one.order_items.first.quantity)
-    expect(page).to have_content(@item_one.price)
-    expect(page).to have_content(@item_one.price)
-
-    expect(page).to have_link(@item_two.title)
-    expect(page).to have_content(@item_two.order_items.last.quantity)
-    expect(page).to have_content(@item_two.price)
-
-    expect(page).to have_content(order_1.total_price)
+    within("#item-#{item_1.id}") do
+      within(".title") { expect(page).to have_link(item_1.title) }
+      within(".quantity") { expect(page).to have_content(item_1.order_items.first.quantity) }
+      within(".price") { expect(page).to have_content("$11.00") }
+    end
+    within("#item-#{item_2.id}") do
+      within(".title") { expect(page).to have_link(item_2.title) }
+      within(".quantity") { expect(page).to have_content(item_2.order_items.last.quantity) }
+      within(".price") { expect(page).to have_content("$10.00") }
+    end
+    within(".order-total") do
+      expect(page).to have_content(expected_total)
+    end
   end
 end
 
-# And I can see, for each item on the order:
-#
-# The item’s name, which is linked to the item page.
-# Quantity in this order.
-# Price
-# Line item subtotal. And I can see the total for the order. And I can see the status for the order.
