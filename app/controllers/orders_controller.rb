@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(status: params[:status])
+    @order.update(order_params)
     @order.save
     redirect_back(fallback_location: root_path)
   end
@@ -31,8 +31,13 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def require_current_user
     redirect_to login_path unless current_user
+  end
+
+  def order_params
+    params.require(:order).permit(:status, :user_id)
   end
 
 end

@@ -1,31 +1,31 @@
 <div class="container">
-	<center>
-	<table class="table table-hover">
-	  <thead>
-	    <tr>
-	      <th>Order #</th>
-	      <th>Order Placed</th>
-	      <th>Order Status</th>
-	      <th>Total</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-			<% @user.orders.each do |order| %>
-	    <tr>
-	      <th scope="row"> <%= link_to order.id, order_path(order) %></th>
-	      <td><%= order.date %></td>
-	      <td><%= order.status.capitalize %></td>
-	      <!-- <td>$<%= order.total_price %></td> -->
-				<td>
-					<% sum = 0 %>
-          <% order.items.each do |item| %>
-	          <% sum += (item.price * OrderItem.find_by(item: item, order: order).quantity) %>
-	         <% end %>
-	         $<%= sum %>
-				 </td>
-	    </tr>
-			<% end %>
-	  </tbody>
-	</table>
-</center>
+  <center>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Order #</th>
+          <th>Order Placed</th>
+          <th>Order Status</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.orders.each do |order| %>
+          <tr id="order-<%= order.id %>" class="order">
+            <th scope="row"> <%= link_to order.id, order_path(order) %></th>
+            <td><%= order.date %></td>
+            <td><%= order.status.capitalize %></td>
+            <!-- <td>$<%= order.total_price %></td> -->
+            <td>
+              <% sum = 0 %>
+              <% order.items.each do |item| %>
+                <% sum += (item.price * OrderItem.find_by(item: item, order: order).quantity) %>
+              <% end %>
+              <%= number_to_currency(sum) %>
+          </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </center>
 </div>
