@@ -7,9 +7,10 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-    unless current_user.id == @order.user_id || current_admin?
-      redirect_to dashboard_index_path
+    if current_admin?
+      @order = Order.find(params[:id])
+    else
+      @order = current_user.orders.find(params[:id])
     end
   end
 
@@ -37,7 +38,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:status, :user_id)
+    params.permit(:status, :user_id)
   end
 
 end

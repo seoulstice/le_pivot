@@ -1,4 +1,8 @@
 module Helpers
+  def stub_logged_in_user(user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
+
   def testing_image
     Rails.root + "spec/support/images/test_image.jpg"
   end
@@ -76,62 +80,62 @@ module Helpers
     @unicorn_onesie_1 = @unicorn.items.create(title: "Baby Unicorn",
                                               description: description,
                                               price: 39.99,
-                                              image: File.new("./app/assets/images/baby-unicorn-onesie.png"))
+                                              image: paperclip_image)
 
     @unicorn_onesie_2 = @unicorn.items.create(title: "Adult Unicorn",
                                               description: description,
                                               price: 59.99,
-                                              image: File.new("./app/assets/images/unicorn-onesie.png"))
+                                              image: paperclip_image)
 
     @squirrel_onesie_1 = @squirrel.items.create(title: "Adult Squirrel - Pink/White",
                                                 description: description,
                                                 price: 59.99,
-                                                image: File.new("./app/assets/images/flying-squirrel-onesie-1.png"))
+                                                image: paperclip_image)
 
     @squirrel_onesie_2 = @squirrel.items.create(title: "Adult Squirrel - Orange/Black",
                                                 description: description,
                                                 price: 59.99,
-                                                image: File.new("./app/assets/images/flying-squirrel-onesie-2.png"))
+                                                image: paperclip_image)
 
     @giraffe_onesie_1 = @giraffe.items.create(title: "Adult Giraffe",
                                               description: description,
                                               price: 59.99,
-                                              image: File.new("./app/assets/images/giraffe-onesie.png"))
+                                              image: paperclip_image)
 
     @cat_onesie_1 = @cat.items.create(title: "Adult Leopard",
                                       description: description,
                                       price: 49.99,
-                                      image: File.new("./app/assets/images/leopard-onesie.png"))
+                                      image: paperclip_image)
 
     @cat_onesie_2 = @cat.items.create(title: "Adult Tiger",
                                       description: description,
                                       price: 49.99,
-                                      image: File.new("./app/assets/images/tiger-onesie.png"))
+                                      image: paperclip_image)
 
     @penguin_onesie_1 = @penguin.items.create(title: "Adult Penguin",
                                               description: description,
                                               price: 49.99,
-                                              image: File.new("./app/assets/images/penguin-onesie.png"))
+                                              image: paperclip_image)
 
     @pokemon_onesie_1 = @pokemon.items.create(title: "Young Pikachu - Boy",
                                               description: description,
                                               price: 29.99,
-                                              image: File.new("./app/assets/images/pikachu-onesie-boy.png"))
+                                              image: paperclip_image)
 
     @pokemon_onesie_2 = @pokemon.items.create(title: "Young Pikachu - Girl",
                                               description: description,
                                               price: 29.99,
-                                              image: File.new("./app/assets/images/pikachu-onesie-girl.png"))
+                                              image: paperclip_image)
 
     @zebra_onesie_1 = @zebra.items.create(title: "Adult Zebra",
                                           description: description,
                                           price: 29.99,
-                                          image: File.new("./app/assets/images/zebra-onesie.png"))
+                                          image: paperclip_image)
 
     @sloth_onesie_1 = @sloth.items.create(title: "Adult Sloth",
                                           description: description,
                                           price: 69.99,
-                                          image: File.new("./app/assets/images/sloth-onesie.png"))
+                                          image: paperclip_image)
 
   end
 

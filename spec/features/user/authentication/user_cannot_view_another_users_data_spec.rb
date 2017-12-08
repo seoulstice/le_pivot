@@ -1,34 +1,40 @@
 require 'rails_helper'
 
 RSpec.feature "Authenticated users security" do
-  context "As a user" do
+  context "As a logged in user" do
     before(:each) do
-      setup
+      # setup
 
-      visit root_path
+      # visit root_path
 
-      click_on "Login"
+      # click_on "Login"
 
-      fill_in "session[email]", with: "jake@adventuretime.com"
-      fill_in "session[password]", with: "dog"
+      # fill_in "session[email]", with: "jake@adventuretime.com"
+      # fill_in "session[password]", with: "dog"
 
-      within(".action") do
-        click_on("Login")
-      end
+      # within(".action") do
+      # click_on("Login")
+      # end
     end
-    it "I cannot view another user’s private data" do
+    scenario "I cannot view another user's order" do
+      chino = create(:user, first_name: "Chino")
+      khaki = create(:user, first_name: "Khaki")
+      stub_logged_in_user(khaki)
 
-      expect(current_path).to eq(dashboard_index_path)
+      order = create(:order, user: chino)
 
-      visit order_path(@order)
-
-      expect(current_path).to eq(dashboard_index_path)
-      expect(page).to have_content(@user_2.first_name)
+      expect {
+        visit order_path(order)
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
+
     it "I cannot view the administrator screens" do
-      visit admin_dashboard_index_path
+      user = create(:user)
+      stub_logged_in_user(user)
 
-      expect(page).to have_content("404")
+      expect {
+        visit admin_dashboard_index_path
+      }.to raise_error(ActionController::RoutingError)
     end
   end
 end

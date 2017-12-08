@@ -25,7 +25,7 @@ RSpec.feature "Admin Orders" do
       click_on("Ordered")
 
       expect(current_path).to eq(admin_dashboard_index_path)
-      expect(page).to have_link(order_1.id, order_path(order_1))
+      expect(page).to have_link(order_1.id, href: order_path(order_1))
       expect(page).not_to have_link(order_2.id)
     end
 

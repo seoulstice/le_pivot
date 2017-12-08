@@ -14,6 +14,7 @@ RSpec.feature "Unauthenticated users security" do
 
       expect(current_path).to eq(login_path)
     end
+
     it "I should be redirected to login/create account when I try to check out" do
       visit item_path(@unicorn_onesie_1)
 
@@ -27,10 +28,11 @@ RSpec.feature "Unauthenticated users security" do
 
       expect(current_path).to eq(login_path)
     end
-    it "I cannot view the administrator screens or use administrator functionality" do
-      visit admin_dashboard_index_path
 
-      expect(page).to have_content("404")
+    it "I cannot view the administrator screens or use administrator functionality" do
+      expect {
+        visit admin_dashboard_index_path
+      }.to raise_exception(ActionController::RoutingError)
     end
   end
 end
