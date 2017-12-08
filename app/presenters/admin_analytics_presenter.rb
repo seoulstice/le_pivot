@@ -1,4 +1,4 @@
-class BizIntel
+class AdminAnalyticsPresenter
 
   def total_sales
     Order.shop_total_gross
@@ -27,5 +27,4 @@ class BizIntel
   def items_ordered_per_customer
     User.user_quantity_of_items_ordered
   end
-
 end
