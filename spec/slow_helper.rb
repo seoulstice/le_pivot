@@ -1,29 +1,4 @@
-module Helpers
-  def stub_logged_in_user(user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-  end
-
-  def testing_image
-    Rails.root + "spec/support/images/test_image.jpg"
-  end
-
-  def paperclip_image
-    File.open(testing_image)
-  end
-
-  def login_user(email, password)
-    visit '/'
-
-    click_on "Login"
-
-    fill_in "session[email]", with: email
-    fill_in "session[password]", with: password
-
-    within(".login-form") do
-      click_on("Login")
-    end
-  end
-
+module SlowHelper
   def create_items
     @category = Category.create(title: "Cats")
     @item = @category.items.create(title: "Black Cat Onesie",

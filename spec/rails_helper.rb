@@ -9,18 +9,17 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'database_cleaner'
 require 'support/factory_girl'
-require 'helpers'
-
-SimpleCov.start "rails" do
-  add_filter "app/channels/application_cable/channel.rb"
-  add_filter "app/channels/application_cable/connection.rb"
-  add_filter "app/jobs/application_job.rb"
-end
+require 'support/simple_cov'
+require 'feature_helper'
+require 'santas_little_helper'
+require 'slow_helper'
 
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.include Helpers
+  config.include SlowHelper
+  config.include SantasLittleHelper
+  config.include FeatureHelper
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
