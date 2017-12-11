@@ -1,19 +1,18 @@
-# House of Funsies
+# The Pivot - Base Project
 
-## Purchase onesies at the tip of your fingertips in our e-commerce store.
+The following Rails app is used as the base project for [The Pivot](http://backend.turing.io/module3/projects/the_pivot).
 
-This website was created using Ruby on Rails 5 with Postgresql. This application is being built as a final project to showcase our understanding of the following:
+## Setup
 
-  * HTTP request/response cycle;
-  * Client-facing interaction with a front-end application;
-  * Utilization of the <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC model</a> in conjunction with Rails;
-  * Implementation of RSpec model and feature tests;
-  * Designing database schemas to represent relationships between objects;
-  * Appropriate use of <a href="http://codesthq.com/blog/2015/hi-im-poro.html">POROs</a>;
-  * Basic SQL statements;
-  * Effective communication in order to facilitate collaboration;
-  * Application of best practices in project management and Git workflow.
+Built using Ruby 2.4.1 and Rails 5.1.3
 
-The full project guidelines and user stories can be found at the <a href="http://backend.turing.io/module2/projects/little_shop">Turing School of Software and Design</a>.
+Install required gems:
+`$ bundle install`
 
-<b>Collaborators:</b> Mimi Le (@mimilettd), Ricky Amparo (@RickyAmparo), Kali Borkoski (@JunePaloma), Sam Snider (@samuelssnider)
+Load the database dump:
+`$ rake import_dump:load`
+
+After the import you should see a return value of 1011 when running `Item.count` in the console.
+
+All users have a password of `password` if you want to login and explore.
+
