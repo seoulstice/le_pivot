@@ -14,14 +14,14 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -34,7 +34,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: josh
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE TABLE ar_internal_metadata (
@@ -45,10 +45,10 @@ CREATE TABLE ar_internal_metadata (
 );
 
 
-ALTER TABLE ar_internal_metadata OWNER TO josh;
+ALTER TABLE ar_internal_metadata OWNER TO CURRENT_USER;
 
 --
--- Name: categories; Type: TABLE; Schema: public; Owner: josh
+-- Name: categories; Type: TABLE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE TABLE categories (
@@ -58,10 +58,10 @@ CREATE TABLE categories (
 );
 
 
-ALTER TABLE categories OWNER TO josh;
+ALTER TABLE categories OWNER TO CURRENT_USER;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: josh
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE SEQUENCE categories_id_seq
@@ -72,17 +72,17 @@ CREATE SEQUENCE categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE categories_id_seq OWNER TO josh;
+ALTER TABLE categories_id_seq OWNER TO CURRENT_USER;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: josh
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
--- Name: items; Type: TABLE; Schema: public; Owner: josh
+-- Name: items; Type: TABLE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE TABLE items (
@@ -102,10 +102,10 @@ CREATE TABLE items (
 );
 
 
-ALTER TABLE items OWNER TO josh;
+ALTER TABLE items OWNER TO CURRENT_USER;
 
 --
--- Name: items_id_seq; Type: SEQUENCE; Schema: public; Owner: josh
+-- Name: items_id_seq; Type: SEQUENCE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE SEQUENCE items_id_seq
@@ -116,17 +116,17 @@ CREATE SEQUENCE items_id_seq
     CACHE 1;
 
 
-ALTER TABLE items_id_seq OWNER TO josh;
+ALTER TABLE items_id_seq OWNER TO CURRENT_USER;
 
 --
--- Name: items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: josh
+-- Name: items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER SEQUENCE items_id_seq OWNED BY items.id;
 
 
 --
--- Name: order_items; Type: TABLE; Schema: public; Owner: josh
+-- Name: order_items; Type: TABLE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE TABLE order_items (
@@ -139,10 +139,10 @@ CREATE TABLE order_items (
 );
 
 
-ALTER TABLE order_items OWNER TO josh;
+ALTER TABLE order_items OWNER TO CURRENT_USER;
 
 --
--- Name: order_items_id_seq; Type: SEQUENCE; Schema: public; Owner: josh
+-- Name: order_items_id_seq; Type: SEQUENCE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE SEQUENCE order_items_id_seq
@@ -153,17 +153,17 @@ CREATE SEQUENCE order_items_id_seq
     CACHE 1;
 
 
-ALTER TABLE order_items_id_seq OWNER TO josh;
+ALTER TABLE order_items_id_seq OWNER TO CURRENT_USER;
 
 --
--- Name: order_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: josh
+-- Name: order_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER SEQUENCE order_items_id_seq OWNED BY order_items.id;
 
 
 --
--- Name: orders; Type: TABLE; Schema: public; Owner: josh
+-- Name: orders; Type: TABLE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE TABLE orders (
@@ -179,10 +179,10 @@ CREATE TABLE orders (
 );
 
 
-ALTER TABLE orders OWNER TO josh;
+ALTER TABLE orders OWNER TO CURRENT_USER;
 
 --
--- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: josh
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE SEQUENCE orders_id_seq
@@ -193,17 +193,17 @@ CREATE SEQUENCE orders_id_seq
     CACHE 1;
 
 
-ALTER TABLE orders_id_seq OWNER TO josh;
+ALTER TABLE orders_id_seq OWNER TO CURRENT_USER;
 
 --
--- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: josh
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER SEQUENCE orders_id_seq OWNED BY orders.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: josh
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE TABLE schema_migrations (
@@ -211,10 +211,10 @@ CREATE TABLE schema_migrations (
 );
 
 
-ALTER TABLE schema_migrations OWNER TO josh;
+ALTER TABLE schema_migrations OWNER TO CURRENT_USER;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: josh
+-- Name: users; Type: TABLE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE TABLE users (
@@ -230,10 +230,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE users OWNER TO josh;
+ALTER TABLE users OWNER TO CURRENT_USER;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: josh
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE SEQUENCE users_id_seq
@@ -244,52 +244,52 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE users_id_seq OWNER TO josh;
+ALTER TABLE users_id_seq OWNER TO CURRENT_USER;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: josh
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: josh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: josh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY items ALTER COLUMN id SET DEFAULT nextval('items_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: josh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY order_items ALTER COLUMN id SET DEFAULT nextval('order_items_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: josh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY orders ALTER COLUMN id SET DEFAULT nextval('orders_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: josh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: josh
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: CURRENT_USER
 --
 
 COPY ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
@@ -298,7 +298,7 @@ environment	development	2017-12-10 22:18:28.560794	2017-12-10 22:18:28.560794
 
 
 --
--- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: josh
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: CURRENT_USER
 --
 
 COPY categories (id, title, slug) FROM stdin;
@@ -314,14 +314,14 @@ COPY categories (id, title, slug) FROM stdin;
 
 
 --
--- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: josh
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CURRENT_USER
 --
 
 SELECT pg_catalog.setval('categories_id_seq', 8, true);
 
 
 --
--- Data for Name: items; Type: TABLE DATA; Schema: public; Owner: josh
+-- Data for Name: items; Type: TABLE DATA; Schema: public; Owner: CURRENT_USER
 --
 
 COPY items (id, title, description, price, image, category_id, created_at, updated_at, condition, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
@@ -1340,14 +1340,14 @@ COPY items (id, title, description, price, image, category_id, created_at, updat
 
 
 --
--- Name: items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: josh
+-- Name: items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CURRENT_USER
 --
 
 SELECT pg_catalog.setval('items_id_seq', 1011, true);
 
 
 --
--- Data for Name: order_items; Type: TABLE DATA; Schema: public; Owner: josh
+-- Data for Name: order_items; Type: TABLE DATA; Schema: public; Owner: CURRENT_USER
 --
 
 COPY order_items (id, item_id, order_id, created_at, updated_at, quantity) FROM stdin;
@@ -1411,14 +1411,14 @@ COPY order_items (id, item_id, order_id, created_at, updated_at, quantity) FROM 
 
 
 --
--- Name: order_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: josh
+-- Name: order_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CURRENT_USER
 --
 
 SELECT pg_catalog.setval('order_items_id_seq', 56, true);
 
 
 --
--- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: josh
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: CURRENT_USER
 --
 
 COPY orders (id, status, user_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
@@ -1481,14 +1481,14 @@ COPY orders (id, status, user_id, created_at, updated_at, image_file_name, image
 
 
 --
--- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: josh
+-- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CURRENT_USER
 --
 
 SELECT pg_catalog.setval('orders_id_seq', 55, true);
 
 
 --
--- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: josh
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: CURRENT_USER
 --
 
 COPY schema_migrations (version) FROM stdin;
@@ -1508,7 +1508,7 @@ COPY schema_migrations (version) FROM stdin;
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: josh
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: CURRENT_USER
 --
 
 COPY users (id, first_name, last_name, email, password_digest, address, created_at, updated_at, role) FROM stdin;
@@ -1570,14 +1570,14 @@ COPY users (id, first_name, last_name, email, password_digest, address, created_
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: josh
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CURRENT_USER
 --
 
 SELECT pg_catalog.setval('users_id_seq', 54, true);
 
 
 --
--- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: josh
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY ar_internal_metadata
@@ -1585,7 +1585,7 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
--- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: josh
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY categories
@@ -1593,7 +1593,7 @@ ALTER TABLE ONLY categories
 
 
 --
--- Name: items_pkey; Type: CONSTRAINT; Schema: public; Owner: josh
+-- Name: items_pkey; Type: CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY items
@@ -1601,7 +1601,7 @@ ALTER TABLE ONLY items
 
 
 --
--- Name: order_items_pkey; Type: CONSTRAINT; Schema: public; Owner: josh
+-- Name: order_items_pkey; Type: CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY order_items
@@ -1609,7 +1609,7 @@ ALTER TABLE ONLY order_items
 
 
 --
--- Name: orders_pkey; Type: CONSTRAINT; Schema: public; Owner: josh
+-- Name: orders_pkey; Type: CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY orders
@@ -1617,7 +1617,7 @@ ALTER TABLE ONLY orders
 
 
 --
--- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: josh
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY schema_migrations
@@ -1625,7 +1625,7 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: josh
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY users
@@ -1633,42 +1633,42 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_categories_on_slug; Type: INDEX; Schema: public; Owner: josh
+-- Name: index_categories_on_slug; Type: INDEX; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE UNIQUE INDEX index_categories_on_slug ON categories USING btree (slug);
 
 
 --
--- Name: index_items_on_category_id; Type: INDEX; Schema: public; Owner: josh
+-- Name: index_items_on_category_id; Type: INDEX; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE INDEX index_items_on_category_id ON items USING btree (category_id);
 
 
 --
--- Name: index_order_items_on_item_id; Type: INDEX; Schema: public; Owner: josh
+-- Name: index_order_items_on_item_id; Type: INDEX; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE INDEX index_order_items_on_item_id ON order_items USING btree (item_id);
 
 
 --
--- Name: index_order_items_on_order_id; Type: INDEX; Schema: public; Owner: josh
+-- Name: index_order_items_on_order_id; Type: INDEX; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE INDEX index_order_items_on_order_id ON order_items USING btree (order_id);
 
 
 --
--- Name: index_orders_on_user_id; Type: INDEX; Schema: public; Owner: josh
+-- Name: index_orders_on_user_id; Type: INDEX; Schema: public; Owner: CURRENT_USER
 --
 
 CREATE INDEX index_orders_on_user_id ON orders USING btree (user_id);
 
 
 --
--- Name: fk_rails_3e402078fd; Type: FK CONSTRAINT; Schema: public; Owner: josh
+-- Name: fk_rails_3e402078fd; Type: FK CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY order_items
@@ -1676,7 +1676,7 @@ ALTER TABLE ONLY order_items
 
 
 --
--- Name: fk_rails_89fb86dc8b; Type: FK CONSTRAINT; Schema: public; Owner: josh
+-- Name: fk_rails_89fb86dc8b; Type: FK CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY items
@@ -1684,7 +1684,7 @@ ALTER TABLE ONLY items
 
 
 --
--- Name: fk_rails_e3cb28f071; Type: FK CONSTRAINT; Schema: public; Owner: josh
+-- Name: fk_rails_e3cb28f071; Type: FK CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY order_items
@@ -1692,7 +1692,7 @@ ALTER TABLE ONLY order_items
 
 
 --
--- Name: fk_rails_f868b47f6a; Type: FK CONSTRAINT; Schema: public; Owner: josh
+-- Name: fk_rails_f868b47f6a; Type: FK CONSTRAINT; Schema: public; Owner: CURRENT_USER
 --
 
 ALTER TABLE ONLY orders
@@ -1712,4 +1712,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
