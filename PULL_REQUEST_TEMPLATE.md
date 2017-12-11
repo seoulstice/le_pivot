@@ -2,7 +2,7 @@
 #### Where should the reviewer start?
 #### How should this be manually tested?
 #### Any background context you want to provide?
-#### What are the relevant tickets?
+#### What are the relevant story numbers?
 #### Screenshots (if appropriate)
 #### Questions:
   - Do Migrations Need to be ran?
