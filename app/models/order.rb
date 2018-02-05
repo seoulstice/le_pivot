@@ -18,6 +18,10 @@ class Order < ApplicationRecord
     sum
   end
 
+  def find_quantity(item)
+    OrderItem.find_by(item: item, order: self).quantity
+  end
+
   def add(item_hash)
     item_hash.each do |item, quantity|
       items << item
