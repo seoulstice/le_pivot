@@ -14,7 +14,7 @@
         <tr id="item-<%= item.id %>">
           <th scope="row"><h6><%= image_tag item.image, class: "card-img-top", style: "max-height: 100px; max-width: 100px;" %></h6></th>
           <td class="title"><%= link_to item.title, item_path(item) %></td>
-          <td class="quantity"><%= OrderItem.find_by(item: item, order: @order).quantity %></td>
+          <td class="quantity"><%= @order.find_quantity(item) %></td>
           <td class="price"><%= number_to_currency(item.price) %></td>
         </tr>
       <% end %>
@@ -24,11 +24,7 @@
       <th></th>
       <th>Total:</th>
       <td class="order-total">
-        <% sum = 0 %>
-        <% @order.items.each do |item| %>
-          <% sum += (item.price * OrderItem.find_by(item: item, order: @order).quantity) %>
-        <% end %>
-        Total: <%= number_to_currency(sum) %>
+        Total: <%= number_to_currency(@order.order_total_price) %>
     </td>
     </tr>
     </tbody>

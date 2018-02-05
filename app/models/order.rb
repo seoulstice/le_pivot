@@ -10,6 +10,18 @@ class Order < ApplicationRecord
     items.sum(:price)
   end
 
+  def order_total_price
+    sum = 0
+    items.each do |item|
+      sum += (item.price * OrderItem.find_by(item: item, order: self).quantity)
+    end
+    sum
+  end
+
+  def find_quantity(item)
+    OrderItem.find_by(item: item, order: self).quantity
+  end
+
   def add(item_hash)
     item_hash.each do |item, quantity|
       items << item
