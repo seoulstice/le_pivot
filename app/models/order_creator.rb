@@ -6,6 +6,7 @@ class OrderCreator
     cart.items.each do |item|
       OrderItem.create(item: item, order: order, quantity: item.quantity)
     end
+    order
   end
 
 end
