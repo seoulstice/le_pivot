@@ -1,11 +1,9 @@
 FactoryBot.define do
   factory :item do
-    sequence(:title) {|n| "Item #{n}" }
-    description "Dead dove. Do not eat."
-    price 10.00
+    title { Faker::Commerce.product_name }
+    description { Faker::Hipster.sentence }
+    price { Faker::Commerce.price }
     image File.open("./spec/support/images/test_image.jpg")
-    category
+    category { Faker::Job.field }
   end
 end
-
-
