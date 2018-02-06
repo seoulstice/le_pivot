@@ -6,6 +6,10 @@ class OrderItem < ApplicationRecord
     group(:item_id)
   end
 
+  def price
+    quantity * item.price
+  end
+
   def self.top_three_items
     item_hash = self.group(:item_id).count
     popular_items = item_hash.sort_by {|key, value| value}.to_h

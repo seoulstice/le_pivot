@@ -3,11 +3,14 @@ class Order < ApplicationRecord
   validates :status, presence: true
   has_many :order_items
   has_many :items, through: :order_items
+  after_save :save_total_price
 
   enum status: ["ordered", "paid", "cancelled", "completed"]
 
-  def total_price
-    items.sum(:price)
+  def save_total_price
+    self.total_price = order_items.inject(0) do |sum, order_item|
+      sum + order_item.price
+    end
   end
 
   def order_total_price
