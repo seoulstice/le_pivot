@@ -4,6 +4,6 @@ FactoryBot.define do
     description { Faker::Hipster.sentence }
     price { Faker::Commerce.price }
     image File.open("./spec/support/images/test_image.jpg")
-    category { Faker::Job.field }
+    category 
   end
 end
