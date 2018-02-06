@@ -7,20 +7,6 @@ class Order < ApplicationRecord
 
   enum status: ["ordered", "paid", "cancelled", "completed"]
 
-  def save_total_price
-    self.total_price = order_items.inject(0) do |sum, order_item|
-      sum + order_item.price
-    end
-  end
-
-  def order_total_price
-    sum = 0
-    items.each do |item|
-      sum += (item.price * OrderItem.find_by(item: item, order: self).quantity)
-    end
-    sum
-  end
-
   def find_quantity(item)
     OrderItem.find_by(item: item, order: self).quantity
   end
