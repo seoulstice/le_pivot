@@ -2,8 +2,10 @@ class OrdersController < ApplicationController
   before_action :require_current_user
 
   def index
-    @user = current_user
-    @user.orders.preload(:items)
+    # @user = current_user
+    # @user.orders.preload(:items)
+    @orders = current_user.orders
+    binding.pry
   end
 
   def show
@@ -22,13 +24,15 @@ class OrdersController < ApplicationController
   end
 
 
-  def new
-    order = Order.create(status: "ordered", user_id: current_user.id)
-    item_hash = @cart.cart_items
-    order.add(item_hash)
-    @cart.destroy
-    flash[:success] = "Order was successfully placed"
-    redirect_to orders_path
+  def create
+    order = OrderCreator.create_order(current_user, @cart)
+    if order.valid?
+      @cart.destroy
+      flash[:success] = "Order was successfully placed."
+      redirect_to orders_path
+    else
+      redirect_to cart_path
+    end
   end
 
   private
