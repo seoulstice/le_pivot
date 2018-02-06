@@ -1,17 +1,14 @@
 FactoryBot.define do
   factory :user do
-    first_name "Gob"
-    last_name "Bluth"
+    first_name { Faker::Name.first_name  }
+    last_name { Faker::Name.last_name }
     password "password"
     sequence(:email) {|n| "gob#{n}@example.com" }
-  end
 
-  factory :admin, class: User do
-    first_name "Gob"
-    last_name "Bluth"
-    password "password"
-    role "admin"
-    sequence(:email) {|n| "admin-#{n}@example.com" }
+    factory(:admin) do
+      password "password"
+      role "admin"
+      sequence(:email) {|n| "admin-#{n}@example.com" }
+    end
   end
 end
-
