@@ -37,10 +37,7 @@ RSpec.describe Order do
       item_2 = create(:item, price: 1.00)
       item_not_included = create(:item, title: "Banana Stand", price: 100.00)
       create(:order_item, order: order, item: item_1, quantity: 2)
-      create(:order_item, order: order, item: item_2, quantity: 1)
-      order.reload
-      order.save
-
+      create(:order_item, order: order, item: item_2, quantity: 1
       expect(order.total_price).to eq(21.0)
     end
 
