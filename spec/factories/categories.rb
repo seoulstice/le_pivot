@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :category do
-    title "Animals"
+    title { Faker::Commerce.department }
   end
 end
-
