@@ -13,7 +13,13 @@ Rails.application.routes.draw do
   resource :dashboard, only: :show
   resource :cart, only: [:show, :create, :update, :destroy]
   resources :users , only: [:new, :create, :edit, :update]
-  resources :orders, only: [:index, :new, :show, :update]
+
+  resources :orders, only: [:index, :create, :show, :update]
+
+  resources :dashboard, only: [:index]
+
+  get '/cart', :to => 'carts#index', :as => 'cart'
+
   resources :items, only: [:index, :show]
   resources :categories, only: :show, param: :category_slug
 
