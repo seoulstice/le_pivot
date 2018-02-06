@@ -32,17 +32,16 @@ RSpec.describe Order do
 
   describe "instance methods" do
     it "can return total price of items" do
-      gob = create(:user)
-      order = create(:order, status: "ordered", user: gob)
-      category = create(:category)
-      item_1 = create(:item, title: "Dove", price: 10.00)
-      item_2 = create(:item, title: "Seal", price: 1.00)
+      order = create(:order)
+      item_1 = create(:item, price: 10.00)
+      item_2 = create(:item, price: 1.00)
       item_not_included = create(:item, title: "Banana Stand", price: 100.00)
+      create(:order_item, order: order, item: item_1, quantity: 2)
+      create(:order_item, order: order, item: item_2, quantity: 1)
+      order.reload
+      order.save
 
-      order.items << item_1
-      order.items  << item_2
-
-      expect(order.total_price).to eq(11.0)
+      expect(order.total_price).to eq(21.0)
     end
 
     it "can add an item" do
