@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     flash[:notice] = "Logged in as #{user.first_name} #{user.last_name}"
     session[:user_id] = user.id
-    redirect_to dashboard_index_path
+    redirect_to dashboard_path
   end
 
   def edit
@@ -18,12 +18,12 @@ class UsersController < ApplicationController
   def update
     if current_admin?
       current_user.update(user_params)
-      redirect_to admin_dashboard_index_path
-    elsif current_user != nil
+      redirect_to admin_dashboard_path
+    elsif current_user
       current_user.update(user_params)
-      redirect_to dashboard_index_path
+      redirect_to dashboard_path
     else
-      render file: "/public/404"
+      not_found
     end
   end
 

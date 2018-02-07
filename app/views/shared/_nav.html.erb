@@ -6,19 +6,15 @@
       <%= link_to 'Login', login_path, class: "nav-link active" %>
     </li>
   <% end %>
-  <% if current_user && current_user.admin? %>
-    <li class="nav-item">
-      <%= link_to 'Dashboard', admin_dashboard_index_path, class: "nav-link active" %>
-    </li>
-  <% elsif current_user %>
-    <li class="nav-item">
-      <%= link_to 'Dashboard', dashboard_index_path, class: "nav-link active" %>
-    </li>
-  <% else %>
-    <li class="nav-item">
+  <li class="nav-item">
+    <% if current_admin? %>
+      <%= link_to 'Dashboard', admin_dashboard_path, class: "nav-link active" %>
+    <% elsif current_user %>
+      <%= link_to 'Dashboard', dashboard_path, class: "nav-link active" %>
+    <% else %>
       <%= link_to 'Sign Up', new_user_path, class: "nav-link active" %>
-    </li>
-  <% end %>
+    <% end %>
+  </li>
   <li class="nav-item">
     <%= link_to 'Items', items_path, class: "nav-link active" %>
   </li>
@@ -31,7 +27,7 @@
     </div>
   </li>
   <li class="nav-item">
-    <%= link_to 'Cart', carts_path, class: "btn" %>
+    <%= link_to 'Cart', cart_path, class: "btn" %>
     <span class="badge badge-secondary"><%= @cart.total_count %></span>
   </li>
   <% if current_user %>
@@ -41,4 +37,3 @@
   <% end %>
 
 </ul>
-

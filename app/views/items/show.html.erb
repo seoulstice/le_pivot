@@ -16,7 +16,7 @@
 				<%= @item.description %> <br /> <br />
 				Price:$ <%= @item.price %> <br />
 				<% unless @item.retired? %>
-				<%= link_to "Add to cart", carts_path(item_id: @item.id), method: :post, class: "badge badge-primary" %></center>
+				<%= link_to "Add to cart", cart_path(item_id: @item.id), method: :post, class: "badge badge-primary" %></center>
 				<% else %>
 				<div class="badge badge-secondary">
 					Retired

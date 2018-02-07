@@ -7,7 +7,7 @@ require 'rails_helper'
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin_user)
 
-        visit admin_dashboard_index_path
+        visit admin_dashboard_path
         expect(page).to have_content("Admin Dashboard")
       end
     end
@@ -20,7 +20,7 @@ require 'rails_helper'
       allow_any_instance_of(ApplicationController).to receive(:current_user). and_return(default_user)
 
       expect {
-        visit admin_dashboard_index_path
+        visit admin_dashboard_path
       }.to raise_error(ActionController::RoutingError)
     end
   end
@@ -29,7 +29,7 @@ require 'rails_helper'
   describe "as a visitor when I visit /admin/dashboard" do
     it "I see a 404 error" do
       expect {
-        visit admin_dashboard_index_path
+        visit admin_dashboard_path
       }.to raise_error(ActionController::RoutingError)
     end
   end
@@ -52,7 +52,7 @@ feature "as an Admin" do
 
       expect(page).to have_content("You're logged in as an Administrator.")
 
-      expect(current_path).to eq(admin_dashboard_index_path)
+      expect(current_path).to eq(admin_dashboard_path)
     end
   end
 end

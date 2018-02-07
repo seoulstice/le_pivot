@@ -8,7 +8,7 @@ describe "As a logged in Admin" do
     new_email_address = "kramer@example.com"
     new_password      = "cosmo"
 
-    visit admin_dashboard_index_path
+    visit admin_dashboard_path
     click_on "Update Account"
     fill_in "user[email]", with: new_email_address
     fill_in "user[password]", with: new_password
@@ -23,14 +23,14 @@ describe "As a logged in Admin" do
     allow_any_instance_of(ApplicationController).to receive(:current_user). and_return(admin)
     user = create(:user)
 
-    visit dashboard_index_path(user)
+    visit dashboard_path(user)
 
     expect(page).not_to have_content("Update account")
   end
 
   it "returns a welcome message for admins" do
     allow_any_instance_of(ApplicationController).to receive(:current_user). and_return(admin)
-    visit admin_dashboard_index_path
+    visit admin_dashboard_path
     expect(page).to have_content("You're logged in as an Administrator")
   end
 
@@ -38,7 +38,7 @@ describe "As a logged in Admin" do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user). and_return(user)
     expect {
-      visit admin_dashboard_index_path
+      visit admin_dashboard_path
     }.to raise_error(ActionController::RoutingError)
   end
 end

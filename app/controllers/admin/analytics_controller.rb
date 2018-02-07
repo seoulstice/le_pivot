@@ -1,7 +1,7 @@
-class Admin::AnalyticsController < ApplicationController
-  before_action :require_admin
+class Admin::AnalyticsController < Admin::BaseController
 
-  def index
+  def show
     @analytics = AdminAnalyticsPresenter.new
   end
+
 end
