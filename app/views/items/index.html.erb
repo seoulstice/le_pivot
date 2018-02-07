@@ -16,7 +16,7 @@
                 <!-- <p>Description: <%= item.description %></p> -->
                 <p>Price: <%= number_to_currency(item.price) %></p>
                 <% unless item.retired? %>
-                  <%= link_to "Add to cart", carts_path(item_id: item.id), method: :post, class: "badge badge-primary" %></center>
+                  <%= link_to "Add to cart", cart_path(item_id: item.id), method: :post, class: "badge badge-primary" %></center>
             <% else %>
               <div class="badge badge-secondary">
                 Retired

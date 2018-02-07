@@ -12,7 +12,7 @@ RSpec.feature "Admin Orders" do
     let!(:order_2) { create(:order) }
 
     it "I can see the total number of orders for each status" do
-      visit admin_dashboard_index_path
+      visit admin_dashboard_path
 
       expect(page).to have_content(order_1.id)
       expect(page).to have_content(order_1.date)
@@ -20,23 +20,23 @@ RSpec.feature "Admin Orders" do
     end
 
     it "I can see orders filtered by status" do
-      visit admin_dashboard_index_path
+      visit admin_dashboard_path
 
       click_on("Ordered")
 
-      expect(current_path).to eq(admin_dashboard_index_path)
+      expect(current_path).to eq(admin_dashboard_path)
       expect(page).to have_link(order_1.id, href: order_path(order_1))
       expect(page).not_to have_link(order_2.id)
     end
 
     it "I can change the status of orders" do
-      visit admin_dashboard_index_path
+      visit admin_dashboard_path
 
       within(".order-#{order_2.id}") do
         click_on("Cancel")
       end
 
-      expect(current_path).to eq(admin_dashboard_index_path)
+      expect(current_path).to eq(admin_dashboard_path)
 
       within(".order-#{order_2.id}") do
         expect(page).to have_content("Cancelled")
@@ -46,7 +46,7 @@ RSpec.feature "Admin Orders" do
         click_on("Mark as Paid")
       end
 
-      expect(current_path).to eq(admin_dashboard_index_path)
+      expect(current_path).to eq(admin_dashboard_path)
 
       within(".order-#{order_1.id}") do
         within(".status") do
@@ -58,7 +58,7 @@ RSpec.feature "Admin Orders" do
         click_on("Mark as Completed")
       end
 
-      expect(current_path).to eq(admin_dashboard_index_path)
+      expect(current_path).to eq(admin_dashboard_path)
 
       within(".order-#{order_1.id}") do
         within(".status") do

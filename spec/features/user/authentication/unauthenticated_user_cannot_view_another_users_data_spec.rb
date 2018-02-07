@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.feature "Unauthenticated users security" do
   context "As an unauthenticated user" do
     it "I cannot visit dashboard" do
-      visit dashboard_index_path
+      visit dashboard_path
 
       expect(current_path).to eq(login_path)
     end
-    
+
     it "I cannot view an order" do
       order = create(:order)
 
@@ -34,7 +34,7 @@ RSpec.feature "Unauthenticated users security" do
 
     it "I cannot view the administrator screens or use administrator functionality" do
       expect {
-        visit admin_dashboard_index_path
+        visit admin_dashboard_path
       }.to raise_exception(ActionController::RoutingError)
     end
   end

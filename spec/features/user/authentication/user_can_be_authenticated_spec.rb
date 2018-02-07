@@ -10,7 +10,7 @@ describe "And when I click “Login” I should be on the “/login page”" do
 
           login_user(user.email, "testing")
 
-          expect(current_path).to eq(dashboard_index_path)
+          expect(current_path).to eq(dashboard_path)
           expect(page).to have_content "Logged in as Tester McTesty"
           expect(page).to have_content "testerson@testmail.com"
 
