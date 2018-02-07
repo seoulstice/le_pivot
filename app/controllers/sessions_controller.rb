@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       verify_user
     end
   end
+
   def destroy
     session.clear
     redirect_to root_path
@@ -28,6 +29,7 @@ class SessionsController < ApplicationController
   end
 
   def login_successful
+    @user = current_user
     session[:user_id] = @user.id
     flash[:notice] = "Logged in as #{@user.first_name} #{@user.last_name}"
     if @user.admin?
