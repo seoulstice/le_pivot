@@ -32,27 +32,13 @@ RSpec.describe Order do
 
   describe "instance methods" do
     it "can return total price of items" do
-      order = create(:order)
+      order = create(:order, total_price: 21.0)
       item_1 = create(:item, price: 10.00)
       item_2 = create(:item, price: 1.00)
       item_not_included = create(:item, title: "Banana Stand", price: 100.00)
       create(:order_item, order: order, item: item_1, quantity: 2)
       create(:order_item, order: order, item: item_2, quantity: 1)
       expect(order.total_price).to eq(21.0)
-    end
-
-    it "can add an item" do
-      user = User.create!(first_name: "Testy", last_name: "McTest", password: "testing", email: "tester@testmail")
-      order = user.orders.create!(status: "ordered")
-      category = create(:category)
-      item = create(:item)
-      item_hash = {item => 1}
-
-      expect(order.items).to eq([])
-
-      order.add(item_hash)
-
-      expect(order.items.first).to eq(item)
     end
 
     it "can return the order date" do
