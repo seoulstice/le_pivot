@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
   resources :categories, only: :show, param: :category_slug
 
+  scope path: :settings do
+    resource :developer, only: [:show, :create, :update]
+  end
+
   namespace :admin do
     resource :dashboard, only: :show
     resource :analytics, only: :show

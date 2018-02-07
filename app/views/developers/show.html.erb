@@ -1,0 +1,8 @@
+<h2>Artsy API</h2>
+
+<% if @api_key %>
+  <p><b>API Key:</b> <%= @api_key %></p>
+  <%= button_to "Reset API Key", developer_path, method: :put %>
+<% else %>
+  <%= button_to "Register", developer_path %>
+<% end %>
