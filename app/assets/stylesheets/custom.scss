@@ -71,6 +71,7 @@ a {
 
 .badge-secondary{
   margin-right:10px;
+
 }
 
 .nav-item{
@@ -84,4 +85,20 @@ a {
 .v-left{
   border-left:1px solid grey;
   height: 30px;
+}
+
+.nav-link.dropdown-toggle{
+  color: #4EA7BF;
+}
+
+.dropdown-item{
+  color: #4EA7BF;
+}
+
+.btn{
+  color: #4EA7BF;
+}
+
+.nav-link.active{
+  color: #985DAF;
 }
