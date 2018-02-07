@@ -1,7 +1,11 @@
 class ApiKey < ApplicationRecord
 
   belongs_to :user, optional: true
-  before_destroy { raise 'API keys must never be deleted' }
+
+  before_destroy { throw :abort }
+  def self.delete(*args)
+    raise 'API keys must never be deleted'
+  end
 
   def self.unique
     loop do
@@ -11,7 +15,7 @@ class ApiKey < ApplicationRecord
   end
 
   def reset
-    user.api_key = self.class.unique
+    user && user.api_key = self.class.unique
   end
 
   def to_s
