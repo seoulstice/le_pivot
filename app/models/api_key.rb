@@ -4,9 +4,10 @@ class ApiKey < ApplicationRecord
   before_destroy { raise 'API keys must never be deleted' }
 
   def self.unique
-    key = SecureRandom.urlsafe_base64
-    key = SecureRandom.urlsafe_base64 while exists?(key: key)
-    create(key: key)
+    loop do
+      key = SecureRandom.urlsafe_base64
+      return create(key: key) unless exists?(key: key)
+    end
   end
 
   def reset
