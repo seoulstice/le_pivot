@@ -5,6 +5,14 @@ class Cart
     @contents = initial_contents || {}
   end
 
+  def items
+    contents.map { |id, quantity| CartItem.new(id, quantity)}
+  end
+
+  def total_price
+    items.sum &:subtotal
+  end
+
   def total_count
     contents.values.sum
   end
