@@ -27,8 +27,13 @@
     </div>
   </li>
   <li class="nav-item">
+<<<<<<< HEAD
     <%= link_to 'Cart', cart_path, class: "btn" %>
     <span class="badge badge-secondary"><%= @cart.total_count %></span>
+=======
+    <%= link_to 'Cart', carts_path, class: "btn" %>
+    <span class="badge badge-secondary"><%= cart.total_count %></span>
+>>>>>>> Refactor @cart in application_controller to cart
   </li>
   <% if current_user %>
     <li class="nav-item">
