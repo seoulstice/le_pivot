@@ -21,3 +21,8 @@
 .DS_Store
 /coverage
 # Ignore secrets.yml file
+
+/config/local_env.yml
+
+# Ignore application configuration
+/config/application.yml
