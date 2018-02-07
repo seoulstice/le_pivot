@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
     # @user = current_user
     # @user.orders.preload(:items)
     @orders = current_user.orders
-    binding.pry
   end
 
   def show
