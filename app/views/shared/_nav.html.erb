@@ -29,12 +29,12 @@
     <% end %>
     <% if current_user && current_user.admin? %>
       <li class="nav-right">
-        <%= link_to 'Dashboard', admin_dashboard_index_path, class: "nav-link active" %>
+        <%= link_to 'Dashboard', admin_dashboard_path, class: "nav-link active" %>
       </li>
     <% elsif current_user %>
       <li class="nav-right">
         <div class="v-right">
-          <%= link_to 'Dashboard', dashboard_index_path, class: "nav-link active" %>
+          <%= link_to 'Dashboard', dashboard_path, class: "nav-link active" %>
         </div>
       </li>
     <% else %>
