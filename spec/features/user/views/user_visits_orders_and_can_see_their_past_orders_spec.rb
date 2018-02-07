@@ -4,9 +4,9 @@ describe "As a user" do
   describe "visits /orders" do
     it "can see all past orders" do
       user = create(:user)
-      create(:order, user: user)
-      item = create(:item, price: 5.00)
-      order_1 = create(:order_with_items, user: user, items_with_quantity: items_with_quantity)
+      order_1 = create(:order, user: user, total_price: 10.0)
+      order_2 = create(:order, user: user, total_price: 20.0)
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit '/orders'
@@ -17,6 +17,7 @@ describe "As a user" do
         expect(page).to have_content(order_1.id)
         expect(page).to have_content(order_1.status.capitalize)
         expect(page).to have_content("$10.00")
+        expect(page).to have_content("$30.00")
       end
     end
   end
