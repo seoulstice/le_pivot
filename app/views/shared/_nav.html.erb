@@ -1,39 +1,54 @@
 <ul class="nav">
-  <li class="logo"><%= link_to  "LittleShoppe", root_path %></li>
-
-  <% if current_user.nil? %>
-    <li class="nav-item">
-      <%= link_to 'Login', login_path, class: "nav-link active" %>
-    </li>
-  <% end %>
-  <li class="nav-item">
-    <% if current_admin? %>
-      <%= link_to 'Dashboard', admin_dashboard_path, class: "nav-link active" %>
-    <% elsif current_user %>
-      <%= link_to 'Dashboard', dashboard_path, class: "nav-link active" %>
-    <% else %>
-      <%= link_to 'Sign Up', new_user_path, class: "nav-link active" %>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <%= link_to 'Items', items_path, class: "nav-link active" %>
-  </li>
+    <li class="logo"><%= link_to  image_tag("cropped_artsy.png"), root_path %></li>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
-    <div class="dropdown-menu">
-      <% @categories.each do |category| %>
+
+    <div class="v-right">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
+      <div class="dropdown-menu">
+        <% @categories.each do |category| %>
         <%= link_to category.title, category_path(category.slug), class: "dropdown-item" %>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </li>
-  <li class="nav-item">
-    <%= link_to 'Cart', cart_path, class: "btn" %>
-    <span class="badge badge-secondary"><%= @cart.total_count %></span>
-  </li>
-  <% if current_user %>
-    <li class="nav-item">
-      <%= link_to 'Logout', logout_path, method: :delete, class: "nav-link active" %>
-    </li>
-  <% end %>
 
-</ul>
+  <li class="nav-item">
+    <div class="v-right">
+      <%= link_to 'Cart', carts_path, class: "btn" %>
+      <span class="badge badge-secondary"><%= @cart.total_count %></span>
+    </div>
+  </li>
+
+  <div id="left-nav-margin">
+    <% if current_user.nil? %>
+      <li class="nav-right">
+        <div class="v-right">
+          <%= link_to 'Login', login_path, class: "nav-link active" %>
+        </div>
+      </li>
+    <% end %>
+    <% if current_user && current_user.admin? %>
+      <li class="nav-right">
+        <%= link_to 'Dashboard', admin_dashboard_index_path, class: "nav-link active" %>
+      </li>
+    <% elsif current_user %>
+      <li class="nav-right">
+        <div class="v-right">
+          <%= link_to 'Dashboard', dashboard_index_path, class: "nav-link active" %>
+        </div>
+      </li>
+    <% else %>
+      <li class="nav-right">
+        <%= link_to 'Sign Up', new_user_path, class: "nav-link active" %>
+      </li>
+    <% end %>
+    <% if current_user %>
+      <li class="nav-item">
+        <div class="v-left">
+          <%= link_to 'Logout', logout_path, method: :delete, class: "nav-link active" %>
+        </div>
+      </li>
+    <% end %>
+
+  </ul>
+  </div>
