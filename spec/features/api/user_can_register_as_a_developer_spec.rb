@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Developer Registration' do
+feature 'Developer Settings' do
 
   scenario %{
     As a visitor
@@ -19,15 +19,14 @@ feature 'Developer Registration' do
     Then I should see an API key
     And my current path should still be "/settings/developer"
   } do
-    allow_any_instance_of(ApplicationController)
-      .to receive(:current_user)
-      .and_return(create(:user))
+
+    stub_logged_in_user
     visit('/dashboard')
-    within('.footer') { click_on 'Developer' }
+    within('footer') { click_on 'Developer' }
     click_on 'Register'
 
     expect(page).to have_current_path('/settings/developer')
-    expect(page).to have_content(/API key: [\w\d\-]{22}/)
+    expect(page).to have_content(/api key: [\w\d\-]{22}/i)
   end
 
   scenario %{
@@ -38,13 +37,14 @@ feature 'Developer Registration' do
     Then I should see a new API key replace the old one
     And my current path should be still be "/settings/developer"
   } do
-    developer = create(:developer, api_key: "a_22_character_api_key")
-    stub_logged_in_user(developer.user)
+    old_api_key = create(:api_key, key: "a_22_character_api_key")
+    stub_logged_in_user(old_api_key.user)
     visit '/settings/developer'
 
-    expect(page).to have_content("a_22_character_api_key")
+    expect(page).to have_content(old_api_key)
     click_on 'Reset API Key'
-    expect(page).to have_content(/API key: [\w\d\-]{22}/)
+    expect(page).to have_content(/api key: [\w\d\-]{22}/i)
+    expect(page).to_not have_content(old_api_key)
   end
 
 end
