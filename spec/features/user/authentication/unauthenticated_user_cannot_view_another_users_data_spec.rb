@@ -26,10 +26,9 @@ RSpec.feature "Unauthenticated users security" do
       click_on "Cart"
 
       expect(page).to_not have_content("Checkout")
+      expect(page).to have_link("Login")
+      expect(page).to have_link("Create new account")
 
-      visit new_order_path
-
-      expect(current_path).to eq(login_path)
     end
 
     it "I cannot view the administrator screens or use administrator functionality" do
