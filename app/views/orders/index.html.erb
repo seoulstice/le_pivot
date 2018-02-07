@@ -10,12 +10,12 @@
         </tr>
       </thead>
       <tbody>
-        <% @user.orders.each do |order| %>
+        <% @orders.each do |order| %>
           <tr id="order-<%= order.id %>" class="order">
             <th scope="row"> <%= link_to order.id, order_path(order) %></th>
             <td><%= order.date %></td>
             <td><%= order.status.capitalize %></td>
-            <td>$<%= order.total_price %></td>
+            <td><%= number_to_currency(order.total_price) %></td>
           </tr>
         <% end %>
       </tbody>
