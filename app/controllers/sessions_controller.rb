@@ -11,12 +11,13 @@ class SessionsController < ApplicationController
       verify_user
     end
   end
+
   def destroy
     session.clear
     redirect_to root_path
   end
 
-  private
+private
 
   def verify_user
     if @user && @user.authenticate(params[:session][:password])
@@ -36,6 +37,5 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path
     end
   end
-
 
 end

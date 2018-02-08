@@ -76,6 +76,10 @@ ActiveRecord::Schema.define(version: 20180207073505) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
+    t.string "screen_name"
+    t.string "uid"
+    t.string "oauth_token"
+    t.string "oauth_token_secret"
   end
 
   add_foreign_key "items", "categories"
