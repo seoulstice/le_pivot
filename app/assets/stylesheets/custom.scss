@@ -25,9 +25,10 @@ footer{
 }
 
 div.container {
-  width:800px;
+  width:1200px;
   height:auto;
   padding: 5px;
+
 }
 
 a {
@@ -38,6 +39,13 @@ a {
   margin-right: auto;
   margin-left: auto;
 }
+
+#left-nav-margin{
+  margin-left: 500px;
+  display:flex;
+}
+
+
 
 #left {
   text-align: left;
@@ -53,4 +61,57 @@ a {
 
 .hero {
   width: 800px;
+}
+
+.v-right{
+  border-right: 1px solid grey;
+  border-bottom: 0px solid grey;
+  height:30px;
+}
+
+.badge-secondary{
+  margin-right:10px;
+
+}
+
+.nav-item{
+  margin-top:25px;
+}
+
+.nav-right{
+  margin-top: 25px;
+}
+
+.v-left{
+  border-left:1px solid grey;
+  height: 30px;
+}
+
+.nav-link.dropdown-toggle{
+  color: #4EA7BF;
+}
+
+.dropdown-item{
+  color: #4EA7BF;
+}
+
+.btn{
+  color: #4EA7BF;
+}
+
+.nav-link.active{
+  color: #985DAF;
+}
+
+.teal{
+  color:#4ea7bf;
+}
+
+#pop-items{
+  color: #985DAF;
+}
+
+.badge.badge-primary{
+  color: #4ea7bf;
+  background-color: white;
 }

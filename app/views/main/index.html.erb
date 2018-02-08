@@ -1,10 +1,7 @@
 <div class="container">
-  <div class="title">
-    <center>
-      <%= link_to (image_tag('save_20_hero.png', class: "hero")), new_user_path %>
-    </center>
-  </div>
+  <center id="pop-items">
   <h3>Popular Items:</h3>
+  </center>
   <div class="row">
     <% @popular_items.each do |item| %>
       <div class="center-block">
@@ -13,7 +10,7 @@
           <div class="card-body">
             <center><p><strong><%= link_to item.title, item_path(item) %></strong></p>
               <!-- <p>Description: <%= item.description %></p> -->
-              <p>Price: $<%= item.price %></p>
+              <p class="teal">Price: $<%= item.price %></p>
               <% unless item.retired? %>
                 <%= link_to "Add to cart", cart_path(item_id: item.id), method: :post, class: "badge badge-primary" %></center>
           <% else %>
