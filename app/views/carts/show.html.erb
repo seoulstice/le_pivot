@@ -49,26 +49,22 @@
                 <th scope="row"><strong><%= link_to item.title, item_path(item) %></strong></th>
                 <td><%= image_tag item.image, :class => "cart_image"%></td>
                 <td>$<%= item.price %></td>
-                <td><%= quantity %></td>
+                <td><%= item.quantity %></td>
                 <td><%= link_to "-", cart_path(id: item.id, condition: "decrease"), action: :update, method: :patch, class: "badge badge-danger" %>
                 <%= link_to "+", cart_path(id: item.id, condition: "increase"), action: :update, method: :patch, class: "badge badge-success" %></td>
                 <td><%= link_to "Remove", cart_path(id: item.id), method: :delete, class: "badge badge-danger" %></td>
-                <td>$<%= quantity * item.price %></td>
+                <td>$<%= item.subtotal %></td>
               </tr>
             </div>
           <% end %>
         </tbody>
     </table>
     <div class="total">
-      <% sum = 0 %>
-      <% @items.each do |item, quantity| %>
-        <% sum += (item.price * quantity) %>
-      <% end %>
-      <p><b>Total: <%= number_to_currency(sum) %></b></p>
+      <p><b>Total: <%= number_to_currency(cart.total_price) %></b></p>
     </div>
     <div class="checkout">
       <% if current_user %>
-        <%= link_to "Checkout", orders_path, method: :post %>
+        <%= link_to "Checkout", orders_path, method: :post%>
       <% else %>
         <%= link_to "Login", login_path %> <br />
         <%= link_to "Create new account", new_user_path %>
