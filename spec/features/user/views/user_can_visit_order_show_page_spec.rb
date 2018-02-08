@@ -5,8 +5,8 @@ describe "As a user" do
     it "can see all past orders" do
       user = create(:user)
       item = create(:item, price: 5.00)
-      items_with_quantity = [ {item => 2} ]
-      order = create(:order_with_items, user: user, items_with_quantity: items_with_quantity)
+      order = create(:order, user: user, total_price: 10.00)
+      create(:order_item, item: item, order: order, quantity: 2)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit '/orders'

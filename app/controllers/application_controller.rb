@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  helper_method :current_user, :cart, :current_admin? 
+  before_action :set_categories
 
-  helper_method :current_user, :current_admin?
-  before_action :set_cart, :set_categories
 
 private
 
@@ -26,7 +26,7 @@ private
     flash[:error] = record.errors.full_messages.join("\n")
   end
 
-  def set_cart
+  def cart
     @cart ||= Cart.new(session[:cart])
   end
 
