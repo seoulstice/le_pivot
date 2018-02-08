@@ -24,15 +24,9 @@ class OrdersController < ApplicationController
 
 
   def create
-<<<<<<< HEAD
     order = OrderCreator.create_order(current_user, cart)
     if order.valid?
       cart.destroy
-=======
-    order = OrderCreator.create_order(current_user, @cart)
-    if order.valid?
-      @cart.destroy
->>>>>>> 9a4fad1305e6d85e960a6a7972b54040c8867338
       flash[:success] = "Order was successfully placed."
       redirect_to orders_path
     else
