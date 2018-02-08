@@ -1,13 +1,8 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
-<<<<<<< HEAD
   def show
-    @items = @cart.cart_items
-=======
-  def index
-    @items = cart.cart_items
->>>>>>> Refactor @cart in application_controller to cart
+    @items = cart.items
   end
 
   def create
