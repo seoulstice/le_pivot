@@ -1,3 +1,26 @@
+// moved from <style> tag in cart#show
+.cart_image{
+  width: 3em;
+  height: 4em;
+}
+
+.checkout{
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+}
+.total{
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+}
+h2{
+  text-align: center;
+  font-size: 3em;
+}
+// end of <style> tag
+
+
 .small{
   size: 10px;
 }
@@ -114,4 +137,8 @@ a {
 .badge.badge-primary{
   color: #4ea7bf;
   background-color: white;
+}
+
+.footer-center{
+  margin-left: 300px;
 }
