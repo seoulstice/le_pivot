@@ -5,6 +5,14 @@ class Cart
     @contents = initial_contents || {}
   end
 
+  def items
+    contents.map { |id, quantity| CartItem.new(id, quantity)}
+  end
+
+  def total_price
+    items.sum &:subtotal
+  end
+
   def total_count
     contents.values.sum
   end
@@ -30,12 +38,6 @@ class Cart
     contents[id.to_s].to_i
   end
 
-  def cart_items
-    contents.inject({}) do |result, (item_id, quantity)|
-      result[Item.find(item_id)] = quantity
-      result
-    end
-  end
 
   def delete_item(id)
     contents.delete(id.to_s)

@@ -6,8 +6,10 @@ feature "Admin can view individual order pages" do
     admin = create(:admin)
     item_1 = create(:item, price: 11.00)
     item_2 = create(:item, price: 10.00)
-    items_with_quantity_for_order = [ {item_1 => 1}, {item_2 => 2} ]
-    order = create(:order_with_items, items_with_quantity: items_with_quantity_for_order)
+    order = create(:order, total_price: 31.00, user: user)
+    create(:order_item, item: item_1, order: order, quantity: 1)
+    create(:order_item, item: item_2, order: order, quantity: 2)
+
     expected_total = "$31.00"
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
@@ -31,4 +33,3 @@ feature "Admin can view individual order pages" do
     end
   end
 end
-

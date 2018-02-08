@@ -9,7 +9,7 @@ RSpec.feature "Admin Orders" do
 
   context "As an admin and two orders in the database" do
     let!(:order_1) { create(:order, status: "ordered") }
-    let!(:order_2) { create(:order) }
+    let!(:order_2) { create(:order, status: "paid") }
 
     it "I can see the total number of orders for each status" do
       visit admin_dashboard_path
@@ -26,7 +26,7 @@ RSpec.feature "Admin Orders" do
 
       expect(current_path).to eq(admin_dashboard_path)
       expect(page).to have_link(order_1.id, href: order_path(order_1))
-      expect(page).not_to have_link(order_2.id)
+      expect(page).to_not have_link(order_2.id, href: order_path(order_2))
     end
 
     it "I can change the status of orders" do
