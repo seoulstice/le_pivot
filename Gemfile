@@ -22,6 +22,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'figaro'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -30,4 +30,10 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :edit, :new, :create, :update]
   end
 
+  namespace :api do
+    namespace :v1 do
+      resource :search, only: :show
+    end
+  end
+
 end

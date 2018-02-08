@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe "Search API" do
+fdescribe "Search API" do
 
   let(:json) { JSON.parse(response.body, symbolize_names: true) }
   let(:type) { 'items' }
-  let(:q) { 'diapers' }
+  let(:q) { 'diaper' }
   let(:results) do
     [
       {
@@ -52,7 +52,7 @@ describe "Search API" do
     }
     expected = {
       type: type,
-      q: q,
+      q: q.upcase,#  <----
       results: results
     }
     expect(response).to be_success
