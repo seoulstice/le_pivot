@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-fdescribe "Search API" do
+describe "Search API" do
 
   let(:json) { JSON.parse(response.body, symbolize_names: true) }
   let(:type) { 'items' }
