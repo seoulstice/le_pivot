@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  private
+private
 
   def verify_user
     if @user && @user.authenticate(params[:session][:password])
@@ -29,7 +29,6 @@ class SessionsController < ApplicationController
   end
 
   def login_successful
-    @user = current_user
     session[:user_id] = @user.id
     flash[:notice] = "Logged in as #{@user.first_name} #{@user.last_name}"
     if @user.admin?
@@ -38,6 +37,5 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path
     end
   end
-
 
 end

@@ -1,19 +1,16 @@
  require 'rails_helper'
 
-RSpec.describe "As a visitor I can login" do
-	it "as a user I can log out" do
-		user = User.create(first_name: "Tester", last_name: "McTesty", email: "testerson@testmail.com", password: "testing")
-		visit '/'
-		click_on 'Login'
-		fill_in "session[email]", with: "testerson@testmail.com"
-		fill_in "session[password]", with: "testing"
+feature "Logout" do
+	it "As a user, I can log out" do
+    user = create(:user, password: 'password')
+    visit root_path
+    click_on 'Login'
+    fill_in "session[email]", with: user.email
+    fill_in "session[password]", with: 'password'
+    within(".login-form") { click_on("Login") }
 
-		within(".action") do
-			click_on("Login")
-		end
 		click_on 'Logout'
-		expect(page).to have_content("Login")
-
+		expect(page).to have_link("Login")
+		expect(page).to_not have_link("Logout")
 	end
-
 end
