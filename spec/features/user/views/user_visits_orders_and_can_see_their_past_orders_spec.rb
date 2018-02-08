@@ -17,6 +17,7 @@ describe "As a user" do
         expect(page).to have_content(order_1.id)
         expect(page).to have_content(order_1.status.capitalize)
         expect(page).to have_content("$10.00")
+        expect(page).to have_content("$30.00")
       end
     end
   end
