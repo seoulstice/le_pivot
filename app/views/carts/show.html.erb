@@ -1,29 +1,6 @@
-<style>
-.cart_image{
-  width: 3em;
-  height: 4em;
-}
-
-      .checkout{
-        text-align: right;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .total{
-        text-align: right;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      h2{
-        text-align: center;
-        font-size: 3em;
-      }
-</style>
 <div class="container">
   <% if current_user  %>
-    <h3> <%= current_user.first_name %>'s  Cart</h3>
+    <h3><%= current_user.first_name %>'s  Cart</h3>
   <% else %>
     <h3> Your Cart </h3>
   <% end %>
@@ -69,7 +46,17 @@
         <%= link_to "Login", login_path %> <br />
         <%= link_to "Create new account", new_user_path %>
       <% end %>
-    </div>
-    <!-- </div> -->
-  </center>
+    </tbody>
+  </table>
+  <div class="total">
+    <p><b>Total: <%= number_to_currency(cart.total_price) %></b></p>
+  </div>
+  <div class="checkout">
+    <% if current_user %>
+      <%= link_to "Checkout", orders_path, method: :post%>
+    <% else %>
+      <%= link_to "Login", login_path %>
+      <%= link_to "Create new account", new_user_path %>
+    <% end %>
+  </div>
 </div>

@@ -1,4 +1,3 @@
-
 <div class="container">
   <nav class="nav nav-tabs" id="myTab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-expanded="true">Customer Analytics</a>
@@ -10,56 +9,54 @@
         <thead class="thead-default">
           <tr>
             <th><i>Customer<i></th>
-            <th><center><i>Total Orders To-Date<i></center></th>
+            <th><i>Total Orders To-Date<i></th>
           </tr>
         </thead>
         <tbody>
           <% @analytics.orders_per_customer.each do |key, value| %>
-          <tr>
-            <th scope="row"><%= key %></th>
-            <td><center><%= value %></center></td>
-          </tr>
+            <tr>
+              <th scope="row"><%= key %></th>
+              <td><%= value %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
-
       <table class="table">
         <thead class="thead-default">
           <tr>
             <th><i>Customer<i></th>
-            <th><center><i>Items Ordered To-Date<i></center></th>
+            <th><i>Items Ordered To-Date<i></th>
           </tr>
         </thead>
         <tbody>
           <% @analytics.items_ordered_per_customer.each do |key, value| %>
-          <tr>
-            <th scope="row"><%= key %></th>
-            <td><center><%= value %></center></td>
-          </tr>
+            <tr>
+              <th scope="row"><%= key %></th>
+              <td><%= value %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
-
-    <p>
-      Total shop sales to date: $ <%= @analytics.total_sales %>. <br>
-      Total completed orders: <%= @analytics.completed_orders %> <br>
-      Average number of onsies per order: <%= @analytics.average_quantity_purchased %>
-    </p>
-    </div> 
+      <p>
+        Total shop sales to date: $ <%= @analytics.total_sales %>.
+        Total completed orders: <%= @analytics.completed_orders %>
+        Average number of onsies per order: <%= @analytics.average_quantity_purchased %>
+      </p>
+    </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
       <table class="table">
         <thead class="thead-default">
           <tr>
             <th><i>Item<i></th>
-            <th><center><i>Quantity Sold To-Date<i></center></th>
+            <th><i>Quantity Sold To-Date<i></th>
           </tr>
         </thead>
         <tbody>
           <% @analytics.sales_by_item_title.each do |key, value| %>
-          <tr>
-            <th scope="row"><%= key %></th>
-            <td><center><%= value %></center></td>
-          </tr>
+            <tr>
+              <th scope="row"><%= key %></th>
+              <td><%= value %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>

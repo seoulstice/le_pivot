@@ -22,16 +22,16 @@
     <tr>
       <th></th>
       <th></th>
-      <th>Total:  </th>
+      <th>Total:</th>
       <td class="order-total">
         Total: <%= number_to_currency(@order.total_price) %>
-    </td>
+      </td>
     </tr>
     </tbody>
   </table>
 
-  <p><b>Order Date:</b> <%= @order.date %><br />
-  <b>Order Placed by:</b> <%= @order.user.full_name %><br />
-  <b>Order Address:</b> <%= @order.user.address %><br />
+  <p><b>Order Date:</b> <%= @order.date %>
+  <b>Order Placed by:</b> <%= @order.user.full_name %>
+  <b>Order Address:</b> <%= @order.user.address %>
   <b>Order Status:</b> <%= @order.status.capitalize %></p>
 </div>

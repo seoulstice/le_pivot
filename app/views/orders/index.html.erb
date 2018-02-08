@@ -1,24 +1,22 @@
 <div class="container">
-  <center>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Order #</th>
-          <th>Order Placed</th>
-          <th>Order Status</th>
-          <th>Total</th>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Order #</th>
+        <th>Order Placed</th>
+        <th>Order Status</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr id="order-<%= order.id %>" class="order">
+          <th scope="row"> <%= link_to order.id, order_path(order) %></th>
+          <td><%= order.date %></td>
+          <td><%= order.status.capitalize %></td>
+          <td><%= number_to_currency(order.total_price) %></td>
         </tr>
-      </thead>
-      <tbody>
-        <% @orders.each do |order| %>
-          <tr id="order-<%= order.id %>" class="order">
-            <th scope="row"> <%= link_to order.id, order_path(order) %></th>
-            <td><%= order.date %></td>
-            <td><%= order.status.capitalize %></td>
-            <td><%= number_to_currency(order.total_price) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </center>
+      <% end %>
+    </tbody>
+  </table>
 </div>
