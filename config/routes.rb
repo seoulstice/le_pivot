@@ -18,8 +18,6 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index]
 
-  get '/cart', :to => 'carts#index', :as => 'cart'
-
   resources :items, only: [:index, :show]
   resources :categories, only: :show, param: :category_slug
 
