@@ -43,7 +43,7 @@
         </tr>
         <tbody>
 
-          <% @items.each do |item, quantity| %>
+          <% @items.each do |item| %>
             <div class="item-#{item.id}">
               <tr>
                 <th scope="row"><strong><%= link_to item.title, item_path(item) %></strong></th>

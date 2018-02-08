@@ -6,6 +6,16 @@ class Order < ApplicationRecord
 
   enum status: ["ordered", "paid", "cancelled", "completed"]
 
+  def status_partial
+    if ordered?
+      "ordered"
+    elsif paid?
+      "paid"
+    else
+       "empty"
+    end
+  end
+
   def find_quantity(item)
     OrderItem.find_by(item: item, order: self).quantity
   end
