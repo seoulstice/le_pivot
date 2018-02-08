@@ -56,12 +56,6 @@ RSpec.describe Cart do
     end
   end
 
-  describe "#cart_items" do
-    it "returns a hash of item objects and quantity" do
-      expect(subject.cart_items[item_1]).to eq(2)
-      expect(subject.cart_items[item_2]).to eq(3)
-    end
-  end
 
   describe "#delete_item" do
     it "can remove one item from the cart" do
