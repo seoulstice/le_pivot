@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe "As a logged in Admin" do
-  
-  let(:admin) { create(:user, role: "admin", email: "admin@example.com")}
+
+  let(:platform_admin) { create(:user, email: "admin@example.com")}
 
   xit "I can modify my account data" do
     stub_logged_in_user(admin)
