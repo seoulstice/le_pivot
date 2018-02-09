@@ -27,6 +27,14 @@ class User < ApplicationRecord
     group(:email).joins(orders: :order_items).sum(:quantity)
   end
 
+  def has_role(name)
+    roles.exists?(name: name)
+  end
+
+  def platform_admin?
+    has_role("platform_admin")
+  end
+
   def add_twitter_credentials(auth_hash)
     self.uid                =  auth_hash.uid
     self.screen_name        =  auth_hash.extra.raw_info.screen_name
