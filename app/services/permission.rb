@@ -1,12 +1,12 @@
 class Permission
 
   def self.granted?(*args)
-     new(*args).granted?
+    new(*args).granted?
   end
 
   attr_reader :controller, :action, :user
   def initialize(controller, action, user)
-    @controller = controller.to_sym
+    @controller = controller.name.to_sym
     @action = action.to_sym
     @user = user || User.new
   end
@@ -27,59 +27,59 @@ class Permission
   def permitted
   # @@ because this should be the same everywhere always
     @@permitted ||= {
-      carts: {
+      "CartsController": {
         show: true,
         create: true,
         update: true,
         destroy: true
       },
-      categories: {
+      "CategoriesController": {
         show: true
       },
-      dashboards: {
+      "DashboardsController": {
         show: true
       },
-      developers: {
+      "DevelopersController": {
         show: true,
         update: true,
         create: true,
       },
-      items: {
+      "ItemsController": {
         index: true,
         show: true
       },
-      main: {
+      "MainController": {
         index: true,
       },
-      orders: {
+      "OrdersController": {
         index: true,
         show: true,
         update: true
       },
-      sessions: {
+      "SessionsController": {
         new: true,
         create: true,
         destroy: true
       },
-      twitter: {
+      "TwitterController": {
         new:    %i{ store_admin platform_admin },
         create: %i{ store_admin platform_admin },
         update: %i{ store_admin platform_admin }
       },
-      users: {
+      "UsersController": {
         new: true,
         create: true,
         edit: true,
         update: true
       },
 
-      'admin/dashboards': {
+      "Admin::DashboardsController": {
         show: :platform_admin
       },
-      'admin/analytics': {
+      "Admin::AnalyticsController": {
         show: :platform_admin
       },
-      'admin/items': {
+      "Admin::ItemsController": {
         index: :platform_admin,
         new: :platform_admin,
         create: :platform_admin,
