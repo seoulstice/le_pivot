@@ -1,3 +1,8 @@
 class Role < ApplicationRecord
-  has_many :user_roles
+  validates_presence_of :name
+
+  def to_sym
+    name.to_sym
+  end
+
 end
