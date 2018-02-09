@@ -43,7 +43,8 @@ RSpec.feature "Adding items to the cart" do
       expect(page).to have_css("img[src=\"#{item.image}\"]")
       expect(page).to have_content(item.title)
       expect(page).to have_content("2")
-      within '.total' do
+
+      within first('.total') do
         expect(page).to have_content "$20.00"
       end
     end
