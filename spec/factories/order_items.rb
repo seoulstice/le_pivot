@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :order_item do
-    item
     order
-    quantity 1
+    item
+    
+    quantity { rand(5) }
   end
 end
