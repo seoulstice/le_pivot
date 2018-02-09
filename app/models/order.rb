@@ -12,7 +12,7 @@ class Order < ApplicationRecord
     elsif paid?
       "paid"
     else
-       "empty"
+      "empty"
     end
   end
 
