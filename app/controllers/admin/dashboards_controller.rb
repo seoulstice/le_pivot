@@ -1,4 +1,4 @@
-class Admin::DashboardsController < Admin::BaseController
+class Admin::DashboardsController < ApplicationController
   def show
     if params[:status]
       @orders = Order.filter_by_status(params[:status])
