@@ -4,4 +4,5 @@ class Store < ApplicationRecord
 
   enum status: ["pending", "active", "suspended"]
 
+  validates_presence_of :name
 end

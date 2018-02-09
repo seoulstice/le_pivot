@@ -1,23 +1,6 @@
 class OrderItem < ApplicationRecord
-  belongs_to :order, autosave: true
-  belongs_to :item
-
-  def self.sum_quantity
-    group(:item_id)
-  end
-
-  def price
-    quantity * item.price
-  end
-
-  def self.top_three_items
-    item_hash = self.group(:item_id).count
-    popular_items = item_hash.sort_by {|key, value| value}.to_h
-    ids = popular_items.keys.reverse[0..2]
-    ids.map do |id|
-      Item.find(id)
-    end
-  end
+  belongs_to :order, inverse_of: :order_items
+  belongs_to :item, inverse_of: :order_items
 
   def self.average_quantity
     average(:quantity).to_i
