@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     def authorize!
       not_found unless Permission.granted?(
         params[:controller],
-        params[:action],
+        params[:action]),
         current_user
       )
     end
@@ -27,19 +27,11 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-<<<<<<< HEAD
-      @user ||= User.find(session[:user_id]) if session[:user_id]
-    end
-
-    def all_categories
-      @categories ||= Category.all
-=======
       @user = User.find_by_id(session[:user_id]) || User.guest
     end
 
     def all_categories
       @all_categories = Category.all
->>>>>>> revert permissions
     end
 
     def cart
