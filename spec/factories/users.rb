@@ -5,14 +5,28 @@ FactoryBot.define do
     email { Faker::Internet.unique.safe_email }
     password "password"
 
+    factory(:store_manager) do
+      store_roles({store => "store_manager"})
+    end
+
+    factory(:store_admin) do
+      store_roles({store => "store_admin"})
+    end
+
+    factory(:platform_admin) do
+      store_roles({nil => "platform_admin"})
+    end
+
     transient do
       store_roles({})
+      store(nil)
     end
 
     after(:create) do |user, evaluator|
       evaluator.store_roles.each do |store, name|
         role = Role.find_or_create_by(name: name)
-        UserRole.create(user: user, store: store, role: role)
+        store = evaluator.store || create(:store) unless name == :platform_admin
+        UserRole.create!(user: user, store: store, role: role)
       end
     end
 
