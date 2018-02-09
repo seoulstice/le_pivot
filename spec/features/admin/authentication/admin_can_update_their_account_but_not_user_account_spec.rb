@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe "As a logged in Admin" do
+  
   let(:admin) { create(:user, role: "admin", email: "admin@example.com")}
 
   xit "I can modify my account data" do
