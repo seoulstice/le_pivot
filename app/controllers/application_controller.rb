@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authorize!
 
   helper_method :current_user,
-                # :current_platform_admin?,
+                :current_admin?,
                 :all_categories,
                 :cart
 
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     def authorize!
       not_found unless Permission.granted?(
         params[:controller],
-        params[:action],
+        params[:action]),
         current_user
       )
     end
