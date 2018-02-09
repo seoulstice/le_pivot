@@ -1,7 +1,15 @@
 require 'rails_helper'
 
 describe Item do
-  let(:category) { build(:category, title: "Animals") }
+
+  it "::top_three" do
+    six   = create_list(:order_item, 2, quantity: 3).first.item
+    four  = create_list(:order_item, 2, quantity: 2).first.item
+    two   = create_list(:order_item, 2, quantity: 1).first.item
+    eight = create_list(:order_item, 2, quantity: 4).first.item
+
+    expect(Item.top_three).to eq([eight, six, four])
+  end
 
   describe 'validations' do
     describe 'invalid attributes' do
