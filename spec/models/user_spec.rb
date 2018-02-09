@@ -30,18 +30,6 @@ describe "validations" do
     end
   end
 
-  context "it can have one of two roles" do
-    it "has a role" do
-      user = build(:user)
-      expect(user.role).to eq("default")
-    end
-
-    it "can be an admin" do
-      user = build(:user, role: "admin")
-      expect(user.role).to eq("admin")
-    end
-  end
-
   context "instance methods" do
     it "can return user's full name" do
       user = User.new(first_name: "McTest",last_name: "McTest", password: "testing", email: "tester@testmail")
