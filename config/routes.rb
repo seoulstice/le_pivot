@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :create, :show, :update]
   resources :items, only: [:index, :show]
   resources :categories, only: :show, param: :category_slug
+  resources :stores, only: [:new, :create, :index]
 
   scope path: :settings do
     resource :developer, only: [:show, :create, :update]
