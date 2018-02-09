@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     def authorize!
       not_found unless Permission.granted?(
         params[:controller],
-        params[:action]),
+        params[:action],
         current_user
       )
     end
