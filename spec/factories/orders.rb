@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :order do
-    status 0
     user
+
+    status 0
+    total_price { rand(1000) / 100.0 }
   end
 end
