@@ -11,6 +11,7 @@ require 'database_cleaner'
 require 'support/simple_cov'
 require 'feature_helper'
 require 'santas_little_helper'
+require './db/seeder'
 
 ActiveRecord::Migration.maintain_test_schema!
 
