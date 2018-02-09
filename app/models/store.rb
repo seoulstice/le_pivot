@@ -3,4 +3,5 @@ class Store < ApplicationRecord
   has_many :user_roles
 
   enum status: ["pending", "active", "suspended"]
+
 end
