@@ -7,7 +7,6 @@ class StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
     if @store.save
-      binding.pry
       UserRole.create!(user_id: current_user.id, store: @store, role_id: 2)
       flash_success("Store created successfully.")
       redirect_to dashboard_path
@@ -18,7 +17,6 @@ class StoresController < ApplicationController
   end
 
   def index
-    # binding.pry
     @stores = current_user.stores
   end
 
