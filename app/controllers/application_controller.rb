@@ -22,11 +22,11 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-      @user = User.find(session[:user_id]) if session[:user_id]
+      @user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
     def all_categories
-      @categories = Category.all
+      @categories ||= Category.all
     end
 
     def cart
