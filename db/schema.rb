@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20180211191248) do
 
   create_table "chatrooms", force: :cascade do |t|
     t.string "topic"
+    t.string "slug"
+    t.index ["slug"], name: "index_chatrooms_on_slug", unique: true
   end
 
   create_table "items", force: :cascade do |t|
