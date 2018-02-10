@@ -65,7 +65,8 @@ class Permission
       stores: {
         new: true,
         create: true,
-        index: true
+        index: true,
+        show: true
 
       },
       twitter: {
