@@ -8,7 +8,7 @@ class StoresController < ApplicationController
     @store = StoreCreator.create_store(current_user, store_params)
     if @store.save
       flash_success("Store created successfully.")
-      redirect_to dashboard_path
+      redirect_to current_dashboard_path
     else
       flash_errors(@store)
       render :new
