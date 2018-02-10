@@ -7,7 +7,7 @@ class StripeServices
   def create_charge(amount)
     Stripe::Charge.create(
       customer: @customer.id,
-      amount: amount,
+      amount: amount.to_i,
       description: 'Your purchase from Artsy!',
       currency: 'usd'
     )
@@ -17,8 +17,8 @@ class StripeServices
 
     def create_customer(params)
       Stripe::Customer.create(
-      email: params[:email],
-      source: params[:stripe_token]
+      email: params[:stripeEmail],
+      source: params[:stripeToken]
     )
     end
 

@@ -13,14 +13,7 @@ class ChargesController < ApplicationController
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
-      redirect_to thanks_path
-  end
-
-  def thanks
-  end
-
-  def thanks
-    cart.destroy
+      redirect_to new_charge_path
   end
 
   def thanks
