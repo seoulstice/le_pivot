@@ -6,6 +6,5 @@ FactoryBot.define do
     description { Faker::Hipster.sentence }
     price { Faker::Commerce.price }
     image "http://res.cloudinary.com/tyjoo27/image/upload/v1518213324/cp82cjhrlplyxbet4gko.png"
-    category
   end
 end
