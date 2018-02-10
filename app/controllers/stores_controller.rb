@@ -20,6 +20,10 @@ class StoresController < ApplicationController
     @stores = current_user.stores
   end
 
+  def show
+    @store = Store.find(params[:id])
+  end
+
   private
 
   def store_params
