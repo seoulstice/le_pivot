@@ -5,10 +5,10 @@
     <%= link_to "View Items", admin_items_path, class: "nav-item nav-link" %>
     <%= link_to "Update Account", edit_user_path(current_user), class: "nav-item nav-link" %>
     <%= link_to "View Analytics", admin_analytics_path, class: "nav-item nav-link" %>
-    <% unless current_user.oauth_token.present? %>
-      <%= link_to "Login to Twitter", twitter_login_path, class: "nav-item nav-link"  %>
-    <% else %>
+    <% if current_user.oauth_token.present? %>
       <%= link_to "Send A Tweet!", new_twitter_path, class: "nav-item nav-link"   %>
+    <% else %>
+      <%= link_to "Login to Twitter", twitter_login_path, class: "nav-item nav-link"  %>
     <% end %>
     <%= link_to "Stores", stores_path, class: "nav-item nav-link" %>
   </nav>
@@ -32,8 +32,8 @@
         </div>
    			<!-- <%= link_to "All Orders", admin_dashboard_path, class: "badge badge-success" %>
    			<%= link_to "All Items", admin_items_path, class: "badge badge-success" %> -->
- 	      <table class="table table-hover">
- 	         <thead>
+        <table class="table table-hover">
+ 	        <thead>
  	            <tr>
          	      <th>Order #</th>
          	      <th>Order Placed</th>
@@ -42,23 +42,23 @@
  		      			<th></th>
  	            </tr>
  	          </thead>
-             <tbody>
-               <% @orders.each do |order| %>
-                 <tr class="order-<%= order.id %>">
-                   <th scope="row">
-                     <%= link_to order.id, order_path(order) %>
-                   </th>
-                   <td><%= order.date %></td>
-                   <td class="status"><%= order.status.capitalize %></td>
-                   <td><%= render(
-                     partial: "orders/#{order.status_partial}",
-                     locals: {order: order}
-                   ) %></td>
-                 </tr>
-             <% end %>
-           </tbody>
-         </table>
-     </div>
+          <tbody>
+            <% @orders.each do |order| %>
+              <tr class="order-<%= order.id %>">
+                <th scope="row">
+                  <%= link_to order.id, order_path(order) %>
+                </th>
+                <td><%= order.date %></td>
+                <td class="status"><%= order.status.capitalize %></td>
+                <td><%= render(
+                  partial: "orders/#{order.status_partial}",
+                  locals: {order: order}
+                ) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
     <div class="tab-pane fade" id="nav-dropdown1" role="tabpanel" aria-labelledby="nav-dropdown1-tab">...</div>
