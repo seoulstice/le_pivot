@@ -33,7 +33,17 @@ class Admin::ItemsController < ApplicationController
 
   private
 
+  def handle_image
+    if params[:item][:image].nil?
+     params[:item][:image] = "http://res.cloudinary.com/tyjoo27/image/upload/v1518213324/cp82cjhrlplyxbet4gko.png"
+    else
+     response = Cloudinary::Uploader.upload(params[:item][:image].tempfile.path)
+     params[:item][:image] = response['url']
+    end
+  end
+
   def item_params
+    handle_image
     params.require(:item).permit(:title, :description, :price, :image, :category_id)
   end
 
