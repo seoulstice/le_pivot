@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'support/index', to: 'chatrooms#index'
   get 'support', to: 'chatrooms#show'
   get 'support/new', to: 'chatrooms#new', as: 'new_chatroom'
-  post 'support/new', to: 'chatrooms#new'
+  post 'support', to: 'chatrooms#new', as: 'chatrooms'
 
   resource :dashboard, only: :show
   resource :cart, only: [:show, :create, :update, :destroy]
