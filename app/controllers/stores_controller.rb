@@ -5,9 +5,8 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = Store.new(store_params)
+    @store = StoreCreator.create_store(current_user, store_params)
     if @store.save
-      UserRole.create!(user_id: current_user.id, store: @store, role_id: 2)
       flash_success("Store created successfully.")
       redirect_to dashboard_path
     else
@@ -18,6 +17,10 @@ class StoresController < ApplicationController
 
   def index
     @stores = current_user.stores
+  end
+
+  def show
+    @store = Store.find_by(slug: params[:slug])
   end
 
   private

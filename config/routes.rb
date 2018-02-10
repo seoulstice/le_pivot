@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :categories, only: :show, param: :category_slug
   resources :stores, only: [:new, :create, :index]
 
+
   scope path: :settings do
     resource :developer, only: [:show, :create, :update]
   end
@@ -37,4 +38,5 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/:slug', to: "stores#show", as: "store"
 end
