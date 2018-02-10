@@ -1,0 +1,6 @@
+<h1>Chatroom History</h1>
+<% @chatrooms.each do |chatroom| %>
+<%= link_to chatroom.topic chatroom_path(chatroom.slug) %>
+<% end %>
+
+<%= link_to "Talk to Live Support", new_chatroom_path  %>
