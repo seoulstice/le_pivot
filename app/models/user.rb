@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one :api_key, dependent: :nullify
   has_many :user_roles
   has_many :stores, through: :user_roles
+  has_many :roles, through: :user_roles
   validates :first_name, :last_name, presence: true
   validates :password, presence: true, :on => :create
   validates :email, presence: true, uniqueness: true
