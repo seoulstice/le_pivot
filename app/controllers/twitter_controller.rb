@@ -1,7 +1,6 @@
 class TwitterController < ApplicationController
 
   def new
-
   end
 
   def create
@@ -17,8 +16,7 @@ class TwitterController < ApplicationController
   private
 
     def twitter_successful
-      @user = current_user
-      flash[:notice] = "Successfully paired Twitter account for #{@user.first_name} #{@user.last_name}"
+      flash[:notice] = "Successfully paired Twitter account for #{current_user.first_name} #{current_user.last_name}"
       redirect_to admin_dashboard_path
     end
 

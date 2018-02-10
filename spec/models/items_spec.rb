@@ -1,7 +1,21 @@
 require 'rails_helper'
 
 describe Item do
-  let(:category) { build(:category, title: "Animals") }
+
+  it "::top_three" do
+    def item_with_two_order_items(sold_per_order_item)
+      create(:item) do |item|
+        create_list(:order_item, 2, item: item, quantity: sold_per_order_item)
+      end
+    end
+
+    six   = item_with_two_order_items(3)
+    four  = item_with_two_order_items(2)
+    two   = item_with_two_order_items(1)
+    eight = item_with_two_order_items(4)
+
+    expect(Item.top_three.to_a).to eq([eight, six, four])
+  end
 
   describe 'validations' do
     describe 'invalid attributes' do

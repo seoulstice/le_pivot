@@ -1,6 +1,6 @@
 class DevelopersController < ApplicationController
 
-  before_action :require_login
+  before_action :authenticate!
 
   def show
     @api_key = current_user.api_key

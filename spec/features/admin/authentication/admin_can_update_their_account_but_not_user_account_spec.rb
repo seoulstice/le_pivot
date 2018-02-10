@@ -1,8 +1,9 @@
 require "rails_helper"
 
 describe "As a logged in Admin" do
-  
-  let(:admin) { create(:user, role: "admin", email: "admin@example.com")}
+
+  let(:platform_admin) { create(:platform_admin) }
+  # let(:user) { create(:user) }
 
   xit "I can modify my account data" do
     stub_logged_in_user(admin)
@@ -26,7 +27,7 @@ describe "As a logged in Admin" do
   end
 
   it "But I cannot modify any other user’s account data" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user). and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(platform_admin)
     user = create(:user)
 
     visit dashboard_path(user)
@@ -35,7 +36,7 @@ describe "As a logged in Admin" do
   end
 
   it "returns a welcome message for admins" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user). and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(platform_admin)
     visit admin_dashboard_path
     expect(page).to have_content("You're logged in as an Administrator")
   end

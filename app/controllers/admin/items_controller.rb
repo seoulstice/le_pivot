@@ -1,4 +1,4 @@
-class Admin::ItemsController < Admin::BaseController
+class Admin::ItemsController < ApplicationController
 
   def index
     @items = Item.all
@@ -9,7 +9,6 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def create
-    @categories = Category.all
     @item = Item.new(item_params)
     if @item.save
       redirect_to admin_items_path
@@ -19,7 +18,6 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def update
-    @categories = Category.all
     @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.save

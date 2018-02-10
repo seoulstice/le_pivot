@@ -1,4 +1,4 @@
-class Admin::AnalyticsController < Admin::BaseController
+class Admin::AnalyticsController < ApplicationController
 
   def show
     @analytics = AdminAnalyticsPresenter.new

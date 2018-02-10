@@ -21,7 +21,7 @@
   </div>
 
   <div class="category_select_box">
-    <%= form.select(:category_id, @categories.map { |category| [category.title, category.id] }) %>
+    <%= form.select(:category_id, all_categories.map { |category| [category.title, category.id] }) %>
   </div>
 
   <div class="actions">
