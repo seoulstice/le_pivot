@@ -6,7 +6,7 @@ RSpec.describe 'an admin can visit admin dashboard' do
 
       allow_any_instance_of(ApplicationController)
         .to receive(:current_user)
-        .and_return(create(:admin))
+        .and_return(create(:platform_admin))
 
       item_one, item_two = create_list(:item, 2)
 
