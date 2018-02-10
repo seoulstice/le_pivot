@@ -2,11 +2,13 @@ class Permission
 
   def self.granted?(*args)
     new(*args).granted?
+  rescue Exception
+    return false
   end
 
   attr_reader :controller, :action, :user
   def initialize(controller, action, user)
-    @controller = controller.name.to_sym
+    @controller = controller.to_sym
     @action = action.to_sym
     @user = user
   end
@@ -25,37 +27,37 @@ class Permission
   def permitted
   # @@ because this should be the same everywhere always
     @@permitted ||= {
-      "CartsController": {
+      carts: {
         show: true,
         create: true,
         update: true,
         destroy: true
       },
-      "CategoriesController": {
+      categories: {
         show: true
       },
-      "DashboardsController": {
+      dashboards: {
         show: true
       },
-      "DevelopersController": {
+      developers: {
         show: true,
         update: true,
         create: true,
       },
-      "ItemsController": {
+      items: {
         index: true,
         show: true
       },
-      "MainController": {
+      main: {
         index: true,
       },
-      "OrdersController": {
+      orders: {
         index: true,
         show: true,
         update: true,
         create: true
       },
-      "SessionsController": {
+      sessions: {
         new: true,
         create: true,
         destroy: true
@@ -73,7 +75,7 @@ class Permission
         create: %i{ store_admin platform_admin },
         update: %i{ store_admin platform_admin }
       },
-      "UsersController": {
+      users: {
         new: true,
         create: true,
         edit: true,
