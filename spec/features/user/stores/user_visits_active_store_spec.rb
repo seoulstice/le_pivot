@@ -9,7 +9,7 @@ describe 'When a user visits an active store' do
     inactive_item = create(:item, store_id: store.id, condition: 1)
     unassociated_item = create(:item, condition: 0)
 
-    visit store_path(store)
+    visit store_path(store.slug)
 
     expect(page).to have_content(active_item1.title)
     expect(page).to have_content(active_item2.title)
