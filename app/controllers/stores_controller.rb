@@ -17,13 +17,18 @@ class StoresController < ApplicationController
   end
 
   def index
-    @stores = current_user.stores
+    if current_user.platform_admin?
+      @stores = Store.all
+    else
+      @stores = current_user.stores
+    end
   end
 
   def update
-    binding.pry
     store = Store.find(params[:id])
-
+    store.status = (params[:update_status])
+    store.save
+    redirect_to stores_path
   end
 
   private

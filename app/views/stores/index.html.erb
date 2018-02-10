@@ -2,10 +2,14 @@
 
 <% @stores.each do |store| %>
 <div class="store">
-  Name: <%= store.name %>
+  Name: <%= store.name %><br>
   <% if current_user.platform_admin? %>
-  Status: <%= store.status %>
-  <%= button_to "Activate", store_path(store, update_status: "Active"), method: :patch %>
-  <% end %>
+    Status: <%= store.status %><br>
+    <% if store.status == "pending" || store.status == "suspended" %>
+      <%= button_to "Activate", store_path(store, update_status: "active"), method: :patch %>
+    <% elsif store.status == "active" %>
+      <%= button_to "Suspend", store_path(store, update_status: "suspended"), method: :patch %>
+    <% end %>
+  <% end %><br><br>
 </div>
 <% end %>
