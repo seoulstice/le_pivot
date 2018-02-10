@@ -18,9 +18,9 @@ class StoresController < ApplicationController
 
   def index
     if current_user.platform_admin?
-      @stores = Store.all
+      @stores = Store.all.ordered_by_id
     else
-      @stores = current_user.stores
+      @stores = current_user.stores.ordered_by_id
     end
   end
 
