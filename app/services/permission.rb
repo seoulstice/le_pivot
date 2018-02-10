@@ -62,6 +62,12 @@ class Permission
         create: true,
         destroy: true
       },
+      stores: {
+        new: true,
+        create: true,
+        index: true
+
+      },
       twitter: {
         new:    %i{ store_admin platform_admin },
         create: %i{ store_admin platform_admin },
