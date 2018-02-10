@@ -39,13 +39,8 @@
       </li>
     <% else %>
       <li class="nav-right">
-        <%= link_to 'Sign Up', new_user_path, class: "nav-link active" %>
-      </li>
-    <% end %>
-    <% if current_user %>
-      <li class="nav-item">
-        <div class="v-left">
-          <%= link_to 'Logout', logout_path, method: :delete, class: "nav-link active" %>
+        <div class="v-right">
+          <%= link_to 'Login', login_path, class: "nav-link active" %>
         </div>
       </li>
     <% end %>

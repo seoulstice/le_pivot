@@ -9,4 +9,13 @@ class OrderCreator
     order
   end
 
+  def self.create_order(user, cart)
+    user.orders.create(
+      total_price: cart.total_price,
+      order_items_attributes: cart.items.map{ |item| {
+        item_id: item.id, quantity: item.quantity
+      }}
+    )
+  end
+
 end
