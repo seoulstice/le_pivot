@@ -17,7 +17,18 @@ class StoresController < ApplicationController
   end
 
   def index
-    @stores = current_user.stores
+    if current_user.platform_admin?
+      @stores = Store.all.ordered_by_id
+    else
+      @stores = current_user.stores.ordered_by_id
+    end
+  end
+
+  def update
+    store = Store.find(params[:id])
+    store.status = (params[:update_status])
+    store.save
+    redirect_to stores_path
   end
 
   private

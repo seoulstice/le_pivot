@@ -1,7 +1,7 @@
 class Permission
 
   def self.granted?(*args)
-     new(*args).granted?
+    new(*args).granted?
   end
 
   attr_reader :controller, :action, :user
@@ -65,7 +65,8 @@ class Permission
       stores: {
         new: true,
         create: true,
-        index: true
+        index: true,
+        update: true
 
       },
       twitter: {
