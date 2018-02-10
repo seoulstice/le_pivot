@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authorize!
 
   helper_method :current_user,
-                :current_admin?,
+                # :current_platform_admin?,
                 :all_categories,
                 :cart
 
