@@ -1,5 +1,11 @@
 
+
 <% @stores.each do |store| %>
-  <%= store.name %>
-  <%= store.status %>
+<div class="store">
+  Name: <%= store.name %>
+  <% if current_user.platform_admin? %>
+  Status: <%= store.status %>
+  <%= button_to "Activate", store_path(store, update_status: "Active"), method: :patch %>
+  <% end %>
+</div>
 <% end %>

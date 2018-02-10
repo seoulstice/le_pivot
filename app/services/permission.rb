@@ -6,7 +6,7 @@ class Permission
 
   attr_reader :controller, :action, :user
   def initialize(controller, action, user)
-    @controller = controller.name.to_sym
+    @controller = controller.to_sym
     @action = action.to_sym
     @user = user || User.new
   end
@@ -65,7 +65,8 @@ class Permission
       stores: {
         new: true,
         create: true,
-        index: true
+        index: true,
+        update: true
 
       },
       twitter: {
