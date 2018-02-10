@@ -5,7 +5,7 @@ describe 'When a user visits an active store' do
     user = create(:user)
     store = create(:store, name: "Vandelay Industries")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-    active_item1, active_item2 = create_list(:item, 2, store_id: store.id, condition: 0)
+    active_item1, active_item2 = create_list(:item, 2, store_id: store.id)
     inactive_item = create(:item, store_id: store.id, condition: 1)
     unassociated_item = create(:item, condition: 0)
 
