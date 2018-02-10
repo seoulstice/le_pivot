@@ -5,6 +5,5 @@ task :associate_items => :environment do
     item.store_id = original_store_id
     item.save
   end
+  puts "task complete"
 end
-
-puts "task complete"
