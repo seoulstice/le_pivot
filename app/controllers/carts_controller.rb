@@ -15,12 +15,12 @@ class CartsController < ApplicationController
   end
 
   def update
-    item = item.find(params[:id])
+    item = Item.find(params[:id])
     if params[:condition] == "decrease"
       cart.decrease_quantity(item.id)
       flash_removed(item) if cart.contents[item.id].nil?
     else
-      cart.increase_quantity(item_id)
+      cart.increase_quantity(item.id)
     end
     redirect_to cart_path
   end

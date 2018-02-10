@@ -1,21 +1,21 @@
 class Permission
 
   def self.granted?(*args)
-    new(*args).granted?
-  rescue Exception
-    return false
+     new(*args).granted?
   end
 
   attr_reader :controller, :action, :user
   def initialize(controller, action, user)
     @controller = controller.to_sym
     @action = action.to_sym
-    @user = user
+    @user = user || User.new
   end
 
   def granted?
     allowed = permitted.dig(controller, action) || []
     allowed.equal?(true) || user_has_role_in?(allowed)
+  rescue Exception
+    return false
   end
 
   def user_has_role_in?(allowed)

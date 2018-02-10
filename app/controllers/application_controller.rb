@@ -11,12 +11,12 @@ class ApplicationController < ActionController::Base
   private
 
     def authenticate!
-      redirect_to login_path unless current_user
+      redirect_to login_path unless logged_in?
     end
 
     def authorize!
       not_found unless Permission.granted?(
-        self.class,
+        params[:controller],
         params[:action],
         current_user
       )
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-      @user = User.find_by_id(session[:user_id]) || User.guest
+      @user ||= User.find_by_id(session[:user_id]) || User.guest
     end
 
     def all_categories

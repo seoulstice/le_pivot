@@ -7,9 +7,9 @@ RSpec.describe "As a visitor" do
       visit items_path
       click_on "Add to cart"
       visit cart_path
-      expect(page).to have_content("Create new account")
-      expect(page).to have_content("Login")
-      click_on ("Create new account")
+      expect(page).to have_content("create an account")
+      expect(page).to have_content("login")
+      click_on ("create an account")
       fill_in "user[first_name]", with: "Tester"
       fill_in "user[last_name]", with: "McTesty"
       fill_in "user[email]", with: "testerson@testmail.com"

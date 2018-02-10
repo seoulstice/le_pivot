@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash_success "Logged in as #{user.first_name} #{user.last_name}"
+      flash_success "Logged in as #{current_user.first_name} #{current_user.last_name}"
       session[:user_id] = @user.id
       redirect_to dashboard_path
     else
