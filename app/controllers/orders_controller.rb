@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    if current_admin?
+    if current_user.platform_admin?
       @order = Order.find(params[:id])
     else
       @order = current_user.orders.find(params[:id])
