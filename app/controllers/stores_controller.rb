@@ -5,8 +5,7 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = StoreCreator.create_store(user, store_params)
-    binding.pry
+    @store = StoreCreator.create_store(current_user, store_params)
     if @store.save
       flash_success("Store created successfully.")
       redirect_to dashboard_path
