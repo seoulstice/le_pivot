@@ -3,7 +3,7 @@
     <% @items.each do |item| %>
       <div class="center-block">
         <div class="card border-white" style="width: 15rem;">
-          <%= image_tag item.image.url, size: "250" %>
+          <%= image_tag item.image, size: "250" %>
           <div class="card-body">
             <p><strong><%= link_to item.title, item_path(item) %></strong></p>
             <!-- <p>Description: <%= item.description %></p> -->
