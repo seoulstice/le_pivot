@@ -7,9 +7,9 @@ class StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
     if @store.save
-      UserRole.create!(user_id: current_user.id, store: @store, role_id: 2)
+      current_user.user_roles.create(store: @store, role_id: 2)
       flash_success("Store created successfully.")
-      redirect_to dashboard_path
+      redirect_to current_dashboard_path
     else
       flash_errors(@store)
       render :new
