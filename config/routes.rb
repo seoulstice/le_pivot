@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post 'login', :to => 'sessions#create'
   delete 'logout', :to => 'sessions#destroy'
 
+  get 'support', :to => 'chatrooms#show'
+
   resource :dashboard, only: :show
   resource :cart, only: [:show, :create, :update, :destroy]
   resources :users , only: [:new, :create, :edit, :update]
