@@ -54,7 +54,8 @@ class Permission
       orders: {
         index: true,
         show: true,
-        update: true
+        update: true,
+        create: true
       },
       sessions: {
         new: true,
