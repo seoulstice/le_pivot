@@ -3,12 +3,18 @@ require 'rails_helper'
 describe Item do
 
   it "::top_three" do
-    six   = create_list(:order_item, 2, quantity: 3).first.item
-    four  = create_list(:order_item, 2, quantity: 2).first.item
-    two   = create_list(:order_item, 2, quantity: 1).first.item
-    eight = create_list(:order_item, 2, quantity: 4).first.item
+    def item_with_two_order_items(sold_per_order_item)
+      create(:item) do |item|
+        create_list(:order_item, 2, item: item, quantity: sold_per_order_item)
+      end
+    end
 
-    expect(Item.top_three).to eq([eight, six, four])
+    six   = item_with_two_order_items(3)
+    four  = item_with_two_order_items(2)
+    two   = item_with_two_order_items(1)
+    eight = item_with_two_order_items(4)
+
+    expect(Item.top_three.to_a).to eq([eight, six, four])
   end
 
   describe 'validations' do
