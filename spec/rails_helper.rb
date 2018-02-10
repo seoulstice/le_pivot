@@ -27,9 +27,9 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 
-  config.before(:each) do
-    allow_any_instance_of(Paperclip::Attachment).to receive(:save).and_return(true)
-  end
+  # config.before(:each) do
+  #   allow_any_instance_of(Paperclip::Attachment).to receive(:save).and_return(true)
+  # end
 
   # Required to be false for DatabaseCleaner config below
   config.use_transactional_fixtures = false

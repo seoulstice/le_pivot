@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209000114) do
+ActiveRecord::Schema.define(version: 20180209225539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,16 +32,12 @@ ActiveRecord::Schema.define(version: 20180209000114) do
     t.string "title"
     t.string "description"
     t.float "price"
-    t.string "image"
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "condition", default: 0
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.bigint "store_id"
+    t.string "image"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["store_id"], name: "index_items_on_store_id"
   end
@@ -61,11 +57,8 @@ ActiveRecord::Schema.define(version: 20180209000114) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.float "total_price"
+    t.string "image"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
