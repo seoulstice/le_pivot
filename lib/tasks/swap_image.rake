@@ -1,9 +1,15 @@
-desc "upload image to cloudinary"
-    task upload_image: :environment do
+desc "associate book to current items and order"
+    task associate_image_with_item: :environment do
       Item.find_each do |item|
-        Cloudinary::Uploader.upload("app/assets/images/#{item.image_file_name}", :height => 300, :width => 300 )
+        item.update(image: "http://res.cloudinary.com/tyjoo27/image/upload/v1518213324/cp82cjhrlplyxbet4gko.png" )
+      end
+
+      Order.find_each do |order|
+        order.update(image: "http://res.cloudinary.com/tyjoo27/image/upload/v1518213324/cp82cjhrlplyxbet4gko.png")
       end
     end
+
+
 
 
 puts "image swapped!"
