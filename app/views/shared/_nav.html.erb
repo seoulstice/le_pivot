@@ -5,7 +5,7 @@
     <div class="v-right">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
       <div class="dropdown-menu">
-        <% @categories.each do |category| %>
+        <% all_categories.each do |category| %>
         <%= link_to category.title, category_path(category.slug), class: "dropdown-item" %>
         <% end %>
       </div>
@@ -27,7 +27,7 @@
         </div>
       </li>
     <% end %>
-    <% if current_user && current_user.admin? %>
+    <% if current_user && current_user.platform_admin? %>
       <li class="nav-right">
         <%= link_to 'Dashboard', admin_dashboard_path, class: "nav-link active" %>
       </li>
