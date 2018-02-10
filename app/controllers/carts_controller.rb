@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
+  after_action :save_cart
+
   def show
     @items = cart.items
   end
@@ -8,19 +10,16 @@ class CartsController < ApplicationController
   def create
     item = Item.find(params[:item_id])
     cart.add_item(item.id)
-    session[:cart] = cart.contents
     flash[:notice] = "You now have #{pluralize(cart.count_of(item.id), item.title)}."
     redirect_back(fallback_location: root_path)
   end
 
   def update
-    item_id = params[:id]
+    item = item.find(params[:id])
     if params[:condition] == "decrease"
-      cart.decrease_quantity(item_id)
-      if cart.contents[item_id].nil?
-        flash[:successfully_removed] = "Successfully removed <a href=#{item_path(item_id)}>#{Item.find(item_id).title}</a> from your cart."
-      end
-    elsif params[:condition] == "increase"
+      cart.decrease_quantity(item.id)
+      flash_removed(item) if cart.contents[item.id].nil?
+    else
       cart.increase_quantity(item_id)
     end
     redirect_to cart_path
@@ -29,8 +28,18 @@ class CartsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     cart.delete_item(item.id)
-    flash[:successfully_removed] = "Successfully removed <a href=#{item_path(item)}>#{item.title}</a> from your cart."
+    flash_removed(item)
     redirect_back(fallback_location: root_path)
   end
+
+  private
+
+    def flash_removed(item)
+      flash_success "Successfully removed <a href=#{item_path(item)}>#{item.title}</a> from your cart."
+    end
+
+    def save_cart
+      session[:cart] = cart.contents
+    end
 
 end

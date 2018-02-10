@@ -5,7 +5,7 @@ class TwitterController < ApplicationController
 
   def create
     current_user.send_tweet(params[:text])
-    redirect_to admin_dashboard_path
+    redirect_to current_dashboard_path
   end
 
   def update
@@ -17,7 +17,7 @@ class TwitterController < ApplicationController
 
     def twitter_successful
       flash[:notice] = "Successfully paired Twitter account for #{current_user.first_name} #{current_user.last_name}"
-      redirect_to admin_dashboard_path
+      redirect_to current_dashboard_path
     end
 
 end
