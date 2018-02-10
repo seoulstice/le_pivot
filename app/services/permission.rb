@@ -20,7 +20,7 @@ class Permission
 
   def user_has_role_in?(allowed)
     roles = user.roles.map(&:to_sym)
-    # single `&` takes the intersection
+    # single `&` below takes the intersection
     !(roles & allowed).empty?
   end
 
@@ -74,17 +74,17 @@ class Permission
       },
 
       'admin/dashboards': {
-        show: :platform_admin
+        show: [:platform_admin]
       },
       'admin/analytics': {
-        show: :platform_admin
+        show: [:platform_admin]
       },
       'admin/items': {
-        index: :platform_admin,
-        new: :platform_admin,
-        create: :platform_admin,
-        update: :platform_admin,
-        edit: :platform_admin
+        index: [:platform_admin],
+        new: [:platform_admin],
+        create: [:platform_admin],
+        update: [:platform_admin],
+        edit: [:platform_admin]
       }
     }
   end

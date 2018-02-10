@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authorize!
 
   helper_method :current_user,
-                :current_admin?,
+                # :current_platform_admin?,
                 :all_categories,
                 :cart
 
@@ -16,17 +16,17 @@ class ApplicationController < ActionController::Base
     def authorize!
       not_found unless Permission.granted?(
         params[:controller],
-        params[:action]),
+        params[:action],
         current_user
       )
     end
 
     def current_user
-      @user = User.find(session[:user_id]) if session[:user_id]
+      @user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
     def all_categories
-      @categories = Category.all
+      @categories ||= Category.all
     end
 
     def cart
