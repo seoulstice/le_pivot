@@ -12,6 +12,10 @@ class User < ApplicationRecord
   validates :password, presence: true, :on => :create
   validates :email, presence: true, uniqueness: true
 
+  def self.guest
+    new(first_name: 'guest', last_name: 'user')
+  end
+
   def full_name
     first_name + " " + last_name
   end
