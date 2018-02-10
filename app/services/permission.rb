@@ -45,7 +45,10 @@ class Permission
         create: true,
       },
       chatrooms: {
-        show: true
+        index: true,
+        show: true,
+        new: true,
+        create: true
       },
       messages: {
         create: true
