@@ -1,0 +1,13 @@
+<td><%= button_to(
+  "Mark as Paid",
+  order_path(order, status: "paid"),
+  method: :patch,
+  class: "badge badge-success"
+)%></td>
+
+<td><%= button_to(
+  "Cancel",
+  order_path(order, status: "cancelled"),
+  method: :patch,
+  class: "badge badge-warning"
+)%></td>
