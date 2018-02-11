@@ -37,11 +37,19 @@ class Admin::ItemsController < ApplicationController
 
   private
 
+  def auth
+    {
+     cloud_name: ENV['CLOUD_NAME'],
+     api_key:    ENV['CLOUDINARY_API_KEY'],
+     api_secret: ENV['CLOUDINARY_SECRET']
+    }
+  end
+
   def handle_image
     if params[:item][:image].nil?
      params[:item][:image] = "http://res.cloudinary.com/tyjoo27/image/upload/v1518213324/cp82cjhrlplyxbet4gko.png"
     else
-     response = Cloudinary::Uploader.upload(params[:item][:image].tempfile.path)
+     response = Cloudinary::Uploader.upload(params[:item][:image].tempfile.path, auth)
      params[:item][:image] = response['url']
     end
   end
