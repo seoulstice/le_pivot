@@ -1,21 +1,32 @@
 class ChargesController < ApplicationController
-  rescue_from Stripe::CardError, with: :catch_exception
-  
+  before_action :amount_to_be_charged
+
   def new
   end
 
   def create
-    StripeChargesServices.new(charges_params, current_user).call
+
+    customer = Stripe::Customer.create(
+      email: params[:stripeEmail],
+      source: params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      customer: customer.id,
+      amount: @amount,
+      description: 'Rails Stripe customer',
+      currency: 'usd'
+    )
+
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
     redirect_to new_charge_path
   end
 
   private
 
-  def charges_params
-    params.permit(:stripeEmail, :stripeToken, :order_id)
-  end
+    def amount_to_be_charged
+      @amount = 500
+    end
 
-  def catch_exception(exception)
-    flash[:error] = exception.message
-  end
 end
