@@ -11,4 +11,8 @@ class Store < ApplicationRecord
     items.active
   end
 
+  def to_param
+    slug
+  end
+
 end

@@ -5,6 +5,8 @@ feature "Admin approves a pending store" do
     context "An admin can approve the pending store" do
       it "changes the status of the store from 'pending' to 'approved'" do
         admin = create(:platform_admin)
+        store = create(:store)
+        expect(store.slug)
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
         visit admin_dashboard_path
@@ -13,7 +15,7 @@ feature "Admin approves a pending store" do
         expect(current_path).to eq(stores_path)
 
         within first(".store") do
-          expect(page).to have_content(admin.stores.first.name)
+          expect(page).to have_content(store.name)
           expect(page).to have_content("Status: pending")
           click_button "Activate"
         end
@@ -21,7 +23,7 @@ feature "Admin approves a pending store" do
         expect(current_path).to eq(stores_path)
 
         within first(".store") do
-          expect(page).to have_content(admin.stores.first.name)
+          expect(page).to have_content(store.name)
           expect(page).to have_content("Status: active")
         end
       end

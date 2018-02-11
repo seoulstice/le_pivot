@@ -52,10 +52,10 @@ class ApplicationController < ActionController::Base
 
     # soon, we should consolidate ALL dashboards?
     def current_dashboard_path
-      if current_user.roles.empty?
-        dashboard_path
-      else
+      if current_user.platform_admin?
         admin_dashboard_path
+      else
+        dashboard_path
       end
     end
 

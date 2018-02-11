@@ -5,13 +5,13 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = StoreCreator.create_store(current_user, store_params)
+    @store = StoreCreator.create_store(current_user, params[:store][:name])
     if @store.save
       flash_success("Store created successfully.")
       redirect_to current_dashboard_path
     else
       flash_errors(@store)
-      render :new
+      redirect_to new_store_path
     end
   end
 
@@ -24,19 +24,17 @@ class StoresController < ApplicationController
   end
 
   def show
-    @store = Store.find_by(slug: params[:slug])
+    @store = Store.find_by_slug(params[:slug])
   end
 
   def update
-    store = Store.find(params[:id])
-    store.status = (params[:update_status])
-    store.save
+    store = Store.find_by_slug(params[:slug])
+    if store.update(status: params[:update_status])
+      flash_success
+    else
+      flash_errors(store)
+    end
     redirect_to stores_path
   end
 
-  private
-
-  def store_params
-    params.require(:store).permit(:name)
-  end
 end
