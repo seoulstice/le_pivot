@@ -1,5 +1,5 @@
-<div class = "container">
-  <h4><%= link_to "Continue shopping", root_path %></h4>
+<div class="container">
+  <h4><%= link_to "Continue shopping", items_path %></h4>
   <div class="row text-center">
     <div class='col-6'>
       <%= image_tag @item.image  %>
@@ -7,13 +7,9 @@
     <div class='col-6 card bg-info'>
       <div class='card-body '>
         <h2><strong><%= @item.title %></strong></h2>
-        <%= @item.description %>
-        <p>Price: $<%= @item.price %><p>
-        <% unless @item.retired? %>
-          <%= link_to "Add to cart", cart_path(item_id: @item.id), method: :post, class: "badge badge-primary" %>
-        <% else %>
-          <div class="badge badge-secondary">Retired</div>
-			  <% end %>
+        <p><%= @item.description %></p>
+        <p>Price: <%= @item.dollars %><p>
+        <%= add_to_cart_button(@item) %>
 		  </div>
 		</div>
 	</div>
