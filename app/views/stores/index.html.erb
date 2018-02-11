@@ -2,12 +2,6 @@
   <div class="store">
     <p>Name: <%= store.name %></p>
     <p>Status: <%= store.status %></p>
-    <% if current_user.platform_admin? %>
-      <% if store.status == "pending" || store.status == "suspended" %>
-        <%= button_to "Activate", store_path(store, update_status: "active"), method: :patch %>
-      <% elsif store.status == "active" %>
-        <%= button_to "Suspend", store_path(store, update_status: "suspended"), method: :patch %>
-      <% end %>
-    <% end %>
+    <%= admin_update_store_status_button %>
   </div>
 <% end %>
