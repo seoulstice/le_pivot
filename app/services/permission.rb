@@ -77,7 +77,7 @@ class Permission
       },
        charges: {
          new: true,
-         create: true
+         complete: true
        },
       users: {
         new: true,
