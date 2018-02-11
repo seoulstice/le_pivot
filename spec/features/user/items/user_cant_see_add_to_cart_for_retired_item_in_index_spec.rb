@@ -7,9 +7,9 @@ RSpec.describe 'As a visitor' do
 			one_url = "http://pandathings.com/wp-content/uploads/2016/10/onesie-6-300x300.png"
 			item_one = category.items.create(title: "Funsie Onesie", description: "number one", price: 8.00,
 			image: one_url, condition: 'retired' )
-			
-			visit items_path
-			
+
+			visit item_path(Item.last.id)
+
 			expect(page).not_to have_content("Add to cart")
 		end
 	end
