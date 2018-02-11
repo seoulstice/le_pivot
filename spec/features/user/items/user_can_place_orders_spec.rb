@@ -5,7 +5,7 @@ RSpec.feature "User can place an order" do
     create(:item)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(create(:user))
 
-    visit items_path
+    visit item_path(Item.last.id)
     click_on "Add to cart"
     visit cart_path
     click_on "Checkout"
