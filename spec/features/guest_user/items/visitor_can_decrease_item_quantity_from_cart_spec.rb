@@ -5,7 +5,7 @@ describe "Visitor cart has an item in it" do
     describe "the visitor can remove the item" do
       it "visitor sees that she has 1 items in her cart and the subtotal of her order decreases" do
         item = create(:item, price: 19.99)
-        visit items_path
+        visit item_path(Item.last.id)
 
         click_on "Add to cart"
         click_on "Add to cart"
@@ -28,7 +28,7 @@ describe "Visitor cart has an item in it" do
     describe "they click on decrease quantity" do
       it "the user will not see anything in the cart" do
         item = create(:item, price: 19.99)
-        visit items_path
+        visit item_path(Item.last.id)
 
         click_on "Add to cart"
 
