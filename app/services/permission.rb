@@ -75,6 +75,10 @@ class Permission
         create: %i{ store_admin platform_admin },
         update: %i{ store_admin platform_admin }
       },
+       charges: {
+         new: true,
+         create: true
+       },
       users: {
         new: true,
         create: true,
