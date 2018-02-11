@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resource :cart, only: [:show, :create, :update, :destroy]
   resources :users , only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :create, :show, :update]
-  resources :items, only: [:index, :show]
+  resources :items, only: :show
   resources :categories, only: :show, param: :category_slug
 
   scope path: :settings do
