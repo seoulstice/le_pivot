@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def viewer
     @viewer ||= Viewer.new(current_user)
   end
@@ -6,4 +7,5 @@ module ApplicationHelper
   def badge(badge)
     "badge badge-#{badge}"
   end
+
 end

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Artsy</title>
+    <title>Artsy<%= yield :subtitle %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -11,28 +11,12 @@
 
   <body>
     <div class="container">
-      <%= render "shared/nav" %>
-      <% if flash.count > 0  %>
-        <div class="center-block" style= "width: 15rem;">
-          <div class="alert alert-primary alert-dismissable" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          <% end  %>
-          <% flash.each do |name, msg| %>
-            <%= content_tag :div, raw(msg), class: name %>
-          <% end %>
-          </div>
-        </div>
-        <%= yield %>
+      <header>
+        <%= render 'nav' %>
+        <%= flash_section %>
+      </header>
+      <%= yield %>
     </div>
-    <footer>
-      <div class="container" style="margin-top: 25px;">
-        <div class="row">
-          <legend></legend>
-              <p class= "footer-center">© Copyright 2018-2019 | <%= link_to "Turing School of Software & Design", "https://www.turing.io/"  %> | <%= link_to 'Developer', developer_path %></span></p>
-          </div>
-        </div>
-    </footer>
+    <%= render 'footer' %>
   </body>
 </html>
