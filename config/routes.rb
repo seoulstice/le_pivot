@@ -14,10 +14,11 @@ Rails.application.routes.draw do
   delete 'logout', :to => 'sessions#destroy'
 
   get 'support/index', to: 'chatrooms#index'
-  get 'support', to: 'chatrooms#show'
   get 'support/new', to: 'chatrooms#new', as: 'new_chatroom'
+  get 'support', to: 'chatrooms#show'
   post 'support', to: 'chatrooms#new', as: 'chatrooms'
 
+  # resource :chatrooms, only: [:new, :create, :show, :index]
   resource :dashboard, only: :show
   resource :cart, only: [:show, :create, :update, :destroy]
   resources :users , only: [:new, :create, :edit, :update]
