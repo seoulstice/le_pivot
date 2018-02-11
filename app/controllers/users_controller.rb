@@ -1,29 +1,33 @@
 class UsersController < ApplicationController
 
   def new
-    @user = User.new
   end
 
   def create
-    user = User.create(user_params)
-    flash[:notice] = "Logged in as #{user.first_name} #{user.last_name}"
-    session[:user_id] = user.id
-    redirect_to dashboard_path
+    @user = User.new(user_params)
+    if @user.save
+      flash_success "Logged in as #{current_user.first_name} #{current_user.last_name}"
+      session[:user_id] = @user.id
+      redirect_to dashboard_path
+    else
+      flash_errors(@user)
+      render :new
+    end
   end
 
   def edit
-    @user = current_user
+    authenticate!
   end
 
   def update
-    if current_admin?
-      current_user.update(user_params)
-      redirect_to admin_dashboard_path
-    elsif current_user
-      current_user.update(user_params)
-      redirect_to dashboard_path
+    authenticate!
+    @user = current_user
+    if @user.update(user_params)
+      flash_success
+      redirect_to current_dashboard_path
     else
-      not_found
+      flash_errors(@user)
+      render :edit
     end
   end
 

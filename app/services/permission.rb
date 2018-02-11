@@ -66,6 +66,7 @@ class Permission
         new: true,
         create: true,
         index: true,
+        update: true,
         show: true
 
       },

@@ -9,7 +9,4 @@ desc "associate book to current items and order"
       end
     end
 
-
-
-
 puts "image swapped!"
