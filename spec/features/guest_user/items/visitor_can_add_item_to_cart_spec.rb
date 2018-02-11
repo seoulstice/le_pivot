@@ -4,7 +4,7 @@ RSpec.feature "Adding items to the cart" do
   let!(:item) { create(:item, title: "Black Cat Onesie", price: 10.00) }
 
   before(:each) do
-    visit items_path
+    visit item_path(Item.last.id)
   end
 
   context "When a visitor adds items to their cart" do
