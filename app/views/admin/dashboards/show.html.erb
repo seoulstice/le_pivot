@@ -5,12 +5,8 @@
     <%= link_to "View Items", admin_items_path, class: "nav-item nav-link" %>
     <%= link_to "Update Account", edit_user_path(current_user), class: "nav-item nav-link" %>
     <%= link_to "View Analytics", admin_analytics_path, class: "nav-item nav-link" %>
-    <% if current_user.oauth_token.present? %>
-      <%= link_to "Send A Tweet!", new_twitter_path, class: "nav-item nav-link"   %>
-    <% else %>
-      <%= link_to "Login to Twitter", twitter_login_path, class: "nav-item nav-link"  %>
-    <% end %>
     <%= link_to "Stores", stores_path, class: "nav-item nav-link" %>
+    <%= twitter_link %>
   </nav>
   <div class="container">
     <div class="tab-content" id="nav-tabContent">
@@ -18,8 +14,7 @@
         <div id="right">
           <div class="dropdown">
             <button class="badge badge-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Filter Orders
-              <span class="caret"></span>
+              Filter Orders<span class="caret" />
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
               <% Order.count_by_status.each do |status, count| %>
@@ -43,19 +38,7 @@
  	            </tr>
  	          </thead>
           <tbody>
-            <% @orders.each do |order| %>
-              <tr class="order-<%= order.id %>">
-                <th scope="row">
-                  <%= link_to order.id, order_path(order) %>
-                </th>
-                <td><%= order.date %></td>
-                <td class="status"><%= order.status.capitalize %></td>
-                <td><%= render(
-                  partial: "orders/#{order.status_partial}",
-                  locals: {order: order}
-                ) %></td>
-              </tr>
-            <% end %>
+            <% render @orders %>
           </tbody>
         </table>
       </div>
