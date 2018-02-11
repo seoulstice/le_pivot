@@ -7,10 +7,11 @@ class StripeServices
   )
   end
 
-  def self.create_charge(params, amount)
+  def self.create_charge(params)
+    binding.pry
     Stripe::Charge.create(
      customer: params[:customer_id],
-     amount: amount,
+     amount: params[:amount],
      description: params[:description],
      currency: 'usd'
    )

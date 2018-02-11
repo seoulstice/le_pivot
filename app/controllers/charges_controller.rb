@@ -7,7 +7,7 @@ class ChargesController < ApplicationController
   def create
     stripe = StripeServices.new
     stripe.create_customer(params)
-    stripe.create_charge(params, @amount)
+    stripe.create_charge(params)
     redirect_to complete_path
 
     rescue Stripe::CardError => e
@@ -15,11 +15,11 @@ class ChargesController < ApplicationController
       redirect_to new_charge_path
   end
 
-  private
-
-    def amount_to_be_charged
-      binding.pry
-      @amount = 500
-    end
+  # private
+  #
+  #   def amount_to_be_charged
+  #     binding.pry
+  #     @amount = 500
+  #   end
 
 end
