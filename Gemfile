@@ -16,6 +16,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
 gem 'friendly_id', '~> 5.1.0'
+gem "paperclip", "~> 5.2.1"
 
 gem 'chart-js-rails'
 gem 'omniauth'
