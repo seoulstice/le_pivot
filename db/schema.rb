@@ -91,6 +91,14 @@ ActiveRecord::Schema.define(version: 20180211191248) do
     t.index ["slug"], name: "index_stores_on_slug", unique: true
   end
 
+  create_table "twitter_accounts", force: :cascade do |t|
+    t.string "uid"
+    t.string "screen_name"
+    t.string "oauth_token"
+    t.string "oauth_token_secret"
+    t.index ["uid"], name: "index_twitter_accounts_on_uid", unique: true
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "store_id"
@@ -110,11 +118,6 @@ ActiveRecord::Schema.define(version: 20180211191248) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "screen_name"
-    t.string "uid"
-    t.string "oauth_token"
-    t.string "oauth_token_secret"
-    t.string "username"
   end
 
   add_foreign_key "items", "categories"
