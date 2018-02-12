@@ -4,7 +4,6 @@ task :associate_items => :environment do
   Item.all.each do |item|
     item.store_id = original_store_id
     item.save
+    puts "original items associated with primary store"
   end
 end
-
-puts "task complete"
