@@ -1,20 +1,25 @@
 class StripeServices
 
-  def self.create_customer(params)
-    Stripe::Customer.create(
-    email: params[:email]
-    source: params[:stripe_token]
-  )
+  def initialize(params)
+    @customer = create_customer(params)
   end
 
-  def self.create_charge(params)
-    binding.pry
+  def create_charge(amount)
     Stripe::Charge.create(
-     customer: params[:customer_id],
-     amount: params[:amount],
-     description: params[:description],
-     currency: 'usd'
-   )
+      customer: @customer.id,
+      amount: amount,
+      description: 'Your purchase from Artsy!',
+      currency: 'usd'
+    )
   end
+
+  private
+
+    def create_customer(params)
+      Stripe::Customer.create(
+      email: params[:email],
+      source: params[:stripe_token]
+    )
+    end
 
 end
