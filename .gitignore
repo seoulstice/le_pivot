@@ -29,3 +29,6 @@
 
 #Ignore cloudinary configuraiton
 /config/cloudinary.yml
+
+#Ignore cassettes made by VCR
+/spec/cassettes

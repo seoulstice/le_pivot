@@ -47,6 +47,8 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'simplecov'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
