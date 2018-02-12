@@ -142,3 +142,15 @@ a {
 .footer-center{
   margin-left: 300px;
 }
+
+.stripe-payment {
+  display: flex;
+  justify-content: center;
+}
+
+.stripe-button {
+  background-color: #DCDCDC;
+  padding: 7%;
+  font-weight: bolder;
+  border: 4px black solid;
+}

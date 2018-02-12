@@ -1,5 +1,5 @@
 module ChargesHelper
-  def pretty_amount(amount_in_cents)
-    number_to_currency(amount_in_cents / 100)
+  def pretty_amount(amount)
+    number_to_currency(amount.to_f / 100)
   end
 end

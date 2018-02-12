@@ -35,7 +35,7 @@
     </div>
     <div class="checkout">
       <% if logged_in? %>
-        <%= link_to "Checkout", charges_path(amount: cart.total_price)%>
+        <%= link_to "Checkout", new_charge_path%>
       <% else %>
         <p>
           Please <%= link_to "login", login_path %>
