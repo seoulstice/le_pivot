@@ -9,15 +9,33 @@ RSpec.feature "User can place an order" do
     click_on "Add to cart"
   end
 
-  it "and estimate shipping cost" do
-    VCR.use_cassette("shipping_feature") do
+  it "and after placing order, sees message 'order was successfully placed" do
       visit cart_path
-
-      choose("container_type_SM_FLAT_RATE_BOX", visible: false)
-      fill_in "zip", with: "90210"
-      click_on "Calculate Shipping Cost"
+      click_on "Checkout"
 
       expect(current_path).to eq(new_charge_path)
     end
+  end
+  it "and validate shipping address on cart page" do
+    visit cart_path
+
+    fill_in "usps[address2]", with: "2301 Clay St"
+    fill_in "usps[city]", with: "Denver"
+    fill_in "usps[state]", with: "CO"
+    fill_in "usps [zip_code]", with: "80211"
+
+
+
+
+
+
+
+
+
+  end
+
+  it "and estimate shipping cost" do
+
+
   end
 end
