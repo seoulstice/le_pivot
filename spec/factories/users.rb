@@ -4,6 +4,7 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     email { Faker::Internet.unique.safe_email }
     password "password"
+    username { Faker::Name.unique.first_name}
 
     factory(:store_manager) do
       store_roles({store => "store_manager"})
