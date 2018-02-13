@@ -48,7 +48,8 @@ class Permission
         index: true,
         show: true,
         new: true,
-        create: true
+        create: true,
+        destroy: true
       },
       messages: {
         create: true
