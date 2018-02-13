@@ -10,7 +10,7 @@ RSpec.feature "User can place an order" do
     visit cart_path
     click_on "Checkout"
 
-    expect(current_path).to eq('/orders')
-    expect(page).to have_content("Order was successfully placed")
+    expect(current_path).to eq('/charges/new')
+    expect(page).to have_content("Thanks, you paid #{Item.last.price}!")
   end
 end

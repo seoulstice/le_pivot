@@ -3,7 +3,6 @@ class ChargesController < ApplicationController
   before_action :set_amount
 
   def new
-
   end
 
   def create
@@ -13,10 +12,11 @@ class ChargesController < ApplicationController
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
-      redirect_to thanks_path
+      redirect_to new_charge_path
   end
 
   def thanks
+    cart.destroy
   end
 
   def thanks
