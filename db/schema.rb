@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 20180211191248) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "topic"
+    t.string "slug"
+    t.index ["slug"], name: "index_chatrooms_on_slug", unique: true
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -40,6 +46,14 @@ ActiveRecord::Schema.define(version: 20180211191248) do
     t.string "image"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["store_id"], name: "index_items_on_store_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "chatroom_id"
+    t.bigint "user_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -100,10 +114,13 @@ ActiveRecord::Schema.define(version: 20180211191248) do
     t.string "uid"
     t.string "oauth_token"
     t.string "oauth_token_secret"
+    t.string "username"
   end
 
   add_foreign_key "items", "categories"
   add_foreign_key "items", "stores"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"

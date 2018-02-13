@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => "/cable"
 
   root :to => 'main#index'
 
@@ -12,6 +13,12 @@ Rails.application.routes.draw do
   get 'login', :to => 'sessions#new'
   post 'login', :to => 'sessions#create'
   delete 'logout', :to => 'sessions#destroy'
+
+  get 'support/index', to: 'chatrooms#index'
+
+
+  resources :chatrooms, param: :slug, only: [:show, :index, :new, :create, :destroy]
+  resources :messages
 
   resource :dashboard, only: :show
   resource :cart, only: [:show, :create, :update, :destroy]

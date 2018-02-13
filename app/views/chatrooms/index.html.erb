@@ -1,0 +1,8 @@
+<h1>Live Support History</h1>
+<% @chatrooms.each do |chatroom| %>
+<%= link_to chatroom.topic, chatroom_path(chatroom.slug) %>
+<%= link_to "Delete Chatroom", chatroom_path(slug: chatroom.slug), method: :delete %>
+<br>
+<% end %>
+
+<%= link_to "Talk to Live Support", new_chatroom_path  %>

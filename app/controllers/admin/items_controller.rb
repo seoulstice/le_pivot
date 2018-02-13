@@ -39,9 +39,9 @@ class Admin::ItemsController < ApplicationController
 
   def auth
     {
-     cloud_name: ENV['CLOUD_NAME'],
-     api_key:    ENV['CLOUDINARY_API_KEY'],
-     api_secret: ENV['CLOUDINARY_SECRET']
+      cloud_name: ENV['CLOUD_NAME'],
+      api_key:    ENV['CLOUDINARY_API_KEY'],
+      api_secret: ENV['CLOUDINARY_API_SECRET']
     }
   end
 

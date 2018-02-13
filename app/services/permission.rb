@@ -44,6 +44,16 @@ class Permission
         update: true,
         create: true,
       },
+      chatrooms: {
+        index: true,
+        show: true,
+        new: true,
+        create: true,
+        destroy: true
+      },
+      messages: {
+        create: true
+      },
       items: {
         index: true,
         show: true

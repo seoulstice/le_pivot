@@ -11,6 +11,9 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :password, presence: true, :on => :create
   validates :email, presence: true, uniqueness: true
+  has_many :messages
+  has_many :chatrooms, through: :messages
+  validates :username, presence: true, uniqueness: true
 
   def self.guest
     new(first_name: 'guest', last_name: 'user')
