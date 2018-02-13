@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'support/index', to: 'chatrooms#index'
 
 
-  resource :chatrooms
+  resources :chatrooms, param: :slug, only: [:show, :index, :new, :create, :destroy]
   resources :messages
 
   resource :dashboard, only: :show
