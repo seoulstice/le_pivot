@@ -16,11 +16,17 @@ class ChatroomsController < ApplicationController
   def create
     @chatroom = Chatroom.new(chatroom_params)
     if @chatroom.save
-      @chatroom.update(slug: params[:topic].parameterize)
-      redirect_to support_path(@chatroom.slug)
+      redirect_to chatroom_path(slug: @chatroom.slug)
     else
       render :new
     end
+  end
+
+  def destroy
+    @chatroom = Chatroom.find_by(slug: params[:slug])
+    @chatroom.destroy
+
+    redirect_to chatrooms_path
   end
 
   private
