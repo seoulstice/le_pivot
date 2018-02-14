@@ -16,8 +16,10 @@
           <td class="table-light"><%= f.submit name="Login", class: "btn btn-primary" %></td>
           <td class="table-light"><small>Don't have an account with us? <%= link_to "Create an account", new_user_path %>.</small></td>
         </tr>
+        <tr>
+          <td><small><%= link_to "forgot password?", twilio_new_path, class: "forgotten-password"%></small></td>
+        </tr>
       <% end %>
-      <br><br> <%= link_to "forgot password?", twilio_new_path %>
     </div>
   </div>
 </div>

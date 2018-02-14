@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   resources :categories, only: :show, param: :category_slug
   resources :charges, only: [:new, :create]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
-  get 'reset', to: 'twilio#new', as: 'twilio_new'
+  get 'password-reset', to: 'twilio#new', as: 'twilio_new'
+  post 'password-reset', to: 'twilio#create', as: 'twilio_create'
+  get 'password-confirmation', to: 'twilio#confirm', as: 'twilio_confirmation'
 
   scope path: :settings do
     resource :developer, only: [:show, :create, :update]

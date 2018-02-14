@@ -5,7 +5,7 @@
   </div>
 
   <div class="password-reset-field">
-    <%= form_for :reset_password, url: "reset" do |form| %>
+    <%= form_for :reset_password, url: "password-reset" do |form| %>
       <%= form.text_field :email %>
       <%= form.submit "Confirm" %>
     <% end  %>
