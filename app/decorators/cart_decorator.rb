@@ -12,4 +12,8 @@ class CartDecorator < ApplicationDecorator
     link_to 'Cart', cart_path, class: "btn"
   end
 
+  def link_to_checkout
+    
+  end
+
 end

@@ -9,7 +9,7 @@
         <h2><strong><%= @item.title %></strong></h2>
         <p><%= @item.description %></p>
         <p>Price: <%= @item.price %><p>
-        <%= @item.button_to_add_to_cart %>
+        <%= add_to_cart_button(@item) %>
 		  </div>
 		</div>
 	</div>

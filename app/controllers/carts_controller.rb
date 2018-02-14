@@ -2,7 +2,6 @@ class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def show
-    # @cart = CartDecorator.new(cart)
   end
 
   def create

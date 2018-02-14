@@ -40,7 +40,7 @@ class ApplicationDecorator < SimpleDelegator
     alias has_one belongs_to
 
     def has_many(association, class_name: nil)
-      view_model = find_view_model(association || class_name)
+      view_model = find_view_model(class_name || association)
       define_format(association) do |records|
         records.map{ |record| view_model.new(record) }
       end

@@ -14,14 +14,14 @@
       </tr>
     </thead>
     <tbody>
-      <% render @order_items %>
+      <% render cart.order_items %>
     </tbody>
   </table>
     <div class="total">
       <p><b>Total: <%= cart.total_price %></b></p>
     </div>
     <div class="checkout">
-      <%= checkout %>
+      <%= registered_checkout %>
     </tbody>
   </table>
 </div>
