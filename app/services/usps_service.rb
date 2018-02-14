@@ -59,7 +59,6 @@ class UspsService
 
     def random_pounds
       (1..70).to_a.sample
-      # 9
     end
 
     def random_ounces
@@ -67,9 +66,7 @@ class UspsService
     end
 
     def random_container
-      ["VARIABLE", "FLAT RATE ENVELOPE", "LEGAL FLAT RATE ENVELOPE",
-      "PADDED FLAT RATE ENVELOPE", "SM FLAT RATE ENVELOPE", "WINDOW FLAT RATE ENVELOPE",
-      "GIFT CARD FLAT RATE ENVELOPE", "SM FLAT RATE BOX", "MD FLAT RATE BOX",
+      ["SM FLAT RATE BOX", "MD FLAT RATE BOX",
       "LG FLAT RATE BOX"].sample
     end
 end
