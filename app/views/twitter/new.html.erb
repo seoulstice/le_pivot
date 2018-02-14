@@ -1,7 +1,0 @@
-<h2>New Tweet:</h2>
-
-<%= form_tag("/twitter/new", method: "post") do %>
-  <%= label_tag(:text, "Enter your message here") %>
-  <%= text_area_tag(:text) %>
-  <%= submit_tag("Post") %>
-<% end %>
