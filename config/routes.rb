@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :categories, only: :show, param: :category_slug
   resources :charges, only: [:new, :create]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
+  get 'reset', to: 'twilio#new', as: 'twilio_new'
 
   scope path: :settings do
     resource :developer, only: [:show, :create, :update]
