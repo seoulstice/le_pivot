@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:4a9a599f4b24a35bf69810441a6895cd@soldierfish.redistogo.com:11065/
   channel_prefix: little_shop_of_funsies_production
