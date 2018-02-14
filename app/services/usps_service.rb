@@ -4,7 +4,6 @@ class UspsService
 
   def initialize
     @params = params
-
   end
 
   def get_rate_calculation_api
@@ -35,28 +34,42 @@ class UspsService
 
     def xml_shipping_rate_request_params
       # binding.pry
-     "<RateV4Request USERID=#{ENV['USPS_KEY"]}>
+     "<RateV4Request USERID='#{ENV["USPS_KEY"]}'>
         <Package ID='1ST'>
-          <Service>#{usps_service_types.sample}</Service>
+          <Service>#{usps_service_types}</Service>
           <ZipOrigination>80211</ZipOrigination>
-          <ZipDestination>19072</ZipDestination>
-          <Pounds>2</Pounds>
-          <Ounces>5</Ounces>
-          <Container>NONRECTANGULAR</Container>
-          <Size>LARGE</Size>
-          <Width>15</Width>
-          <Length>30</Length>
-          <Height>15</Height>
-          <Girth>55</Girth>
+          <ZipDestination>#{destination_zip}</ZipDestination>
+          <Pounds>#{random_pounds}</Pounds>
+          <Ounces>#{random_ounces}</Ounces>
+          <Container>#{random_container}</Container>
+          <Size>REGULAR</Size>
         </Package>
       </RateV4Request>"
     end
 
     def usps_service_types
-      ["PRIORITY", "PRIORITY MAIL EXPRESS"]
+      ["PRIORITY", "PRIORITY MAIL EXPRESS"].sample
+      # params[service_type]
     end
 
     def destination_zip
-      params[zip_destination]
+      # params[zip_destination]
+      19072
+    end
+
+    def random_pounds
+      (1..70).to_a.sample
+      # 9
+    end
+
+    def random_ounces
+      (1...16).to_a.sample
+    end
+
+    def random_container
+      ["VARIABLE", "FLAT RATE ENVELOPE", "LEGAL FLAT RATE ENVELOPE",
+      "PADDED FLAT RATE ENVELOPE", "SM FLAT RATE ENVELOPE", "WINDOW FLAT RATE ENVELOPE",
+      "GIFT CARD FLAT RATE ENVELOPE", "SM FLAT RATE BOX", "MD FLAT RATE BOX",
+      "LG FLAT RATE BOX"].sample
     end
 end
