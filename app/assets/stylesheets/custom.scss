@@ -164,3 +164,9 @@ a {
 .display-message{
   margin-right: 20px;
 }
+
+.chatroom-index{
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+}
