@@ -1,28 +1,30 @@
 class UspsService
-  require "net/http"
-  require "uri"
-
+  require 'faraday_middleware'
   attr_reader :params
 
+  def initialize
+    @params = params
+
+  end
+
   def get_rate_calculation_api
-    get_xml("/ShippingAPI.dll", usps_shipping_rate_params )
-    binding.pry
+    get_xml("/ShippingApi.dll", usps_shipping_rate_params )
   end
 
   private
-    attr_reader :shipping_params,
+    attr_reader :usps_shipping_rate_params,
                 :usps_service_types
 
     def conn
       Faraday.new(url: "http://production.shippingapis.com") do |faraday|
+        faraday.response :xml,  :content_type => /\bxml$/
         faraday.adapter Faraday.default_adapter
       end
     end
 
-    def get_xml(url, query = {})
-      response = conn.get(url, query)
+    def get_xml(url, query_params = {})
+      response = conn.get(url, query_params)
       binding.pry
-      Nokogiri::XML(response.body)
     end
 
     def usps_shipping_rate_params
@@ -32,29 +34,29 @@ class UspsService
     end
 
     def xml_shipping_rate_request_params
-      shipping_config = "<?xml version='1.0' encoding='UTF-8'?>
-                        <RateV4Request USERID=#{ENV["USPS_KEY"]}>
-                          <Package ID='1ST'>
-                            <Service>PRIORITY</Service>
-                            <ZipOrigination>80211</ZipOrigination>
-                            <ZipDestination>19072</ZipDestination>
-                            <Pounds>#{[1..10].sample}</Pounds>
-                            <Ounces>#{[1..15].sample}</Ounces>
-                            <Container>NONRECTANGULAR</Container>
-                            <Size>LARGE</Size>
-                            <Width>15</Width>
-                            <Length>30</Length>
-                            <Height>15</Height>
-                            <Girth>55</Girth>
-                          </Package>
-                        </RateV4Request>"
-      Nokogiri::XML(shipping_config)
+      # binding.pry
+     "<RateV4Request USERID=#{ENV['USPS_KEY"]}>
+        <Package ID='1ST'>
+          <Service>#{usps_service_types.sample}</Service>
+          <ZipOrigination>80211</ZipOrigination>
+          <ZipDestination>19072</ZipDestination>
+          <Pounds>2</Pounds>
+          <Ounces>5</Ounces>
+          <Container>NONRECTANGULAR</Container>
+          <Size>LARGE</Size>
+          <Width>15</Width>
+          <Length>30</Length>
+          <Height>15</Height>
+          <Girth>55</Girth>
+        </Package>
+      </RateV4Request>"
     end
 
     def usps_service_types
       ["PRIORITY", "PRIORITY MAIL EXPRESS"]
     end
 
-
-
+    def destination_zip
+      params[zip_destination]
+    end
 end
