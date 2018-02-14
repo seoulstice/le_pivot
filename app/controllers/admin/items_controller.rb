@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @items = ItemDecorator.all
   end
 
   def new

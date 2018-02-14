@@ -3,12 +3,8 @@ Rails.application.routes.draw do
 
   root :to => 'main#index'
 
-  get 'auth/twitter/callback', to: 'twitter#update'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
-  get 'auth/twitter', as: :twitter_login
-  get 'twitter/new', to: 'twitter#new', as: 'new_twitter'
-  post 'twitter/new', to: 'twitter#create'
 
   get 'login', :to => 'sessions#new'
   post 'login', :to => 'sessions#create'
@@ -45,7 +41,13 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'auth/twitter', as: :twitter_login
+  get 'auth/twitter/callback', to: 'twitter_accounts#new'
+  resources :twitter_accounts, only: :create
+
   resources :stores, only: [:new, :create, :index]
-  resources :stores, only: [:update, :show], path: '/', param: :slug
+  resources :stores, only: [:update, :show], path: '/', param: :slug do
+    resources :tweets, only: [:new, :create]
+  end
 
 end

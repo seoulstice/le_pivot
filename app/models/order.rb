@@ -8,11 +8,7 @@ class Order < ApplicationRecord
   enum status: ["ordered", "paid", "cancelled", "completed"]
 
   def find_quantity(item)
-    OrderItem.find_by(item: item, order: self).quantity
-  end
-
-  def date
-    created_at.strftime('%b. %d, %Y')
+    order_items.find_by(item: item).quantity
   end
 
   def self.count_by_status
@@ -28,6 +24,6 @@ class Order < ApplicationRecord
   end
 
   def self.shop_total_gross
-		completed.joins(:items).sum(:price)
+		completed.sum(:total_price)
   end
 end

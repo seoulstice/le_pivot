@@ -1,21 +1,23 @@
 require 'rails_helper'
 
 RSpec.feature "Admin Orders" do
-  let(:admin) { create(:platform_admin) }
+  context "As an admin and two orders in the database" do
+
+  let!(:order_1) { OrderDecorator.new(create(:order, status: "ordered")) }
+  let!(:order_2) { OrderDecorator.new(create(:order, status: "paid")) }
 
   before(:each) do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    order_1
+    order_2
+    stub_logged_in_user(create(:platform_admin))
   end
 
-  context "As an admin and two orders in the database" do
-    let!(:order_1) { create(:order, status: "ordered") }
-    let!(:order_2) { create(:order, status: "paid") }
 
     it "I can see the total number of orders for each status" do
       visit admin_dashboard_path
 
       expect(page).to have_content(order_1.id)
-      expect(page).to have_content(order_1.date)
+      expect(page).to have_content(todays_date)
       expect(page).to have_content(order_1.status.capitalize)
     end
 
@@ -31,7 +33,6 @@ RSpec.feature "Admin Orders" do
 
     it "I can change the status of orders" do
       visit admin_dashboard_path
-
       within(".order-#{order_2.id}") do
         click_on("Cancel")
       end

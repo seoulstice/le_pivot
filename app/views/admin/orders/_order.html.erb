@@ -1,0 +1,6 @@
+<tr class="order-<%= order.id %>">
+  <th scope="row"><%= link_to order.id, order_path(order) %></th>
+  <td><%= order.created_at %></td>
+  <td class="status"><%= order.status.capitalize %></td>
+  <td><%= update_order_status_links(order) %></td>
+</tr>

@@ -1,5 +1,5 @@
 <div class="container">
-  <h3><%= current_user.first_name %>'s  Cart</h3>
+  <h3><%= viewer.first_name %>'s  Cart</h3>
   <h6><%= link_to "Continue Shopping", root_path %></h6>
   <table class="table table-hover">
     <thead>
@@ -14,11 +14,11 @@
       </tr>
     </thead>
     <tbody>
-      <% render @items %>
+      <% render @order_items %>
     </tbody>
   </table>
     <div class="total">
-      <p><b>Total: <%= number_to_currency(cart.total_price) %></b></p>
+      <p><b>Total: <%= cart.total_price %></b></p>
     </div>
     <div class="checkout">
       <%= checkout %>

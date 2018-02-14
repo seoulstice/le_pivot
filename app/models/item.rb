@@ -24,9 +24,4 @@ class Item < ApplicationRecord
   def self.total_sold_by_item
     group(:title).joins(:order_items).sum(:quantity)
   end
-
-  def self.items_by_title_with_status
-    joins(:orders).group(:title, :status).count
-  end
-
 end

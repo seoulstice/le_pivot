@@ -1,11 +1,7 @@
 module ApplicationHelper
 
   def viewer
-    @viewer ||= Viewer.new(current_user)
-  end
-
-  def badge(badge)
-    "badge badge-#{badge}"
+    @viewer ||= UserDecorator.new(current_user)
   end
 
 end

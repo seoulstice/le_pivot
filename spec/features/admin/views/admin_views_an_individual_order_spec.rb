@@ -12,12 +12,13 @@ feature "Admin can view individual order pages" do
 
     expected_total = "$31.00"
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    stub_logged_in_user(admin)
     visit order_path(order)
 
-    expect(page).to have_content(order.date)
+    expect(page).to have_content(todays_date)
     expect(page).to have_content("Gob Bluth")
     expect(page).to have_content(user.address)
+
     within("#item-#{item_1.id}") do
       within(".title") { expect(page).to have_link(item_1.title) }
       within(".quantity") { expect(page).to have_content(item_1.order_items.first.quantity) }

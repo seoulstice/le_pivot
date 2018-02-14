@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
   before_action :authorize!
 
   helper_method :logged_in?,
@@ -35,7 +36,7 @@ class ApplicationController < ActionController::Base
     end
 
     def cart
-      @cart ||= Cart.new(session[:cart])
+      @cart ||= CartDecorator.new(Cart.new(session[:cart]))
     end
 
     def not_found
@@ -56,6 +57,14 @@ class ApplicationController < ActionController::Base
         admin_dashboard_path
       else
         dashboard_path
+      end
+    end
+
+    # BANG because this will remove other scopes, e.g. filtering by status
+    # you can still filter the return, but not the argument
+    def platform_admin_sees_all!(relation)
+      if current_user.platform_admin?
+        relation.unscope(:where) else relation
       end
     end
 

@@ -8,8 +8,8 @@
       <div class='card-body '>
         <h2><strong><%= @item.title %></strong></h2>
         <p><%= @item.description %></p>
-        <p>Price: <%= @item.dollars %><p>
-        <%= add_to_cart_button(@item) %>
+        <p>Price: <%= @item.price %><p>
+        <%= @item.button_to_add_to_cart %>
 		  </div>
 		</div>
 	</div>

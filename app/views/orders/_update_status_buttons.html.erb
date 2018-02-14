@@ -1,0 +1,5 @@
+<% if current_user.platform_admin? %>
+  order.link_to_cancel
+  order.link_to_mark_as_paid
+  order.link_to_mark_as_completed
+<% end %>

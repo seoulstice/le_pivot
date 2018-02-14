@@ -1,0 +1,14 @@
+<div>
+  <tr>
+    <th scope="row"><strong><%= link_to order_item.title, item_path(order_item.item_id) %></strong></th>
+    <td><%= image_tag order_item.image, class: "cart_image"%></td>
+    <td><%= order_item.price %></td>
+    <td><%= order_item.quantity %></td>
+    <td>
+      <%= button_to "-", cart_path(id: order_item.item_id, condition: "decrease"), method: :patch, class: badge(:danger) %>
+      <%= button_to "+", cart_path(id: order_item.item_id, condition: "increase"), method: :patch, class: badge(:success) %>
+    </td>
+    <td><%= button_to "Remove", cart_path(id: order_item.item_id), method: :delete, class: badge(:danger) %></td>
+    <td>$<%= order_item.subtotal %></td>
+  </tr>
+</div>

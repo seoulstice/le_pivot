@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def new
+    @user = User.new
   end
 
   def create
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
 
   def edit
     authenticate!
+    @user = current_user
   end
 
   def update

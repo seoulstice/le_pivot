@@ -21,17 +21,22 @@ class SessionsController < ApplicationController
 private
 
   def verify_user
-    if @user && @user.authenticate(params[:session][:password])
+    if @user.try(:authenticate, params[:session][:password])
       login_successful
     else
-      flash[:failure] = "That login was unsuccessful"
+      flash[:error] = "That login was unsuccessful"
       redirect_to login_path
     end
   end
 
   def login_successful
     session[:user_id] = @user.id
-    flash[:notice] = "Logged in as #{@user.first_name} #{@user.last_name}"
+    if current_user.admin?
+      flash_success "You're logged in as an Administrator."
+    else
+      flash_success "Logged in as #{@user.first_name} #{@user.last_name}"
+    end
+
     redirect_to current_dashboard_path
   end
 
