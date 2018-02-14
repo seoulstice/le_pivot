@@ -17,18 +17,15 @@
       <span class="badge badge-secondary"><%= cart.total_count %></span>
     </div>
   </li>
-  <% if current_user %>
-    <li class="nav-item">
-      <div class="v-right">
-        <%= link_to 'Live Support', support_index_path, class: "btn" %>
-      </div>
-    </li>
-  <% end %>
-
   <div id="left-nav-margin">
     <% if logged_in? %>
       <li class="nav-right">
         <div class="v-right">
+          <%= link_to 'Live Support', support_index_path, class: "nav-link active" %>
+        </div>
+      </li>
+      <li class="nav-right">
+        <div>
           <%= link_to 'Dashboard', current_dashboard_path, class: "nav-link active" %>
         </div>
       </li>

@@ -26,7 +26,7 @@ gem 'figaro'
 gem 'active_model_serializers'
 gem 'cloudinary'
 gem 'stripe'
-gem 'redis'
+gem 'redis', '~> 3.0'
 
 
 group :development, :test do
