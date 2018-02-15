@@ -12,8 +12,7 @@ class OrdersController < ApplicationController
   def update
     order = viewable.find(params[:id])
     order.assign_attributes(order_params)
-    try_save(order, current_dashboard_path, current_dashboard_path,
-      'order status updated')
+    try_save(order, current_dashboard_path, current_dashboard_path, 'order status updated')
     order = Order.find(params[:id])
     flash_errors(order) unless order.update(order_params)
     redirect_back(fallback_location: root_path)
@@ -34,7 +33,6 @@ class OrdersController < ApplicationController
 
   private
 
-<<<<<<< HEAD
     def viewable
       if current_user.platform_admin?
         Order.all else current_user.orders
@@ -43,10 +41,6 @@ class OrdersController < ApplicationController
 
     def order_params
       params.permit(:status)
-=======
-    def shipping_params
-      params.permit(:container_type, :zip)
->>>>>>> No change
     end
 
 end
