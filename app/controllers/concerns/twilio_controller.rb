@@ -7,13 +7,25 @@ class TwilioController < ApplicationController
   def create
     user = User.find_by(email: user_params[:email])
     if user
-      twilio = TwilioServices.new(user)
-      twilio.generate_key
-      twilio.create_client
-      twilio.send_message
-      redirect_to password_confirmation_path
+      TwilioServices.new(user).send_message
+      redirect_to twilio_confirmation_path
     else
       flash[:error] = "We weren't able to locate your account. Please ensure your email was entered correctly."
+      redirect_to twilio_new_path
+    end
+  end
+
+  def confirm
+
+  end
+
+  def validate_key
+    reset_key = TwilioServices.new.retrieve_last_key
+    user_key = params[:password_reset][:key]
+    if reset_key == user_key
+      redirect_to edit_user_password_path
+    else
+      flash[:error] = "Sorry, that wasn't the correct key, please try again."
       redirect_to twilio_new_path
     end
   end

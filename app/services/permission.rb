@@ -86,7 +86,9 @@ class Permission
       },
       twilio: {
         new: true,
-        create: true
+        create: true,
+        confirm: true,
+        validate_key: true
       },
        charges: {
          new: true,

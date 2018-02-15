@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'password-reset', to: 'twilio#new', as: 'twilio_new'
   post 'password-reset', to: 'twilio#create', as: 'twilio_create'
   get 'password-confirmation', to: 'twilio#confirm', as: 'twilio_confirmation'
+  post 'password-confirmation', to: 'twilio#validate_key'
 
   scope path: :settings do
     resource :developer, only: [:show, :create, :update]
