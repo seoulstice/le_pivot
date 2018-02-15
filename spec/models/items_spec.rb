@@ -24,6 +24,13 @@ describe Item do
         expect(item).to be_invalid
       end
 
+      it 'is invalid if a title isnt unique' do
+        item = create(:item, title: "boo")
+        item_2 = build(:item, title: "boo")
+        expect(item_2).to be_invalid
+      end
+
+
       it 'is invalid without a description' do
         item = build(:item, description: nil)
         expect(item).to be_invalid
@@ -66,9 +73,20 @@ describe Item do
       expect(item).to respond_to(:category)
     end
 
+    it "belongs to a store" do
+      item = build(:item)
+      expect(item).to respond_to(:store)
+    end
+
     it "has many orders" do
       item = build(:item)
       expect(item).to respond_to(:orders)
     end
+
+    it "has many order_items" do
+      item = build(:item)
+      expect(item).to respond_to(:order_items)
+    end
+
   end
 end
