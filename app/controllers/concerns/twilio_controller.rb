@@ -20,9 +20,9 @@ class TwilioController < ApplicationController
   end
 
   def validate_key
-    reset_key = TwilioServices.new.retrieve_last_key
+    random_key = TwilioServices.new.retrieve_last_key
     user_key = params[:password_reset][:key]
-    if reset_key == user_key
+    if random_key == user_key
       redirect_to edit_user_password_path
     else
       flash[:error] = "Sorry, that wasn't the correct key, please try again."

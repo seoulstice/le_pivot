@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214214349) do
+ActiveRecord::Schema.define(version: 20180215191134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,12 @@ ActiveRecord::Schema.define(version: 20180214214349) do
     t.index ["uid"], name: "index_twitter_accounts_on_uid", unique: true
   end
 
+  create_table "twilios", force: :cascade do |t|
+    t.string "code"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_twilios_on_user_id"
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "store_id"
@@ -135,6 +141,7 @@ ActiveRecord::Schema.define(version: 20180214214349) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "twitter_accounts", "stores"
+  add_foreign_key "twilios", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "stores"
   add_foreign_key "user_roles", "users"
