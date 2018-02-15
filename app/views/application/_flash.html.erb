@@ -3,6 +3,8 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    <%= flash_messages %>
+    <% flash.each do |name, msg| %>
+      <div class="<%=name%>"><%=raw(msg)%></div>
+    <% end %>
   </div>
 </div>

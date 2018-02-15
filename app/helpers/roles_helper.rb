@@ -12,7 +12,7 @@ module RolesHelper
 
   def registered_checkout
     if viewer.registered?
-      button_to "Checkout", orders_path
+      link_to "Checkout", new_charge_path
     else
       render 'cart_login'
     end

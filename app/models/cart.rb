@@ -6,11 +6,11 @@ class Cart
   end
 
   def total_price
-    order_items.sum(&:subtotal).round(2)
+    @total_price ||= order_items.sum(&:subtotal).round(2)
   end
 
   def order_items
-    contents.map do |id, quantity|
+    @order_items ||= contents.map do |id, quantity|
       OrderItem.new({ item_id: id, quantity: quantity })
     end
   end

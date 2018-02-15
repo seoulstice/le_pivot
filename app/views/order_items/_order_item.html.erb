@@ -5,10 +5,10 @@
     <td><%= order_item.price %></td>
     <td><%= order_item.quantity %></td>
     <td>
-      <%= button_to "-", cart_path(id: order_item.item_id, condition: "decrease"), method: :patch, class: badge(:danger) %>
-      <%= button_to "+", cart_path(id: order_item.item_id, condition: "increase"), method: :patch, class: badge(:success) %>
+      <%= link_to "-", cart_path(id: order_item.item_id, condition: "decrease"), method: :patch, class: badge(:danger) %>
+      <%= link_to "+", cart_path(id: order_item.item_id, condition: "increase"), method: :patch, class: badge(:success) %>
     </td>
-    <td><%= button_to "Remove", cart_path(id: order_item.item_id), method: :delete, class: badge(:danger) %></td>
+    <td><%= link_to "Remove", cart_path(id: order_item.item_id), method: :delete, class: badge(:danger), width: '100px' %></td>
     <td><%= order_item.subtotal %></td>
   </tr>
 </div>

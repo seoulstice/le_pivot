@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resource :dashboard, only: :show
   resource :cart, only: [:show, :create, :update, :destroy]
   resources :users , only: [:new, :create, :edit, :update]
-  resources :orders, only: [:index, :create, :show, :update]
+  resources :orders, only: [:index, :show, :update]
   resources :items, only: :show
   resources :categories, only: :show, param: :category_slug
   resources :charges, only: [:new, :create]

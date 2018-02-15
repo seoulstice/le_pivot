@@ -13,7 +13,7 @@
     <div class="container">
       <header>
         <%= render 'nav' %>
-        <%= flash_section %>
+        <%= render 'flash' unless flash.empty? %>
       </header>
       <%= yield %>
     </div>

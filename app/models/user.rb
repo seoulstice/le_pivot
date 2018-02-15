@@ -6,15 +6,12 @@ class User < ApplicationRecord
   has_many :stores, through: :user_roles
   has_one :api_key, dependent: :nullify
   has_one :twitter_account, dependent: :destroy
-  has_many :user_roles
-  has_many :stores, through: :user_roles
-  has_many :roles, through: :user_roles
-  validates :first_name, :last_name, presence: true
-  validates :password, presence: true, :on => :create
-  validates :email, presence: true, uniqueness: true
   has_many :messages
   has_many :chatrooms, through: :messages
-  validates :username, presence: true, uniqueness: true
+
+  validates_presence_of :first_name, :last_name
+  validates :email, presence: true, uniqueness: true
+  has_secure_password
 
   def self.guest
     new(first_name: 'guest', last_name: 'user')

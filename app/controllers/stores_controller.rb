@@ -20,7 +20,7 @@ class StoresController < ApplicationController
   end
 
   def show
-    @store = StoreDecorator.new(Store.find_by_slug(params[:slug]))
+    @store = StoreDecorator.new(Store.find_by_slug(params[:slug]) || not_found)
   end
 
   def update

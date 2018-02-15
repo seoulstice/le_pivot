@@ -64,7 +64,6 @@ class Permission
       orders: {
         index: true,
         show: true,
-        create: true,
         update: [:platform_admin]
       },
       sessions: {
