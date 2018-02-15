@@ -30,7 +30,7 @@
         <%= radio_button_tag :container_type, "LG FLAT RATE BOX" %>
         <br>
         <%= label_tag :zip, "Enter Destination Zip Code" %>
-        <%= text_field_tag :zip, required: true %>
+        <%= text_field_tag :zip, nil, required: true %>
         <%= submit_tag "Calculate Shipping Cost" %>
       <% end  %>
     </div>
