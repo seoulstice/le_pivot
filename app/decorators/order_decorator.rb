@@ -8,6 +8,8 @@ class OrderDecorator < ApplicationDecorator
 
 ### LINKS ###
 
+
+
   def button_to_cancel
     return unless ordered? || paid?
     link_to(
