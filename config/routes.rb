@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
 
+  get 'password-reset', to: 'twilio#new', as: 'twilio_new'
+  post 'password-reset', to: 'twilio#create', as: 'twilio_create'
+  get 'password-confirmation', to: 'twilio#confirm', as: 'twilio_confirmation'
+  post 'password-confirmation', to: 'twilio#validate_key'
+  get 'new-password', to: "users#password_reset", as: "edit_user_password"
+  post 'new-password', to: "users#password_update"
+
   get 'login', :to => 'sessions#new'
   post 'login', :to => 'sessions#create'
   delete 'logout', :to => 'sessions#destroy'
@@ -24,12 +31,7 @@ Rails.application.routes.draw do
   resources :categories, only: :show, param: :category_slug
   resources :charges, only: [:new, :create]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
-  get 'password-reset', to: 'twilio#new', as: 'twilio_new'
-  post 'password-reset', to: 'twilio#create', as: 'twilio_create'
-  get 'password-confirmation', to: 'twilio#confirm', as: 'twilio_confirmation'
-  post 'password-confirmation', to: 'twilio#validate_key'
-  get 'new-password', to: "users#password_reset", as: "edit_user_password"
-  post 'new-password', to: "users#password_update"
+
 
   scope path: :settings do
     resource :developer, only: [:show, :create, :update]
