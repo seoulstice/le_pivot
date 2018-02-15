@@ -9,14 +9,6 @@ RSpec.feature "User can place an order" do
     click_on "Add to cart"
   end
 
-  it "and after placing order, sees message 'order was successfully placed" do
-      visit cart_path
-      click_on "Checkout"
-
-      expect(current_path).to eq(new_charge_path)
-    end
-  end
-
   it "and estimate shipping cost" do
     VCR.use_cassette("shipping_feature") do
       visit cart_path
@@ -24,9 +16,8 @@ RSpec.feature "User can place an order" do
       choose("container_type_SM_FLAT_RATE_BOX", visible: false)
       fill_in "zip", with: "90210"
       click_on "Calculate Shipping Cost"
-      click_on "Checkout"
-      expect(current_path).to eq(orders_path)
 
+      expect(current_path).to eq(new_charge_path)
     end
   end
 end
