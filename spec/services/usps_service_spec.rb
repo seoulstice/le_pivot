@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe UspsService do
   describe "instance methods" do
-    let(:usps_service) { UspsService.new }
+    let(:usps_service) { UspsService.new({"container_type"=>"SM FLAT RATE BOX", "zip"=>"90201"}) }
 
     it "#shipping_cost_api" do
       VCR.use_cassette("shipping_cost_estimate") do
