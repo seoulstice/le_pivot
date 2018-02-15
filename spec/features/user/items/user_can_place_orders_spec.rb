@@ -8,8 +8,6 @@ RSpec.feature "User can place an order" do
     visit item_path(item)
     click_on "Add to cart"
   end
-  let(:usps_service) { UspsService.new({"container_type"=>"SM FLAT RATE BOX", "zip"=>"90201"}) }
-
 
   it "and after placing order, sees message 'order was successfully placed" do
       visit cart_path
@@ -19,7 +17,7 @@ RSpec.feature "User can place an order" do
     end
   end
 
-  xit "and estimate shipping cost" do
+  it "and estimate shipping cost" do
     VCR.use_cassette("shipping_feature") do
       visit cart_path
 
