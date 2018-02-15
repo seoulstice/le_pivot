@@ -99,7 +99,9 @@ class Permission
         new: true,
         create: true,
         edit: true,
-        update: true
+        update: true,
+        password_reset: true,
+        password_update: true
       },
 
       'admin/dashboards': {

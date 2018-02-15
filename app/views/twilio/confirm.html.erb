@@ -7,6 +7,7 @@
   <div class="password-reset-field">
     <%= form_for :password_reset, url: "password-confirmation" do |form| %>
       <%= form.text_field :key %>
+      <%= form.hidden_field :lookup, value: @lookup %>
       <%= form.submit "Submit" %>
     <% end  %>
   </div>

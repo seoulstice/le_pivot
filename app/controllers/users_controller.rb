@@ -24,6 +24,14 @@ class UsersController < ApplicationController
       "Your changes are saved")
   end
 
+  def password_reset
+    @user = current_user
+    binding.pry
+  end
+
+  def password_update
+
+  end
 
   private
 
