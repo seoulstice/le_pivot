@@ -1,14 +1,14 @@
 <div class="stripe-payment">
   <div class="stripe-button">
-    <%= form_tag charges_path do %>
+    <%= form_tag charges_path(shipping: @usps_cost) do %>
       <label class="amount">
-        <span>Amount: <%= cart.total_price %></span>
+        <span>Amount: <%= number_to_currency(cart.total_price) %> + <%= number_to_currency(@usps.to_f / 100) %> Shipping</span>
       </label>
 
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<%= ENV['STRIPE_API_KEY'] %>"
         data-description="Your purchase from Artsy"
-        data-amount="<%= cart.total_price %>"
+        data-amount="<%=((cart.total_price * 100) + @usps_cost).to_i %>"
         data-email="<%= current_user.email %>"
         data-locale="auto">
       </script>
