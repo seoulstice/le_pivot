@@ -91,7 +91,6 @@ class Seeder
 
   def random_record(model)
     model.order('RANDOM()').first
->>>>>>> create seeeder data for populating database with spec requirements
   end
 
   def self.create_original_store
