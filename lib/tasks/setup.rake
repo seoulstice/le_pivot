@@ -4,4 +4,5 @@ task :setup do
     Rake::Task["original_store:default"].invoke
     Rake::Task["create_roles"].invoke
     Rake::Task["carrierwave:default"].invoke
+    Rake::Task["populate_data"].invoke
 end
