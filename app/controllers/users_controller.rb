@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     authenticate!
     current_user.assign_attributes(user_params)
     try_save(current_user, current_dashboard_path, edit_user_path,
