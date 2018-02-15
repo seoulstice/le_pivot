@@ -61,9 +61,11 @@ class ApplicationController < ActionController::Base
       if record.save
         flash_success(message)
         redirect_to(happy_path)
+        true
       else
         flash_validation_errors(record)
-        redirect_back(fallback_location: fallback)
+        redirect_back(fallback_location: sad_path)
+        false
       end
     end
 
