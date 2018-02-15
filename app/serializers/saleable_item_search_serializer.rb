@@ -1,4 +1,4 @@
-class SearchSerializer < ActiveModel::Serializer
+class SaleableItemSearchSerializer < ActiveModel::Serializer
   attributes :type, :q
 
   has_many :results
