@@ -14,10 +14,27 @@ class OrdersController < ApplicationController
     order.assign_attributes(order_params)
     try_save(order, current_dashboard_path, current_dashboard_path,
       'order status updated')
+    order = Order.find(params[:id])
+    flash_errors(order) unless order.update(order_params)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def create
+    usps = UspsService.new(shipping_params)
+    order = OrderCreator.create_order(current_user, cart, usps)
+    if order.valid?
+      cart.destroy
+      flash_success "Order was successfully placed."
+      redirect_to orders_path
+    else
+      flash_errors(order)
+      redirect_to cart_path
+    end
   end
 
   private
 
+<<<<<<< HEAD
     def viewable
       if current_user.platform_admin?
         Order.all else current_user.orders
@@ -26,6 +43,10 @@ class OrdersController < ApplicationController
 
     def order_params
       params.permit(:status)
+=======
+    def shipping_params
+      params.permit(:container_type, :zip)
+>>>>>>> No change
     end
 
 end
