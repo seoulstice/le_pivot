@@ -4,23 +4,32 @@ class ChargesController < ApplicationController
   end
 
   def create
-    stripe = StripeServices.new(params)
-    stripe.create_charge()
-    order = OrderCreator.create_order(current_user, cart)
-    if order.valid?
-      flash_success "Order was successfully placed."
-      redirect_to thanks_path
-    else
-      flash_errors(order)
-      redirect_to cart_path
-    end
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_charge_path
+    @order = OrderCreator.create_order(current_user, cart)
+    if @order.save then proceed else reset end
   end
 
   def thanks
-    cart.destroy
   end
+
+  private
+
+    def charge_customer
+      StripeServices.new(params[:stripeEmail], params[:stripeToken]).charge
+    end
+
+    def proceed
+      charge_customer
+      cart.destroy
+      redirect_to thanks_path
+    rescue Stripe::CardError => e
+      reset
+      flash_error e.message
+    end
+
+    def reset
+      flash_validation_errors(@order)
+      @order.destroy
+      redirect_to new_charge_path
+    end
 
 end

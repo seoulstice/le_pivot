@@ -4,10 +4,10 @@ class StripeServices
     @customer = create_customer(params)
   end
 
-  def create_charge(amount)
+  def charge(amount)
     Stripe::Charge.create(
       customer: @customer.id,
-      amount: amount.to_i,
+      amount: amount.round,
       description: 'Your purchase from Artsy!',
       currency: 'usd'
     )
@@ -15,11 +15,8 @@ class StripeServices
 
   private
 
-    def create_customer(params)
-      Stripe::Customer.create(
-      email: params[:stripeEmail],
-      source: params[:stripeToken]
-    )
+    def create_customer(email, token)
+      Stripe::Customer.create(email: email, source: token)
     end
 
 end

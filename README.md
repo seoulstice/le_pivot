@@ -18,4 +18,7 @@ All users have a password of `password` if you want to login and explore.
 
 ## New Features
 - multi-tenancy
-- etc.
+- shipping with USPS
+- payment with Stripe
+- live chat with ActionCable
+- item search through API or UI

@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
   private
 
     def store
-      @store = current_user.stores.find(params[:slug])
+      @store = current_user.stores.find_by_slug!(params[:slug])
     end
 
 end

@@ -11,19 +11,13 @@ module RolesHelper
   end
 
   def registered_checkout
-    if viewer.registered?
-      link_to "Checkout", new_charge_path
-    else
-      render 'cart_login'
-    end
+    return render 'cart_login' unless viewer.registered?
+    link_to "Checkout", new_charge_path
   end
 
   def account_buttons
-    render(
-      if logged_in?
-        'nav_account' else 'nav_login'
-      end
-    )
+    return render 'nav_login' unless viewer.registered?
+    render 'nav_account'
   end
 
 end

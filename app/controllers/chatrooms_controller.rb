@@ -5,7 +5,7 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @chatroom = Chatroom.find_by(slug: params[:slug])
+    @chatroom = Chatroom.find_by_slug!(params[:slug])
     @message  = Message.new
   end
 
@@ -14,18 +14,13 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    @chatroom = Chatroom.new(chatroom_params)
-    if @chatroom.save
-      redirect_to chatroom_path(slug: @chatroom.slug)
-    else
-      render :new
-    end
+    chatroom = Chatroom.new(chatroom_params)
+    try_save(chatroom, chatroom_path(chatroom), new_chatroom_path,
+      "Welcome to the #{chatroom.topic} room.")
   end
 
   def destroy
-    @chatroom = Chatroom.find_by(slug: params[:slug])
-    @chatroom.destroy
-
+    Chatroom.destroy_all(slug: params[:slug])
     redirect_to chatrooms_path
   end
 

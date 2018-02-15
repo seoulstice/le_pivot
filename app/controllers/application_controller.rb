@@ -4,16 +4,15 @@ class ApplicationController < ActionController::Base
   before_action :authorize!
   after_action :save_cart
 
-  helper_method :logged_in?,
-                :current_user,
-                :current_dashboard_path,
+  helper_method :current_user,
+                :cart,
                 :all_categories,
-                :cart
+                :current_dashboard_path
 
   private
 
     def authenticate!
-      redirect_to login_path unless logged_in?
+      redirect_to login_path unless current_user.registered?
     end
 
     def authorize!
@@ -24,53 +23,52 @@ class ApplicationController < ActionController::Base
       )
     end
 
-    def logged_in?
-      current_user.persisted?
+    def save_cart
+      session[:cart] = cart.contents
     end
 
     def current_user
       @user ||= User.find_by_id(session[:user_id]) || User.guest
     end
 
-    def all_categories
-      @all_categories = Category.all
-    end
-
     def cart
       @cart ||= CartDecorator.new(Cart.new(session[:cart]))
     end
 
-    def not_found
-      raise ActionController::RoutingError.new('Not Found')
+    def all_categories
+      @all_categories ||= Category.all
     end
 
-    def flash_success(message = 'Your changes have been saved')
+    def current_dashboard_path
+      if current_user.platform_admin?
+        admin_dashboard_path else dashboard_path
+      end
+    end
+
+    def flash_success(message)
       flash[:success] = message
     end
 
-    def flash_errors(record)
-      flash[:error] = record.errors.full_messages.join("\n")
+    def flash_error(message)
+      flash[:error] = message
     end
 
-    # soon, we should consolidate ALL dashboards?
-    def current_dashboard_path
-      if current_user.platform_admin?
-        admin_dashboard_path
+    def flash_validation_errors(record)
+      flash_error(record.errors.full_messages.join("\n"))
+    end
+
+    def try_save(record, happy_path, sad_path, message)
+      if record.save
+        flash_success(message)
+        redirect_to(happy_path)
       else
-        dashboard_path
+        flash_validation_errors(record)
+        redirect_back(fallback_location: fallback)
       end
     end
 
-    # BANG because this will remove other scopes, e.g. filtering by status
-    # you can still filter the return, but not the argument
-    def platform_admin_sees_all!(relation)
-      if current_user.platform_admin?
-        relation.except(:where) else relation
-      end
-    end
-
-    def save_cart
-      session[:cart] = cart.contents
+    def not_found
+      raise ActionController::RoutingError.new('Not Found')
     end
 
 end

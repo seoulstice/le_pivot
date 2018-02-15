@@ -13,8 +13,8 @@ feature "Removing an item from my cart" do
       click_on("Remove")
 
       expect(current_path).to eq(cart_path)
-      expect(page).to have_content(/Successfully removed .*#{item.title}.* from your cart\./)
-      # expect(page).to have_link(item.title, href: item_path(item))
+      expect(page).to have_content("Removed #{item.title} from your cart")
+      expect(page).to have_link(item.title, href: item_path(item))
       visit cart_path
       expect(page).to_not have_content(item.title)
     end

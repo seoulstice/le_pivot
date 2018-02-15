@@ -38,7 +38,7 @@ feature "Visitor cart has an item in it" do
 
         click_on "-"
 
-        expect(page).to have_content("Successfully removed")
+        expect(page).to have_content("Removed")
       end
     end
   end

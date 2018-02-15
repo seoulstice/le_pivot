@@ -24,19 +24,18 @@ private
     if @user.try(:authenticate, params[:session][:password])
       login_successful
     else
-      flash[:error] = "That login was unsuccessful"
+      flash_error "That login was unsuccessful"
       redirect_to login_path
     end
   end
 
   def login_successful
     session[:user_id] = @user.id
-    if current_user.admin?
+    if current_user.platform_admin?
       flash_success "You're logged in as an Administrator."
     else
-      flash_success "Logged in as #{@user.first_name} #{@user.last_name}"
+      flash_success "<h4 class=\"card-title\">Welcome back, #{current_user.first_name}!</h4>"
     end
-
     redirect_to current_dashboard_path
   end
 

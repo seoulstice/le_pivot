@@ -7,10 +7,6 @@ class Order < ApplicationRecord
 
   enum status: ["ordered", "paid", "cancelled", "completed"]
 
-  def find_quantity(item)
-    order_items.find_by(item: item).quantity
-  end
-
   def self.count_by_status
     group(:status).count
   end

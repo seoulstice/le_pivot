@@ -7,7 +7,7 @@ class CartsController < ApplicationController
   def create
     item = Item.find(params[:item_id])
     cart.increase_quantity(item.id)
-    flash[:notice] = "You now have #{pluralize(cart.count_of(item.id), item.title)}."
+    flash_success "You now have #{pluralize(cart.count_of(item.id), item.title)}."
     redirect_back(fallback_location: root_path)
   end
 
@@ -32,7 +32,7 @@ class CartsController < ApplicationController
   private
 
     def flash_removed(item)
-      flash_success "Successfully removed <a href=#{item_path(item)}>#{item.title}</a> from your cart."
+      flash_success "Removed <a href=#{item_path(item)}>#{item.title}</a> from your cart."
     end
 
 end
