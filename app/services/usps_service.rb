@@ -39,7 +39,7 @@ class UspsService
           <ZipDestination>#{destination_zip}</ZipDestination>
           <Pounds>#{random_pounds}</Pounds>
           <Ounces>#{random_ounces}</Ounces>
-          <Container>#{random_container}</Container>
+          <Container>#{container_type}</Container>
           <Size>REGULAR</Size>
         </Package>
       </RateV4Request>"
@@ -57,7 +57,7 @@ class UspsService
       (0...16).to_a.sample
     end
 
-    def random_container
+    def container_type
       params["container_type"]
     end
 end
