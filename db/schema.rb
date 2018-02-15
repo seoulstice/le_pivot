@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "total_price"
+    t.string "image"
+    t.float "total_price_with_shipping"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
