@@ -8,6 +8,8 @@ RSpec.feature "User can place an order" do
     visit item_path(item)
     click_on "Add to cart"
   end
+  let(:usps_service) { UspsService.new({"container_type"=>"SM FLAT RATE BOX", "zip"=>"90201"}) }
+
 
   it "and after placing order, sees message 'order was successfully placed" do
     visit cart_path
@@ -44,12 +46,15 @@ RSpec.feature "User can place an order" do
 >>>>>>> Migration to add column to orders total_price_with_shipping
 
   xit "and estimate shipping cost" do
-    visit cart_path
+    VCR.use_cassette("shipping_feature") do
+      visit cart_path
 
-    choose("container_type_SM_FLAT_RATE_BOX", visible: false)
-    fill_in "zip", with: "90210"
-    click_on "Calculate Shipping Cost"
-    click_on "Checkout"
-    expect(current_path).to eq(orders_path)
+      choose("container_type_SM_FLAT_RATE_BOX", visible: false)
+      fill_in "zip", with: "90210"
+      click_on "Calculate Shipping Cost"
+      click_on "Checkout"
+      expect(current_path).to eq(orders_path)
+
+    end
   end
 end
