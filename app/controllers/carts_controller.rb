@@ -1,16 +1,13 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
-  after_action :save_cart
-
   def show
-    @items = cart.items
   end
 
   def create
     item = Item.find(params[:item_id])
-    cart.add_item(item.id)
-    flash[:notice] = "You now have #{pluralize(cart.count_of(item.id), item.title)}."
+    cart.increase_quantity(item.id)
+    flash_success "You now have #{pluralize(cart.count_of(item.id), item.title)}."
     redirect_back(fallback_location: root_path)
   end
 
@@ -29,17 +26,13 @@ class CartsController < ApplicationController
     item = Item.find(params[:id])
     cart.delete_item(item.id)
     flash_removed(item)
-    redirect_back(fallback_location: root_path)
+    redirect_back fallback_location: cart_path
   end
 
   private
 
     def flash_removed(item)
-      flash_success "Successfully removed <a href=#{item_path(item)}>#{item.title}</a> from your cart."
-    end
-
-    def save_cart
-      session[:cart] = cart.contents
+      flash_success "Removed <a href=#{item_path(item)}>#{item.title}</a> from your cart."
     end
 
 end

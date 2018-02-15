@@ -1,7 +1,8 @@
 class Store < ApplicationRecord
   has_many :items
   has_many :user_roles
-  scope :ordered_by_id, -> {order(:id)}
+  has_one :twitter_account
+  default_scope { order(:id) }
 
   enum status: ['pending', 'active', 'suspended']
 
@@ -9,6 +10,10 @@ class Store < ApplicationRecord
 
   def active_items
     items.active
+  end
+
+  def has_twitter?
+    twitter_account.present?
   end
 
   def to_param

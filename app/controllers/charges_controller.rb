@@ -1,31 +1,35 @@
 class ChargesController < ApplicationController
-  include ChargesHelper
-  before_action :set_amount
 
   def new
   end
 
   def create
-    stripe = StripeServices.new(params)
-    stripe.create_charge(@amount)
-    order_creator
-
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to new_charge_path
+    @order = OrderCreator.create_order(current_user, cart)
+    if @order.save then proceed else reset end
   end
 
   def thanks
-    cart.destroy
-  end
-
-  def thanks
-    cart.destroy
   end
 
   private
-    def set_amount
-      @amount = cart.total_price * 100
+
+    def charge_customer
+      StripeServices.new(params[:stripeEmail], params[:stripeToken]).charge
+    end
+
+    def proceed
+      charge_customer
+      cart.destroy
+      redirect_to thanks_path
+    rescue Stripe::CardError => e
+      reset
+      flash_error e.message
+    end
+
+    def reset
+      flash_validation_errors(@order)
+      @order.destroy
+      redirect_to new_charge_path
     end
 
 end

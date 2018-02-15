@@ -30,27 +30,4 @@ describe "validations" do
     end
   end
 
-  context "it can have one of four roles" do
-    xit "has a role" do
-      user = build(:user)
-      expect(user.role).to eq("default")
-    end
-
-    xit "can be an admin" do
-      user = build(:user, role: "admin")
-      expect(user.role).to eq("admin")
-    end
-  end
-
-  context "instance methods" do
-    it "can return user's full name" do
-      user = User.new(first_name: "McTest",last_name: "McTest", password: "testing", email: "tester@testmail")
-      expect(user.full_name).to eq("McTest McTest")
-    end
-
-    it "can return the date a user joined" do
-      user = User.create(first_name: "McTest",last_name: "McTest", password: "testing", email: "tester@testmail", created_at: "2017-09-13 01:13:04 -0600")
-      expect(user.date_joined).to eq("Sep. 13, 2017")
-    end
-  end
 end

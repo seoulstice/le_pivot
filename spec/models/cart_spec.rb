@@ -1,74 +1,59 @@
 require 'rails_helper'
 
 RSpec.describe Cart do
-  let(:item_1) { create(:item) }
-  let(:item_2) { create(:item) }
 
-  subject { Cart.new({
-      "#{item_1.id}" => 2,
-      "#{item_2.id}" => 3
-    })
-  }
+  subject { Cart.new(
+    '1' => 1,
+    '3' => 3,
+  )}
 
   describe "#total_count" do
-    it "calculates the total number of items it holds" do
-      expect(subject.total_count).to eq(5)
+    xit "calculates the total number of items it holds" do
+      expect(subject.total_count).to eq(4)
     end
   end
 
-  describe "#add_item" do
+  describe "#increase_quantity" do
     it "adds an item to its contents" do
-      item_3 = create(:item)
-      subject.add_item(item_1.id)
-      subject.add_item(item_3.id)
-
-      expect(subject.contents).to eq({"#{item_1.id}" => 3, "#{item_2.id}" => 3, "#{item_3.id}" => 1})
+      subject.increase_quantity(2)
+      subject.increase_quantity(3)
+      expect(subject.contents).to eq(
+        '1' => 1,
+        '2' => 1,
+        '3' => 4,
+      )
     end
   end
 
-  describe "#decrease quantity" do
+  describe "#decrease_quantity" do
     it "decreases the amount of an item in a cart" do
-      subject.decrease_quantity(item_1.id)
-
-      expect(subject.contents).to eq("#{item_1.id}"=>1, "#{item_2.id}"=>3)
+      subject.decrease_quantity(3)
+      expect(subject.contents).to eq(
+        '1' => 1,
+        '3' => 2,
+      )
     end
 
     it "can remove an item it it drops to quantity 0" do
-      subject.decrease_quantity(item_1.id)
-      subject.decrease_quantity(item_1.id)
-
-      expect(subject.contents).to eq("#{item_2.id}"=>3)
+      subject.decrease_quantity(1)
+      expect(subject.contents).to eq(
+        '3' => 3
+      )
     end
   end
-
-  describe "#increase quantity" do
-    it "can increase the amount of an item in a cart" do
-      subject.increase_quantity(item_1.id)
-
-      expect(subject.contents).to eq("#{item_1.id}" => 3, "#{item_2.id}" => 3)
-    end
-  end
-
-  describe "#count_of" do
-    it "reports how many of a particular item" do
-      expect(subject.count_of(item_1.id)).to eq(2)
-      expect(subject.count_of(item_2.id)).to eq(3)
-    end
-  end
-
 
   describe "#delete_item" do
     it "can remove one item from the cart" do
-      subject.delete_item(item_1.id)
-
-      expect(subject.contents).to eq("#{item_2.id}" => 3)
+      subject.delete_item(3)
+      expect(subject.contents).to eq(
+        '1' => 1
+      )
     end
   end
 
   describe "#destroy" do
     it "can remove all items from the cart" do
       subject.destroy
-
       expect(subject.contents).to eq({})
     end
   end

@@ -64,8 +64,7 @@ class Permission
       orders: {
         index: true,
         show: true,
-        update: true,
-        create: true
+        update: [:platform_admin]
       },
       sessions: {
         new: true,
@@ -73,11 +72,11 @@ class Permission
         destroy: true
       },
       stores: {
+        index: true,
+        show: true,
         new: true,
         create: true,
-        index: true,
-        update: true,
-        show: true
+        update: [:platform_admin]
 
       },
       twitter: {

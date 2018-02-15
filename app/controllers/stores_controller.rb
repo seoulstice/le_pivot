@@ -5,36 +5,31 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = StoreCreator.create_store(current_user, params[:store][:name])
-    if @store.save
-      flash_success("Store created successfully.")
-      redirect_to current_dashboard_path
-    else
-      flash_errors(@store)
-      redirect_to new_store_path
-    end
+    store = StoreCreator.create_store(current_user, params[:store][:name])
+    try_save(store, current_dashboard_path, new_store_path,
+      'Your store is registered, now go sell some art!')
   end
 
   def index
-    if current_user.platform_admin?
-      @stores = Store.all.ordered_by_id
-    else
-      @stores = current_user.stores.ordered_by_id
-    end
+    @stores = StoreDecorator.map(managed_stores)
   end
 
   def show
-    @store = Store.find_by_slug(params[:slug])
+    @store = StoreDecorator.new(Store.find_by_slug!(params[:slug]))
   end
 
   def update
-    store = Store.find_by_slug(params[:slug])
-    if store.update(status: params[:update_status])
-      flash_success
-    else
-      flash_errors(store)
+    store = managed_stores.find_by_slug!(params[:slug])
+    store.status = params[:status]
+    try_save(store, stores_path, stores_path, "Store status updated")
+  end
+
+private
+
+  def managed_stores
+    if current_user.platform_admin?
+      Store.all else current_user.stores
     end
-    redirect_to stores_path
   end
 
 end

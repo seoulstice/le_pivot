@@ -6,6 +6,11 @@ class Chatroom < ApplicationRecord
   validates :topic, presence: true, uniqueness: true, case_sensitive: false
 
   def generate_slug
-    self.slug = topic.parameterize
+    self.slug ||= topic.parameterize
   end
+
+  def to_param
+    slug
+  end
+
 end

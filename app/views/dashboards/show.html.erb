@@ -15,10 +15,9 @@
       </ul>
     </div>
     <div class="card-body">
-      <h4 class="card-title">Welcome back, <%= current_user.first_name %>!</h4>
       <p class="card-text">
-        You've been a member since <%= current_user.date_joined %>. Yay!
-        The e-mail address we have on file is <%= current_user.email %>.
+        You've been a member since <%= viewer.created_at %>. Yay!
+        The e-mail address we have on file is <%= viewer.email %>.
       </p>
       <a href="/items" class="btn btn-primary">Shop our onesies</a>
     </div>

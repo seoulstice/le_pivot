@@ -1,0 +1,25 @@
+<ul class="nav">
+    <li class="logo"><%= link_to  image_tag("cropped_artsy.png"), root_path %></li>
+  <li class="nav-item dropdown">
+
+    <div class="v-right">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
+      <div class="dropdown-menu">
+        <% all_categories.each do |category| %>
+        <%= link_to category.title, category_path(category.slug), class: "dropdown-item" %>
+        <% end %>
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <div class="v-right">
+      <%= cart.link_to_show %>
+      <span class="badge badge-secondary"><%= cart.total_count %></span>
+    </div>
+  </li>
+
+  <div id="left-nav-margin">
+    <%= account_buttons %>
+  </ul>
+</div>

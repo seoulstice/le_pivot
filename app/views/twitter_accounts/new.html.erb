@@ -1,0 +1,21 @@
+<h2>Sel</h2>
+
+<%= form_for(@account) do |f| %>
+
+  <%= f.hidden_field :uid %>
+  <%= f.hidden_field :screen_name %>
+  <%= f.hidden_field :oauth_token %>
+  <%= f.hidden_field :oauth_token_secret %>
+
+  <%= f.label(:store_id, "Select the store to associate with your account:") %>
+  <%= collection_select(
+    :twitter_account,
+    :store_id,
+    current_user.stores,
+    :id,
+    :name
+  ) %>
+
+  <%= submit_tag("finish") %>
+
+<% end %>

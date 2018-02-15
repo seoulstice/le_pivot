@@ -1,25 +1,26 @@
 require "rails_helper"
 
-describe "Visitor cart has an item in it" do
+feature "Visitor cart has an item in it" do
+
+  background do
+    item = create(:item, price: 19.99, title: 'fancy pants', id: 1)
+    visit item_path(item)
+  end
+
   context "visitor sees that her cart has a quantity of 2" do
     describe "the visitor can remove the item" do
       it "visitor sees that she has 1 items in her cart and the subtotal of her order decreases" do
-        item = create(:item, price: 19.99)
-        visit item_path(Item.last.id)
 
-        click_on "Add to cart"
-        click_on "Add to cart"
+        2.times{ click_on "Add to cart" }
 
         visit cart_path
-        expect(page).to have_content(2)
         expect(page).to have_content(39.98)
-        expect(page).to have_content(item.title)
+        expect(page).to have_link('fancy pants', item_path(Item.last))
 
         click_on "-"
 
-        expect(page).to have_content(19.99)
-        expect(page).to have_content(item.title)
-        expect(page).to have_content("$19.99")
+        expect(page).to have_content('$19.99')
+        expect(page).to have_link('fancy pants', item_path(Item.last))
       end
     end
   end
@@ -27,20 +28,17 @@ describe "Visitor cart has an item in it" do
   context "a visitor has 1 item in their cart" do
     describe "they click on decrease quantity" do
       it "the user will not see anything in the cart" do
-        item = create(:item, price: 19.99)
-        visit item_path(Item.last.id)
 
         click_on "Add to cart"
 
         visit cart_path
 
-        expect(page).to have_content(1)
-        expect(page).to have_content(item.title)
-        expect(page).to have_content("$19.99")
+        expect(page).to have_link('fancy pants', item_path(Item.last))
+        expect(page).to have_content('$19.99')
 
         click_on "-"
 
-        expect(page).to have_content("Successfully removed")
+        expect(page).to have_content("Removed")
       end
     end
   end

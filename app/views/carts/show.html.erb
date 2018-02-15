@@ -1,5 +1,5 @@
 <div class="container">
-  <h3><%= current_user.first_name %>'s  Cart</h3>
+  <h3><%= viewer.first_name %>'s  Cart</h3>
   <h6><%= link_to "Continue Shopping", root_path %></h6>
   <table class="table table-hover">
     <thead>
@@ -14,35 +14,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @items.each do |item| %>
-        <div class="item-#{item.id}">
-          <tr>
-            <th scope="row"><strong><%= link_to item.title, item_path(item) %></strong></th>
-            <td><%= image_tag item.image, :class => "cart_image"%></td>
-            <td>$<%= item.price %></td>
-            <td><%= item.quantity %></td>
-            <td><%= link_to "-", cart_path(id: item.id, condition: "decrease"), action: :update, method: :patch, class: "badge badge-danger" %>
-            <%= link_to "+", cart_path(id: item.id, condition: "increase"), action: :update, method: :patch, class: "badge badge-success" %></td>
-            <td><%= link_to "Remove", cart_path(id: item.id), method: :delete, class: "badge badge-danger" %></td>
-            <td>$<%= item.subtotal %></td>
-          </tr>
-        </div>
-      <% end %>
+      <%= render cart.order_items %>
     </tbody>
   </table>
     <div class="total">
-      <p><b>Total: <%= number_to_currency(cart.total_price) %></b></p>
+      <p><b>Total: <%= cart.total_price %></b></p>
     </div>
     <div class="checkout">
-      <% if logged_in? %>
-        <%= link_to "Checkout", new_charge_path%>
-      <% else %>
-        <p>
-          Please <%= link_to "login", login_path %>
-          or <%= link_to "create an account", new_user_path %>
-          to continue.
-        </p>
-      <% end %>
+      <%= registered_checkout %>
     </tbody>
   </table>
 </div>

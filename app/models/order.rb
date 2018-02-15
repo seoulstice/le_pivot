@@ -7,30 +7,14 @@ class Order < ApplicationRecord
 
   enum status: ["ordered", "paid", "cancelled", "completed"]
 
-  def status_partial
-    if ordered?
-      "ordered"
-    elsif paid?
-      "paid"
-    else
-      "empty"
-    end
-  end
-
-  def find_quantity(item)
-    OrderItem.find_by(item: item, order: self).quantity
-  end
-
-  def date
-    created_at.strftime('%b. %d, %Y')
-  end
-
   def self.count_by_status
     group(:status).count
   end
 
   def self.filter_by_status(status)
-    where(status: status)
+    if status
+      where(status: status) else all
+    end
   end
 
   def self.count_of_completed_orders
@@ -38,6 +22,6 @@ class Order < ApplicationRecord
   end
 
   def self.shop_total_gross
-		completed.joins(:items).sum(:price)
+		completed.sum(:total_price)
   end
 end
