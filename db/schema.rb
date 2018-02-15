@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "total_price"
-    t.string "image"
     t.float "total_price_with_shipping"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -133,12 +132,16 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.string "screen_name"
     t.string "uid"
     t.string "oauth_token"
     t.string "oauth_token_secret"
     t.string "username"
     t.string "phone"
+=======
+    t.string "username"
+>>>>>>> Changed bc of migration
   end
 
   add_foreign_key "items", "categories"
