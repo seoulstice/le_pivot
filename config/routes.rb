@@ -39,9 +39,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resource :dashboard, only: :show
     resource :analytics, only: :show
-    resources :items, only: [:index, :edit, :new, :create, :update]
+    resources :orders, only: [:index, :update]
+    resources :stores, only: [:index, :update]
   end
 
   namespace :api do
@@ -55,8 +55,9 @@ Rails.application.routes.draw do
   resources :twitter_accounts, only: :create
 
   resources :stores, only: [:new, :create, :index]
-  resources :stores, only: [:update, :show], path: '/', param: :slug do
+  resources :stores, only: [:show, :edit, :update], path: '/', param: :slug do
     resources :tweets, only: [:new, :create]
+    resources :items, only: [:new, :edit, :update, :create]
   end
 
 end
