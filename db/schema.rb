@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180214034612) do
-=======
 ActiveRecord::Schema.define(version: 20180215001622) do
->>>>>>> Migration to add column to orders total_price_with_shipping
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +72,6 @@ ActiveRecord::Schema.define(version: 20180215001622) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "total_price"
-    t.string "image"
     t.float "total_price_with_shipping"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -125,6 +120,7 @@ ActiveRecord::Schema.define(version: 20180215001622) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
   end
 
   add_foreign_key "items", "categories"
