@@ -1,8 +1,12 @@
 <h3><%= @store.name %></h3>
+
 <%= admin_update_store_status_button(@store) %>
+<%= management_new_item_link(@store) %>
+
 <% @store.active_items.each do |item| %>
   <%= image_tag item.image %>
   <%= item.title %>
   <%= item.price %>
   <%= add_to_cart_button(item) %>
+  <%= management_edit_item_link(@store, item) %>
 <% end %>

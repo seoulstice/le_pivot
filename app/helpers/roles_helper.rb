@@ -10,6 +10,16 @@ module RolesHelper
     render 'orders/update_status_buttons', order: order
   end
 
+  def management_new_item_link(store)
+    return unless current_user.stores.include?(store)
+    link_to("Add Item", new_store_item_path(store))
+  end
+
+  def management_edit_item_link(store, item)
+    return unless current_user.stores.include?(store)
+    link_to("Edit", edit_store_item_path(store, item))
+  end
+
   def registered_checkout
     return render 'cart_login' unless viewer.registered?
     link_to "Checkout", new_charge_path

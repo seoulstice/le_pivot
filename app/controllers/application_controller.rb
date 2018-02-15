@@ -57,14 +57,18 @@ class ApplicationController < ActionController::Base
       flash_error(record.errors.full_messages.join("\n"))
     end
 
-    def try_save(record, happy_path, sad_path, message)
+    def try_save(record, happy_path, sad_path = nil, message)
       if record.save
         flash_success(message)
         redirect_to(happy_path)
         true
       else
         flash_validation_errors(record)
-        redirect_back(fallback_location: sad_path)
+        if sad_path
+          redirect_back(fallback_location: sad_path)
+        else
+          render record.new_record? ? :new : :edit
+        end
         false
       end
     end
