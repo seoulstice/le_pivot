@@ -17,6 +17,23 @@
       <%= render cart.order_items %>
     </tbody>
   </table>
+    <div class="shipping_cost">
+      <%= form_tag orders_path do |f|  %>
+        <p>Pick a Box Size</p>
+        <%= label_tag :container_type, "SM FLAT RATE BOX"  %>
+        <%= radio_button_tag :container_type, "SM FLAT RATE BOX" %>
+
+        <%= label_tag :container_type, "MD FLAT RATE BOX"  %>
+        <%= radio_button_tag :container_type, "MD FLAT RATE BOX" %>
+
+        <%= label_tag :container_type, "LG FLAT RATE BOX"  %>
+        <%= radio_button_tag :container_type, "LG FLAT RATE BOX" %>
+        <br>
+        <%= label_tag :zip, "Enter Destination Zip Code" %>
+        <%= text_field_tag :zip, required: true %>
+        <%= submit_tag "Calculate Shipping Cost" %>
+      <% end  %>
+    </div>
     <div class="total">
       <p><b>Total: <%= cart.total_price %></b></p>
     </div>
