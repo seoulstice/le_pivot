@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Cart do
 
   subject { Cart.new(
-    1 => 1,
-    3 => 3,
+    '1' => 1,
+    '3' => 3,
   )}
 
   describe "#total_count" do
@@ -18,9 +18,9 @@ RSpec.describe Cart do
       subject.increase_quantity(2)
       subject.increase_quantity(3)
       expect(subject.contents).to eq(
-        1 => 1,
-        2 => 1,
-        3 => 4,
+        '1' => 1,
+        '2' => 1,
+        '3' => 4,
       )
     end
   end
@@ -29,15 +29,15 @@ RSpec.describe Cart do
     it "decreases the amount of an item in a cart" do
       subject.decrease_quantity(3)
       expect(subject.contents).to eq(
-        1 => 1,
-        3 => 2,
+        '1' => 1,
+        '3' => 2,
       )
     end
 
     it "can remove an item it it drops to quantity 0" do
       subject.decrease_quantity(1)
       expect(subject.contents).to eq(
-        3 => 3
+        '3' => 3
       )
     end
   end
@@ -46,7 +46,7 @@ RSpec.describe Cart do
     it "can remove one item from the cart" do
       subject.delete_item(3)
       expect(subject.contents).to eq(
-        1 => 1
+        '1' => 1
       )
     end
   end

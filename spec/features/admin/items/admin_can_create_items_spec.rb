@@ -4,7 +4,10 @@ feature 'Admin Item Management' do
   background { stub_logged_in_user(create(:platform_admin)) }
 
   describe 'creation' do
-    background{ visit admin_items_path }
+    background do
+      create(:category)
+      visit admin_items_path
+    end
 
     it 'Admin can create an item with an image' do
       click_on 'Create New Item'

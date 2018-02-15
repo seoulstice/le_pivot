@@ -5,6 +5,11 @@ module RolesHelper
     store.button_to_update_status
   end
 
+  def admin_update_order_status_buttons(order)
+    return unless viewer.platform_admin?
+    render 'orders/update_status_buttons', order: order
+  end
+
   def registered_checkout
     if viewer.registered?
       button_to "Checkout", orders_path

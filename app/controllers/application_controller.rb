@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authorize!
+  after_action :save_cart
 
   helper_method :logged_in?,
                 :current_user,
@@ -64,8 +65,12 @@ class ApplicationController < ActionController::Base
     # you can still filter the return, but not the argument
     def platform_admin_sees_all!(relation)
       if current_user.platform_admin?
-        relation.unscope(:where) else relation
+        relation.except(:where) else relation
       end
+    end
+
+    def save_cart
+      session[:cart] = cart.contents
     end
 
 end

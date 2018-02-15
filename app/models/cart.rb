@@ -10,8 +10,8 @@ class Cart
   end
 
   def order_items
-    @order_items ||= contents.map do |id, quantity|
-      OrderItem.create({ item_id: id, quantity: quantity })
+    contents.map do |id, quantity|
+      OrderItem.new({ item_id: id, quantity: quantity })
     end
   end
 
@@ -32,17 +32,17 @@ class Cart
   end
 
   def destroy
-    @contents.clear
+    contents.clear
   end
 
   private
 
     def get(id)
-      contents[id.to_i] || 0
+      contents[id.to_s] || 0
     end
 
     def set(id, new_value)
-      id = id.to_i
+      id = id.to_s
       contents[id] = new_value
       contents.delete(id) if contents[id] < 1
     end

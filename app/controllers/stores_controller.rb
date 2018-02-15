@@ -36,7 +36,9 @@ class StoresController < ApplicationController
 private
 
   def managed_stores
-    platform_admin_sees_all! current_user.stores
+    if current_user.platform_admin?
+      Store.all else current_user.stores
+    end
   end
 
 end

@@ -26,7 +26,7 @@ class CartsController < ApplicationController
     item = Item.find(params[:id])
     cart.delete_item(item.id)
     flash_removed(item)
-    redirect_back cart_path
+    redirect_back fallback_location: cart_path
   end
 
   private

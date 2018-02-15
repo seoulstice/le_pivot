@@ -16,7 +16,9 @@ class Order < ApplicationRecord
   end
 
   def self.filter_by_status(status)
-    where(status: status)
+    if status
+      where(status: status) else all
+    end
   end
 
   def self.count_of_completed_orders

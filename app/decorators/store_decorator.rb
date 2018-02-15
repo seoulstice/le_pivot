@@ -5,11 +5,11 @@ class StoreDecorator < ApplicationDecorator
 
 ### LINKS ###
 
-  def button_to_update_status_button
-    if store.active?
-      button_to "Suspend", store_path(store, status: "suspended"), method: :patch
+  def button_to_update_status
+    if active?
+      link_to "Suspend", store_path(self, status: "suspended"), method: :patch
     else
-      button_to "Activate", store_path(store, status: "active"), method: :patch
+      link_to "Activate", store_path(self, status: "active"), method: :patch
     end
   end
 

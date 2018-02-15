@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-    @items = ItemDecorator.all
+    @items = ItemDecorator.map(Item.all)
   end
 
   def new

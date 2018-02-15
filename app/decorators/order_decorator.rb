@@ -10,31 +10,31 @@ class OrderDecorator < ApplicationDecorator
 
   def button_to_cancel
     return unless ordered? || paid?
-    button_to(
+    link_to(
       "Cancel",
       order_path(self, status: "cancelled"),
       method: :patch,
-      class: badge(:warning)
+      class: "badge badge-warning"
     )
   end
 
   def button_to_mark_as_paid
     return unless ordered?
-    button_to(
+    link_to(
       "Mark as Paid",
-      order_path(order, status: "paid"),
+      order_path(self, status: "paid"),
       method: :patch,
-      class: badge(:success)
+      class: "badge badge-success"
     )
   end
 
-  def button_to_mark_as_complted
+  def button_to_mark_as_completed
     return unless paid?
-    button_to(
+    link_to(
       "Mark as Completed",
-      order_path(order, status: "completed"),
+      order_path(self, status: "completed"),
       method: :patch,
-      class: badge(:success)
+      class: "badge badge-success"
     )
   end
 

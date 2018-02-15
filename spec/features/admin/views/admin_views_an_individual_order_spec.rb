@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature "Admin can view individual order pages" do
   scenario "when I visit an valid order page" do
+    stub_logged_in_user(create(:platform_admin))
     user = create(:user, first_name: "Gob", last_name: "Bluth")
-    admin = create(:platform_admin)
     item_1 = create(:item, price: 11.00)
     item_2 = create(:item, price: 10.00)
     order = create(:order, total_price: 31.00, user: user)
@@ -12,7 +12,6 @@ feature "Admin can view individual order pages" do
 
     expected_total = "$31.00"
 
-    stub_logged_in_user(admin)
     visit order_path(order)
 
     expect(page).to have_content(todays_date)

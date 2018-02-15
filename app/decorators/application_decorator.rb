@@ -25,7 +25,7 @@ class ApplicationDecorator < SimpleDelegator
     end
 
     def formats_currency(field)
-      define_format(field) { |price| number_to_currency(price) }
+      define_format(field) { |price| number_to_currency(price) }#.squeeze('$')
     end
 
     def formats_datetime(field)

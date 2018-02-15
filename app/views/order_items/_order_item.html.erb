@@ -9,6 +9,6 @@
       <%= button_to "+", cart_path(id: order_item.item_id, condition: "increase"), method: :patch, class: badge(:success) %>
     </td>
     <td><%= button_to "Remove", cart_path(id: order_item.item_id), method: :delete, class: badge(:danger) %></td>
-    <td>$<%= order_item.subtotal %></td>
+    <td><%= order_item.subtotal %></td>
   </tr>
 </div>
