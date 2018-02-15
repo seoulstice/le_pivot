@@ -1,0 +1,17 @@
+<div class="stripe-payment">
+  <div class="stripe-button">
+    <%= form_tag charges_path do %>
+      <label class="amount">
+        <span>Amount: <%= cart.total_price %></span>
+      </label>
+
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<%= ENV['STRIPE_API_KEY'] %>"
+        data-description="Your purchase from Artsy"
+        data-amount="<%= cart.total_price %>"
+        data-email="<%= current_user.email %>"
+        data-locale="auto">
+      </script>
+    <% end %>
+  </div>
+</div>

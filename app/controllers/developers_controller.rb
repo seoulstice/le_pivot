@@ -13,7 +13,7 @@ class DevelopersController < ApplicationController
 
   def create
     current_user.api_key = ApiKey.unique
-    flash_success "You're officially a developer."
+    flash_success "You're a developer.  Have fun with that."
     redirect_to developer_path
   end
 

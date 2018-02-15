@@ -64,7 +64,7 @@ a {
 }
 
 #left-nav-margin{
-  margin-left: 500px;
+  margin-left: 400px;
   display:flex;
 }
 
@@ -141,4 +141,32 @@ a {
 
 .footer-center{
   margin-left: 300px;
+}
+
+.stripe-payment {
+  display: flex;
+  justify-content: center;
+}
+
+.stripe-button {
+  background-color: #DCDCDC;
+  padding: 7%;
+  font-weight: bolder;
+  border: 4px black solid;
+}
+
+.center-chat-show{
+  display:flex;
+  margin-left: 450px;
+  flex-direction: column;
+}
+
+.display-message{
+  margin-right: 20px;
+}
+
+.chatroom-index{
+  display:flex;
+  flex-direction:column;
+  text-align:center;
 }

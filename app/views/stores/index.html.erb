@@ -1,5 +1,8 @@
-
 <% @stores.each do |store| %>
-  <%= store.name %>
-  <%= store.status %>
+  <div class="store">
+    <p>Name: <%= store.name %></p>
+    <p>Status: <%= store.status %></p>
+    <%= store.link_to_twitter %>
+    <%= admin_update_store_status_button(store) %>
+  </div>
 <% end %>

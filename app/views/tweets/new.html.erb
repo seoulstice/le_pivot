@@ -1,0 +1,7 @@
+<h2>New Tweet</h2>
+
+<%= form_tag store_tweets_path(@store) do %>
+  <%= label_tag(:text, "Enter your message here:") %>
+  <%= text_area_tag(:text) %>
+  <%= submit_tag("tweet") %>
+<% end %>

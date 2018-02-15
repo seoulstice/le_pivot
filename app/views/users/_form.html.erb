@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
+    <h2>Edit <%= current_user.first_name %>'s Account'</h2>
     <table class="table">
       <%= form_for @user do |f| %>
-
         <tr>
           <td class="table-light"><%= f.label :first_name %></td>
           <td class="table-light"><%= f.text_field :first_name %></td>

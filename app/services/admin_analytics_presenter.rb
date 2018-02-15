@@ -5,7 +5,7 @@ class AdminAnalyticsPresenter
   end
 
   def average_quantity_purchased
-    OrderItem.average_quantity
+    OrderItem.average_quantity.to_i
   end
 
   def completed_orders
@@ -14,10 +14,6 @@ class AdminAnalyticsPresenter
 
   def sales_by_item_title
     Item.total_sold_by_item
-  end
-
-  def status_for_items
-    Item.items_by_title_with_status
   end
 
   def orders_per_customer

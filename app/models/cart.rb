@@ -5,46 +5,51 @@ class Cart
     @contents = initial_contents || {}
   end
 
-  def items
-    contents.map { |id, quantity| CartItem.new(id, quantity)}
-  end
-
   def total_price
-    items.sum &:subtotal
+    @total_price ||= order_items.sum(&:subtotal).round(2)
   end
 
-  def total_count
-    contents.values.sum
-  end
-
-  def add_item(id)
-    contents[id.to_s] = (contents[id.to_s] || 0) + 1
-  end
-
-  def decrease_quantity(id)
-    if contents[id.to_s] > 0
-      contents[id.to_s] -=1
-    end
-    if contents[id.to_s] == 0
-      delete_item(id)
+  def order_items
+    @order_items ||= contents.map do |id, quantity|
+      OrderItem.new({ item_id: id, quantity: quantity })
     end
   end
 
   def increase_quantity(id)
-    contents[id.to_s] += 1
+    adjust(id, 1)
+  end
+
+  def decrease_quantity(id)
+    adjust(id, -1)
   end
 
   def count_of(id)
-    contents[id.to_s].to_i
+    get(id)
   end
 
-
   def delete_item(id)
-    contents.delete(id.to_s)
+    set(id, 0)
   end
 
   def destroy
-    @contents.clear
+    contents.clear
   end
+
+  private
+
+    def get(id)
+      contents[id.to_s] || 0
+    end
+
+    def set(id, new_value)
+      id = id.to_s
+      contents[id] = new_value
+      contents.delete(id) if contents[id] < 1
+    end
+
+    def adjust(id, delta)
+      new_value = get(id) + delta
+      set(id, new_value)
+    end
 
 end

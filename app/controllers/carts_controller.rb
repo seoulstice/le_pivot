@@ -2,26 +2,22 @@ class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def show
-    @items = cart.items
   end
 
   def create
     item = Item.find(params[:item_id])
-    cart.add_item(item.id)
-    session[:cart] = cart.contents
-    flash[:notice] = "You now have #{pluralize(cart.count_of(item.id), item.title)}."
+    cart.increase_quantity(item.id)
+    flash_success "You now have #{pluralize(cart.count_of(item.id), item.title)}."
     redirect_back(fallback_location: root_path)
   end
 
   def update
-    item_id = params[:id]
+    item = Item.find(params[:id])
     if params[:condition] == "decrease"
-      cart.decrease_quantity(item_id)
-      if cart.contents[item_id].nil?
-        flash[:successfully_removed] = "Successfully removed <a href=#{item_path(item_id)}>#{Item.find(item_id).title}</a> from your cart."
-      end
-    elsif params[:condition] == "increase"
-      cart.increase_quantity(item_id)
+      cart.decrease_quantity(item.id)
+      flash_removed(item) if cart.contents[item.id].nil?
+    else
+      cart.increase_quantity(item.id)
     end
     redirect_to cart_path
   end
@@ -29,8 +25,14 @@ class CartsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     cart.delete_item(item.id)
-    flash[:successfully_removed] = "Successfully removed <a href=#{item_path(item)}>#{item.title}</a> from your cart."
-    redirect_back(fallback_location: root_path)
+    flash_removed(item)
+    redirect_back fallback_location: cart_path
   end
+
+  private
+
+    def flash_removed(item)
+      flash_success "Removed <a href=#{item_path(item)}>#{item.title}</a> from your cart."
+    end
 
 end

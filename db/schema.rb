@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210215852) do
+ActiveRecord::Schema.define(version: 20180214034612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 20180210215852) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "topic"
+    t.string "slug"
+    t.index ["slug"], name: "index_chatrooms_on_slug", unique: true
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -40,6 +46,14 @@ ActiveRecord::Schema.define(version: 20180210215852) do
     t.string "image"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["store_id"], name: "index_items_on_store_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "chatroom_id"
+    t.bigint "user_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -58,7 +72,6 @@ ActiveRecord::Schema.define(version: 20180210215852) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "total_price"
-    t.string "image"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -75,6 +88,16 @@ ActiveRecord::Schema.define(version: 20180210215852) do
     t.integer "status", default: 0
     t.string "slug"
     t.index ["slug"], name: "index_stores_on_slug", unique: true
+  end
+
+  create_table "twitter_accounts", force: :cascade do |t|
+    t.string "uid"
+    t.string "screen_name"
+    t.string "oauth_token"
+    t.string "oauth_token_secret"
+    t.bigint "store_id"
+    t.index ["store_id"], name: "index_twitter_accounts_on_store_id"
+    t.index ["uid"], name: "index_twitter_accounts_on_uid", unique: true
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -96,17 +119,16 @@ ActiveRecord::Schema.define(version: 20180210215852) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "screen_name"
-    t.string "uid"
-    t.string "oauth_token"
-    t.string "oauth_token_secret"
   end
 
   add_foreign_key "items", "categories"
   add_foreign_key "items", "stores"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "twitter_accounts", "stores"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "stores"
   add_foreign_key "user_roles", "users"

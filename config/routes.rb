@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => "/cable"
 
   root :to => 'main#index'
 
-  get 'auth/twitter/callback', to: 'twitter#update'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
-  get 'auth/twitter', as: :twitter_login
-  get 'twitter/new', to: 'twitter#new', as: 'new_twitter'
-  post 'twitter/new', to: 'twitter#create'
 
   get 'login', :to => 'sessions#new'
   post 'login', :to => 'sessions#create'
   delete 'logout', :to => 'sessions#destroy'
+
+  get 'support/index', to: 'chatrooms#index'
+
+
+  resources :chatrooms, param: :slug, only: [:show, :index, :new, :create, :destroy]
+  resources :messages
 
   resource :dashboard, only: :show
   resource :cart, only: [:show, :create, :update, :destroy]
@@ -20,8 +23,8 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :create, :show, :update]
   resources :items, only: [:index, :show]
   resources :categories, only: :show, param: :category_slug
-  resources :stores, only: [:new, :create, :index]
-
+  resources :charges, only: [:new, :create]
+  get 'thanks', to: 'charges#thanks', as: 'thanks'
 
   scope path: :settings do
     resource :developer, only: [:show, :create, :update]
@@ -39,5 +42,13 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:slug', to: "stores#show", as: "store"
+  get 'auth/twitter', as: :twitter_login
+  get 'auth/twitter/callback', to: 'twitter_accounts#new'
+  resources :twitter_accounts, only: :create
+
+  resources :stores, only: [:new, :create, :index]
+  resources :stores, only: [:update, :show], path: '/', param: :slug do
+    resources :tweets, only: [:new, :create]
+  end
+
 end

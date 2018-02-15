@@ -10,12 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @order.items.each do |item| %>
-        <tr id="item-<%= item.id %>">
-          <th scope="row"><h6><%= image_tag item.image, class: "card-img-top", style: "max-height: 100px; max-width: 100px;" %></h6></th>
-          <td class="title"><%= link_to item.title, item_path(item) %></td>
-          <td class="quantity"><%= @order.find_quantity(item) %></td>
-          <td class="price"><%= number_to_currency(item.price) %></td>
+      <% @order.order_items.each do |order_item| %>
+        <tr id="item-<%= order_item.item_id %>">
+          <th scope="row"><h6><%= image_tag order_item.image, class: "card-img-top", style: "max-height: 100px; max-width: 100px;" %></h6></th>
+          <td class="title"><%= order_item.item.link_to_show %></td>
+          <td class="quantity"><%= order_item.quantity %></td>
+          <td class="price"><%= order_item.price %></td>
         </tr>
       <% end %>
     </tbody>
@@ -24,13 +24,13 @@
       <th></th>
       <th>Total:</th>
       <td class="order-total">
-        Total: <%= number_to_currency(@order.total_price) %>
+        Total: <%= @order.total_price %>
       </td>
     </tr>
     </tbody>
   </table>
 
-  <p><b>Order Date:</b> <%= @order.date %>
+  <p><b>Order Date:</b> <%= @order.created_at %>
   <b>Order Placed by:</b> <%= @order.user.full_name %>
   <b>Order Address:</b> <%= @order.user.address %>
   <b>Order Status:</b> <%= @order.status.capitalize %></p>

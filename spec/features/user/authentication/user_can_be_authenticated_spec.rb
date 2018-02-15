@@ -12,7 +12,7 @@ feature 'A user trying to log in' do
     fill_in "session[password]", with: 'password'
     within(".login-form") { click_on("Login") }
 
-    expect(page).to have_content "Logged in as #{user.first_name} #{user.last_name}"
+    expect(page).to have_content "Welcome back, #{user.first_name}!"
     expect(current_path).to eq(dashboard_path)
     expect(page).to_not have_link "Login"
     expect(page).to have_link "Logout"

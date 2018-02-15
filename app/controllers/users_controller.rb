@@ -5,33 +5,36 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
-    flash[:notice] = "Logged in as #{user.first_name} #{user.last_name}"
-    session[:user_id] = user.id
-    redirect_to dashboard_path
+    user = User.new(user_params)
+    session[:user_id] = user.id if try_save(
+      user, dashboard_path, new_user_path,
+      "Welcome, #{user.first_name}!"
+    )
   end
 
   def edit
+    authenticate!
     @user = current_user
   end
 
   def update
-    if current_admin?
-      current_user.update(user_params)
-      redirect_to admin_dashboard_path
-    elsif current_user
-      current_user.update(user_params)
-      redirect_to dashboard_path
-    else
-      not_found
-    end
+    authenticate!
+    current_user.assign_attributes(user_params)
+    try_save(current_user, edit_user_path, edit_user_path, "Successfully updated your account information.")
   end
 
 
   private
 
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :address)
-  end
+    def user_params
+      params.require(:user).permit(
+        :first_name,
+        :last_name,
+        :email,
+        :password,
+        :address,
+        :username
+      )
+    end
 
 end

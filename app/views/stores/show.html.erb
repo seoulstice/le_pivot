@@ -1,7 +1,8 @@
-
-<h3>Active Items</h3>
-<% @store.active_items.each do |active_item| %>
-  <%= image_tag active_item.image %>
-  <%= active_item.title%>
-  <%= number_to_currency(active_item.price) %>
+<h3><%= @store.name %></h3>
+<%= admin_update_store_status_button(@store) %>
+<% @store.active_items.each do |item| %>
+  <%= image_tag item.image %>
+  <%= item.title %>
+  <%= item.price %>
+  <%= add_to_cart_button(item) %>
 <% end %>

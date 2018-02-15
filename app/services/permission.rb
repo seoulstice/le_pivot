@@ -44,6 +44,16 @@ class Permission
         update: true,
         create: true,
       },
+      chatrooms: {
+        index: true,
+        show: true,
+        new: true,
+        create: true,
+        destroy: true
+      },
+      messages: {
+        create: true
+      },
       items: {
         index: true,
         show: true
@@ -54,8 +64,7 @@ class Permission
       orders: {
         index: true,
         show: true,
-        update: true,
-        create: true
+        update: [:platform_admin]
       },
       sessions: {
         new: true,
@@ -63,10 +72,11 @@ class Permission
         destroy: true
       },
       stores: {
+        index: true,
+        show: true,
         new: true,
         create: true,
-        index: true,
-        show: true
+        update: [:platform_admin]
 
       },
       twitter: {
@@ -74,6 +84,11 @@ class Permission
         create: %i{ store_admin platform_admin },
         update: %i{ store_admin platform_admin }
       },
+       charges: {
+         new: true,
+         create: true,
+         thanks: true
+       },
       users: {
         new: true,
         create: true,

@@ -1,16 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
   before_action :authorize!
+  after_action :save_cart
 
   helper_method :current_user,
-                # :current_platform_admin?,
+                :cart,
                 :all_categories,
-                :cart
+                :current_dashboard_path
 
   private
 
     def authenticate!
-      redirect_to login_path unless current_user
+      redirect_to login_path unless current_user.registered?
     end
 
     def authorize!
@@ -21,28 +23,52 @@ class ApplicationController < ActionController::Base
       )
     end
 
-    def current_user
-      @user ||= User.find(session[:user_id]) if session[:user_id]
+    def save_cart
+      session[:cart] = cart.contents
     end
 
-    def all_categories
-      @categories ||= Category.all
+    def current_user
+      @user ||= User.find_by_id(session[:user_id]) || User.guest
     end
 
     def cart
-      @cart ||= Cart.new(session[:cart])
+      @cart ||= CartDecorator.new(Cart.new(session[:cart]))
     end
 
-    def not_found
-      raise ActionController::RoutingError.new('Not Found')
+    def all_categories
+      @all_categories ||= Category.all
+    end
+
+    def current_dashboard_path
+      if current_user.platform_admin?
+        admin_dashboard_path else dashboard_path
+      end
     end
 
     def flash_success(message)
       flash[:success] = message
     end
 
-    def flash_errors(record)
-      flash[:error] = record.errors.full_messages.join("\n")
+    def flash_error(message)
+      flash[:error] = message
+    end
+
+    def flash_validation_errors(record)
+      flash_error(record.errors.full_messages.join("\n"))
+    end
+
+    def try_save(record, happy_path, sad_path, message)
+      if record.save
+        flash_success(message)
+        redirect_to(happy_path)
+      else
+        flash_validation_errors(record)
+        redirect_back(fallback_location: fallback)
+      end
+    end
+
+    def not_found
+      raise ActionController::RoutingError.new('Not Found')
     end
 
 end

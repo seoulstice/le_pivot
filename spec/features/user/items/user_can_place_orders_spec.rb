@@ -2,19 +2,15 @@ require 'rails_helper'
 
 RSpec.feature "User can place an order" do
   it "and see the message 'order was successfully placed'" do
-    user = create(:user)
-    create(:item)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    visit items_path
-
+    item = create(:item)
+    stub_logged_in_user
+    visit item_path(item)
     click_on "Add to cart"
-
     visit cart_path
-
     click_on "Checkout"
 
-    expect(current_path).to eq('/orders')
-    expect(page).to have_content("Order was successfully placed")
+    expect(current_path).to eq(new_charge_path)
+    expect(page).to have_content("Amount: $#{item.price}")
   end
 end

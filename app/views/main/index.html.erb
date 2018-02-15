@@ -9,8 +9,7 @@
           <%= image_tag item.image, class: "card-img-top" %>
           <div class="card-body">
             <p><strong><%= link_to item.title, item_path(item) %></strong></p>
-            <!-- <p>Description: <%= item.description %></p> -->
-            <p class="teal">Price: $<%= item.price %></p>
+            <p class="teal">Price: <%= item.price %></p>
             <% unless item.retired? %>
               <%= link_to "Add to cart", cart_path(item_id: item.id), method: :post, class: "badge badge-primary" %>
             <% else %>
