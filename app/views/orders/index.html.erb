@@ -5,6 +5,8 @@
         <th>Order #</th>
         <th>Order Placed</th>
         <th>Order Status</th>
+        <th>Subtotal</th>
+        <th>Shipping Cost</th>
         <th>Total</th>
       </tr>
     </thead>
@@ -15,6 +17,8 @@
           <td><%= order.created_at %></td>
           <td><%= order.status.capitalize %></td>
           <td><%= number_to_currency(order.total_price) %></td>
+          <td><%= number_to_currency(order.shipping_cost) %></td>
+          <td><%= number_to_currency(order.total_price_with_shipping) %></td>
         </tr>
       <% end %>
     </tbody>
