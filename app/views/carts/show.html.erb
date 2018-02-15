@@ -18,7 +18,7 @@
     </tbody>
   </table>
     <div class="shipping_cost">
-      <%= form_tag orders_path do |f|  %>
+      <%= form_tag(new_charge_path, method: :get) do |f|  %>
         <p>Pick a Box Size</p>
         <%= label_tag :container_type, "SM FLAT RATE BOX"  %>
         <%= radio_button_tag :container_type, "SM FLAT RATE BOX" %>
@@ -35,7 +35,7 @@
       <% end  %>
     </div>
     <div class="total">
-      <p><b>Total: <%= cart.total_price %></b></p>
+      <p><b>Total: <%= number_to_currency(cart.total_price) %></b></p>
     </div>
     <div class="checkout">
       <%= registered_checkout %>
