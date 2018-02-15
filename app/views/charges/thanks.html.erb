@@ -1,3 +1,3 @@
-<h2>Thanks, you paid <strong><%= cart.total_price %></strong>!</h2>
+<h2>Thanks, you paid <strong><%= number_to_currency(cart.total_price) %></strong>!</h2>
 
 Still have too much money?  Hire <%= link_to 'one', 'https://github.com/JosiMcClellan' %> <%= link_to 'of', 'https://github.com/seoulstice' %> <%= link_to 'our', 'https://github.com/abarnes26' %> <%= link_to 'devs', 'https://github.com/Tyjoo26' %>!
