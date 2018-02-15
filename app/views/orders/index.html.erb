@@ -17,7 +17,7 @@
           <td><%= order.created_at %></td>
           <td><%= order.status.capitalize %></td>
           <td><%= number_to_currency(order.total_price) %></td>
-          <td><%= number_to_currency(order.shipping_cost) %></td>
+          <td></td>
           <td><%= number_to_currency(order.total_price_with_shipping) %></td>
         </tr>
       <% end %>
