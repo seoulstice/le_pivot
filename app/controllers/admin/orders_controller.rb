@@ -1,4 +1,4 @@
-class Admin::DashboardsController < ApplicationController
+class Admin::OrdersController < ApplicationController
 
   def index
     @orders = OrderDecorator.map(Order.filter_by_status(params[:status]))

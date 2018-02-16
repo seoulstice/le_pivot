@@ -1,26 +1,29 @@
 require 'rails_helper'
 
-RSpec.feature "Authenticated users security" do
+feature "Authorization" do
   context "As a logged in user" do
-    scenario "I cannot view another user's order" do
-      chino = create(:user, first_name: "Chino")
-      khaki = create(:user, first_name: "Khaki")
-      stub_logged_in_user(khaki)
 
-      order = create(:order, user: chino)
+    scenario "A store admin cannot view the platform admin screens" do
+      stub_logged_in_user(create(:store_admin))
+      [
+        admin_orders_path,
+        admin_analytics_path,
+        admin_stores_path
+      ].each do |admin_path|
+        expect {
+          visit admin_path
+        }.to raise_error(ActionController::RoutingError)
+      end
+    end
 
+    scenario "A user cannot view another user's orders" do
+      stub_logged_in_user
+      other = create(:user)
+      order = create(:order, user: other)
       expect {
         visit order_path(order)
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    it "I cannot view the administrator screens" do
-      user = create(:user)
-      stub_logged_in_user(user)
-
-      expect {
-        visit admin_dashboard_path
-      }.to raise_error(ActionController::RoutingError)
-    end
   end
 end
