@@ -1,15 +1,18 @@
 <div class="container">
-  <div class="row items text-center">
-    <% @category.items.each do |item| %>
-      <div class="center-block">
-        <div class="card border-white" style="width: 15rem;">
-          <%= image_tag item.image, class: "card-img-top" %>
+  <div class="row orient">
+    <% @items.each do |item| %>
+      <div class="card border-white" style="width: 15rem;">
+        <%= image_tag item.image, class: "card-img-top" %>
           <div class="card-body">
             <p><strong><%= link_to item.title, item_path(item) %></strong></p>
             <p>Price:$ <%= item.price %></p>
             <%= link_to "Add to cart", cart_path(item_id: item.id), method: :post, class: "badge badge-primary" %>
+          </div>
         </div>
+      <% end %>
+      <div class="flickr_pagination">
+        <%= will_paginate @items %>
       </div>
-    <% end %>
+
   </div>
 </div>
