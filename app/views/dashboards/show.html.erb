@@ -11,7 +11,7 @@
     <div class="card-body">
       <p class="card-text">
         You've been a member since <%= viewer.created_at %>. Yay!
-        The e-mail address we have on file is <%= viewer.email %>.
+        The e-mail address we have on file is  <%= viewer.email %>. <strong><%= link_to "Edit", edit_user_path(current_user), class: "edit" %></strong> your account details.
       </p>
     </div>
   </div>
