@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   before_action :authenticate!
 
   def index
-    @orders = OrderDecorator.map(viewable.preload(:items))
+    @orders = OrderDecorator.map(current_user.orders.preload(:items))
   end
 
   def show
-    @order = OrderDecorator.new(viewable.find(params[:id]))
+    @order = OrderDecorator.new(current_user.orders.find(params[:id]))
   end
 
   def update

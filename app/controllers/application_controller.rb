@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user,
                 :cart,
-                :all_categories,
-                :current_dashboard_path
+                :all_categories
 
   private
 
@@ -37,12 +36,6 @@ class ApplicationController < ActionController::Base
 
     def all_categories
       @all_categories ||= Category.all
-    end
-
-    def current_dashboard_path
-      if current_user.platform_admin?
-        admin_dashboard_path else dashboard_path
-      end
     end
 
     def flash_success(message)
