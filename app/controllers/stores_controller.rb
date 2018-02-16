@@ -9,7 +9,7 @@ class StoresController < ApplicationController
   end
 
   def new
-    @store = current_user.stores.new
+    @store = Store.new
   end
 
   def edit
