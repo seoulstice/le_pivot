@@ -31,9 +31,9 @@ class TwitterController < ApplicationController
 
     def extract_account_data(raw_data)
       {
-        uid:                  raw_data.uid
-        screen_name:          raw_data.extra.raw_info.screen_name
-        oauth_token:          raw_data.credentials.token
+        uid:                  raw_data.uid,
+        screen_name:          raw_data.extra.raw_info.screen_name,
+        oauth_token:          raw_data.credentials.token,
         oauth_token_secret:   raw_data.credentials.secret
       }
     end
