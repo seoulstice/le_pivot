@@ -1,11 +1,9 @@
-require 'factory_bot_rails'
-
 class Seeder
   include FactoryBot::Syntax::Methods
 
-  CATEGORIES = 5
+  CATEGORIES = 10
   ITEMS_PER_CATEGORY = 5
-  GENERIC_STORES = 5
+  GENERIC_STORES = 4
   GENERIC_USERS = 4
   ORDERS_PER_USER = 1..5
   ORDER_ITEMS_PER_ORDER = 1..5
