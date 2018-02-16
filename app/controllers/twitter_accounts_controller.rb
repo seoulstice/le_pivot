@@ -8,8 +8,7 @@ class TwitterController < ApplicationController
   # MUST use render :new to avoid losing oauth data
   def create
     @account = TwitterAccount.new(twitter_params)
-    try_save(@account
-      stores_path,
+    try_save(@account, stores_path,
       "Your Twitter account has been linked"
     )
   end
