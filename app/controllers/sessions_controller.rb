@@ -36,7 +36,7 @@ private
     else
       flash_success "<h4 class=\"card-title\">Welcome back, #{current_user.first_name}!</h4>"
     end
-    redirect_to current_dashboard_path
+    redirect_to dashboard_path
   end
 
 end

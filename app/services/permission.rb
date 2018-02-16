@@ -23,11 +23,13 @@ class Permission
 
     # single `&` below takes the intersection
     !(actual_roles & expected_roles).empty?
+  rescue
+    binding.pry
   end
 
   def permitted
-  # @@ because this should be the same everywhere always
-    @@permitted ||= {
+  # @@ because this should be the same everywhere always?
+    {
       carts: {
         show: PUBLIC,
         create: PUBLIC,
@@ -80,7 +82,6 @@ class Permission
         new: PUBLIC,
         create: PUBLIC,
         update: ANY_ADMIN
-
       },
       twitter: {
         new:    ANY_ADMIN,

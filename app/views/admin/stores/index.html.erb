@@ -1,0 +1,14 @@
+<div class="container">
+  <h3>Admin Stores</h3>
+  <nav class="nav nav-tabs" id="myTab" role="tablist">
+    <%= navlink "Dashboard" %>
+    <%= platform_admin_dashboard_tabs %>
+  </nav>
+  <% @stores.each do |store| %>
+    <div class="store">
+      link_to store.name, store_path(store)
+      <p>Status: <%= store.status %></p>
+      <%= platform_admin_update_status %>
+    </div>
+  <% end %>
+</div>

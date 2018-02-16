@@ -1,12 +1,16 @@
 class ChargesController < ApplicationController
 
+  before_action :authenticate!
+
   def new
     @usps_cost = usps_cost
   end
 
   def create
     @order = OrderCreator.create_order(current_user, cart, params[:shipping])
-    if @order.save then proceed else reset end
+    if @order.save
+      proceed else reset
+    end
   end
 
   def thanks
