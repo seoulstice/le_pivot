@@ -3,7 +3,7 @@ require "rails_helper"
 feature "When visiting create store form" do
   scenario "A registered user can create a store" do
 
-    Seeder.create_roles
+    Seeder.new.create_roles
     stub_logged_in_user
     visit dashboard_path
     click_on "My Stores"
