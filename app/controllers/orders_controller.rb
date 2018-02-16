@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = OrderDecorator.new(current_user.orders.find(params[:id]))
+    @order = OrderDecorator.new(viewable.find(params[:id]))
   end
 
   def update

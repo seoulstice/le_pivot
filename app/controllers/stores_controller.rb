@@ -5,7 +5,7 @@ class StoresController < ApplicationController
   end
 
   def index
-    @stores = StoreDecorator.map(current_user.stores)
+    @stores = StoreDecorator.map(current_user.reload.stores)
   end
 
   def new

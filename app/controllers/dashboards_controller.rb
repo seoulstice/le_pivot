@@ -2,7 +2,7 @@ class DashboardsController < ApplicationController
 
   before_action :authenticate!
 
-  def index
+  def show
   end
 
 end
