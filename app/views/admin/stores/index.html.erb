@@ -6,7 +6,7 @@
   </nav>
   <% @stores.each do |store| %>
     <div class="store">
-      link_to store.name, store_path(store)
+      <%= link_to store.name, store_path(store) %>
       <p>Status: <%= store.status %></p>
       <%= platform_admin_to_update_store_status(store) %>
     </div>
