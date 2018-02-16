@@ -15,6 +15,14 @@ class Cart
     end
   end
 
+  def total_count
+    initial_count = 0
+    contents.map do |id, quantity|
+      initial_count += quantity
+    end
+    initial_count
+  end
+
   def increase_quantity(id)
     adjust(id, 1)
   end
