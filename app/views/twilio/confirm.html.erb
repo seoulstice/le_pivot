@@ -1,0 +1,16 @@
+<div class="password-reset-form">
+
+  <div class="password-reset-field">
+    <h4>Please enter the secret key we've just texted you: </h4>
+  </div>
+
+  <div class="password-reset-field">
+    <%= form_for :password_reset, url: "password-confirmation" do |form| %>
+      <%= form.text_field :key %>
+      <%= form.hidden_field :lookup, value: @lookup %>
+      <%= form.submit "Submit" %>
+    <% end  %>
+  </div>
+</div>
+
+<!-- <h5>Didn't receive a key? <%= link_to "Click here" %> to resend </h5> -->

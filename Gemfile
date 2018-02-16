@@ -26,7 +26,9 @@ gem 'figaro'
 gem 'active_model_serializers'
 gem 'cloudinary'
 gem 'stripe'
-gem 'redis', '~> 3.0'
+gem 'redis'
+gem 'twilio-ruby'
+gem 'twilio'
 
 
 group :development, :test do

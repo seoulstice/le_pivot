@@ -170,3 +170,13 @@ a {
   flex-direction:column;
   text-align:center;
 }
+
+.password-reset-form {
+  display: flex;
+  justify-content: center;
+}
+
+.password-reset-field {
+  display: flex;
+  padding: 10px;
+}

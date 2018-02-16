@@ -1,0 +1,13 @@
+<div class="password-reset-form">
+
+  <div class="password-reset-field">
+    <h4>Please enter your email address: </h4>
+  </div>
+
+  <div class="password-reset-field">
+    <%= form_for :reset_password, url: "password-reset" do |form| %>
+      <%= form.text_field :email %>
+      <%= form.submit "Confirm" %>
+    <% end  %>
+  </div>
+</div>

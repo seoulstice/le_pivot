@@ -84,6 +84,12 @@ class Permission
         create: %i{ store_admin platform_admin },
         update: %i{ store_admin platform_admin }
       },
+      twilio: {
+        new: true,
+        create: true,
+        confirm: true,
+        validate_key: true
+      },
        charges: {
          new: true,
          create: true,
@@ -93,7 +99,9 @@ class Permission
         new: true,
         create: true,
         edit: true,
-        update: true
+        update: true,
+        password_reset: true,
+        password_update: true
       },
 
       'admin/dashboards': {
