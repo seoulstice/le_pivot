@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resource :analytics, only: :show
     resources :orders, only: [:index, :update]
-    resources :stores, only: [:index, :update]
+    resources :stores, only: [:index, :update], path: '/', param: :slug
   end
 
   namespace :api do
