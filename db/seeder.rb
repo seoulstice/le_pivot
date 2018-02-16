@@ -17,6 +17,13 @@ class Seeder
     end
   end
 
+  def create_roles
+    Role.create(name: "registered_user")
+    Role.create(name: "store_manager")
+    Role.create(name: "store_admin")
+    Role.create(name: "platform_admin")
+  end
+
   def create_stores
     create_list(:store, GENERIC_STORES) do |store|
       create_business_manager(store)
