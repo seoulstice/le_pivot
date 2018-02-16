@@ -1,5 +1,5 @@
 task :setup do
-    Rake::Task["import_dump:load"].invoke
+    Rake::Task["load"].invoke
     Rake::Task["db:migrate"].invoke
     Rake::Task["original_store:default"].invoke
     Rake::Task["create_roles"].invoke
