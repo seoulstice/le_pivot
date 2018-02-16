@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
 
-  get 'password-reset', to: 'twilio#new', as: 'twilio_new'
-  post 'password-reset', to: 'twilio#create', as: 'twilio_create'
-  get 'password-confirmation', to: 'twilio#confirm', as: 'twilio_confirmation'
-  post 'password-confirmation', to: 'twilio#validate_key'
-  get 'new-password', to: "users#password_reset", as: "edit_user_password"
-  post 'new-password', to: "users#password_update"
+  get 'password-reset', to: 'password_recovery#new', as: 'twilio_new'
+  post 'password-reset', to: 'password_recovery#create', as: 'twilio_create'
+  get 'password-confirmation', to: 'password_recovery#confirm', as: 'twilio_confirmation'
+  post 'password-confirmation', to: 'password_recovery#validate_key'
+  get 'new-password', to: "password_recovery#password_reset", as: "edit_user_password"
+  post 'new-password', to: "password_recovery#password_update"
 
   get 'login', :to => 'sessions#new'
   post 'login', :to => 'sessions#create'

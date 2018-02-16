@@ -88,11 +88,13 @@ class Permission
         create: ANY_ADMIN,
         update: ANY_ADMIN
       },
-      twilio: {
+      password_recovery: {
         new: true,
         create: true,
         confirm: true,
-        validate_key: true
+        validate_key: true,
+        password_reset: true,
+        password_update: true
       },
        charges: {
          new: PUBLIC,
