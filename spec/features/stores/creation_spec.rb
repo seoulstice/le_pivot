@@ -7,7 +7,7 @@ feature "When visiting create store form" do
     stub_logged_in_user
     visit dashboard_path
     click_on "My Stores"
-    click_on "new store"
+    click_on "New Store"
     fill_in "store[name]", with: "Vandelay Industries"
     click_on "Submit"
 
