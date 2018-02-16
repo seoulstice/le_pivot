@@ -20,8 +20,7 @@ class UsersController < ApplicationController
   def update
     authenticate!
     current_user.assign_attributes(user_params)
-    try_save(current_user, current_dashboard_path, edit_user_path,
-      "Your changes are saved")
+    try_save(current_user, edit_user_path, edit_user_path, "Successfully updated your account information.")
   end
 
   def password_reset
