@@ -36,7 +36,7 @@ class Seeder
   end
 
   def create_items(category)
-    create_list(:item, ITEMS_PER_CATEGORY,
+    create_list(:item_not_unique, ITEMS_PER_CATEGORY,
       category: category,
       store: @stores.sample
     )
