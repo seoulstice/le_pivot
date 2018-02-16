@@ -38,3 +38,25 @@ All users have a password of `password` if you want to login and explore.
 
 ## View on Production Server
 The web application can be acccessed at https://le-pivot-turing.herokuapp.com/
+
+## How to Run the Test Suite
+
+In order to run the full test suite, run the following command in your Terminal window:
+```
+bundle exec rspec
+```
+  
+In order to run a single test file, run the following command in your Terminal window:
+```
+bundle exec rspec  spec/<FILE_PATH_FOR_SPEC>
+  
+ex. 'bundle exec rspec spec/features/user/stores/user_can_create_store_spec.rb
+```
+  
+In order to run a single line within a test file, run the following command in your Terminal window:
+```
+bundle exec rspec spec/<FILE_PATH_FOR_SPEC>:<LINE_#>
+  
+ex. bundle exec rspec spec/features/user/stores/user_can_create_store_spec.rb:5
+```
+
