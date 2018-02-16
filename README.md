@@ -11,19 +11,19 @@ The team used Pivotal Tracker to manage project development and used git rebase 
 
 This involved setting up the web application to consume third party API data and to use that actionable data in several features. The third party APIs are listed below:
 
--[USPS](https://www.usps.com/business/web-tools-apis/welcome.htm)
--[Stripe](https://stripe.com/docs/api)
--[Twilio](https://www.twilio.com/docs/api)
--[Twitter](https://developer.twitter.com/en/docs)
--[Websocket](https://www.npmjs.com/package/actioncable)
+..* [USPS](https://www.usps.com/business/web-tools-apis/welcome.htm)
+..* [Stripe](https://stripe.com/docs/api)
+..* [Twilio](https://www.twilio.com/docs/api)
+..* [Twitter](https://developer.twitter.com/en/docs)
+..* [Websocket](https://www.npmjs.com/package/actioncable)
 
 The following services were implemented in the e-commerce web application.
--Twitter OAuth 2.0 for secure authorization and authentication
--Payment Processing via Stripe
--Live Chat implemented with ActionCable
--Forgot Password Text Messaging via Twilio
--Shipping Cost Estimation via USPS
--Item Search through a Search API
+..* Twitter OAuth 2.0 for secure authorization and authentication
+..* Payment Processing via Stripe
+..* Live Chat implemented with ActionCable
+..* Forgot Password Recovery Text Messaging via Twilio
+..* Shipping Cost Estimation via USPS
+..* Item Search through a Search API
 
 ## Setup on Local Machine
 run these commands:
