@@ -6,6 +6,7 @@ RSpec.feature "User can place an order" do
     VCR.use_cassette("shipping_feature") do
       user = create(:user, first_name: "Gob")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      allow_any_instance_of(UspsService).to receive(:get_rate_calculation_api).and_return("7.20")
 
       visit cart_path
 
