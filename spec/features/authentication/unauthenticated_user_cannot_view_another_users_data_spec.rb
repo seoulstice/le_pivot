@@ -30,11 +30,5 @@ RSpec.feature "Unauthenticated users security" do
       expect(page).to have_link("create an account")
 
     end
-
-    it "I cannot view the administrator screens or use administrator functionality" do
-      expect {
-        visit admin_dashboard_path
-      }.to raise_exception(ActionController::RoutingError)
-    end
   end
 end
