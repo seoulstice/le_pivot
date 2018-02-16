@@ -89,12 +89,12 @@ class Permission
         update: ANY_ADMIN
       },
       password_recovery: {
-        new: true,
-        create: true,
-        confirm: true,
-        validate_key: true,
-        password_reset: true,
-        password_update: true
+        new: PUBLIC,
+        create: PUBLIC,
+        confirm: PUBLIC,
+        validate_key: PUBLIC,
+        password_reset: PUBLIC,
+        password_update: PUBLIC
       },
        charges: {
          new: PUBLIC,
