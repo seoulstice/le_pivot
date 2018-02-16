@@ -49,10 +49,10 @@ RSpec.describe Order do
       expect(order.total_price).to eq(21.0)
     end
 
-    xit "can return the order date" do
+    it "can return the order date" do
       order = create(:order, created_at: "2017-09-13 01:13:04 -0600")
 
-      expect(order.date).to eq("Sep. 13, 2017")
+      expect(order.created_at).to eq("2017-09-13 01:13:04 -0600")
     end
   end
 
@@ -103,7 +103,7 @@ RSpec.describe Order do
       completed_1    = create(:order, status: "completed",total_price: 2.00)
       completed_2    = create(:order, status: "completed", total_price: 2.00)
       cancelled = create(:order, status: "cancelled")
-      
+
       expect(Order.shop_total_gross).to eq(4.00)
     end
   end
