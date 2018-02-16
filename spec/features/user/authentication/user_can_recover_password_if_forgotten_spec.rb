@@ -4,6 +4,8 @@ feature "Password Recovery" do
   context "As a user if I forget my password" do
     it "I can validate my account and create new password" do
       user = create(:user, email: "fake@fake.com", phone: "(504) 407-1457")
+      allow_any_instance_of(TwilioServices).to receive(:send_message).and_return("HJKLPO")
+      allow_any_instance_of(TwilioServices).to receive(:create_recovery_record).and_return(PasswordRecovery.create(user: user, code: "HJKLPO"))
       visit "/login"
 
       click_link "forgot password?"
