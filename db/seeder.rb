@@ -1,3 +1,5 @@
+require 'factory_bot_rails'
+
 class Seeder
   include FactoryBot::Syntax::Methods
 
