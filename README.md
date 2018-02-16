@@ -43,20 +43,20 @@ The web application can be acccessed at https://le-pivot-turing.herokuapp.com/
 
 In order to run the full test suite, run the following command in your Terminal window:
 ```
-bundle exec rspec
+'bundle exec rspec'
 ```
   
 In order to run a single test file, run the following command in your Terminal window:
 ```
 bundle exec rspec  spec/<FILE_PATH_FOR_SPEC>
   
-ex. 'bundle exec rspec spec/features/user/stores/user_can_create_store_spec.rb
+ex. 'bundle exec rspec spec/features/user/stores/user_can_create_store_spec.rb'
 ```
   
 In order to run a single line within a test file, run the following command in your Terminal window:
 ```
 bundle exec rspec spec/<FILE_PATH_FOR_SPEC>:<LINE_#>
   
-ex. bundle exec rspec spec/features/user/stores/user_can_create_store_spec.rb:5
+ex. 'bundle exec rspec spec/features/user/stores/user_can_create_store_spec.rb:5'
 ```
 
