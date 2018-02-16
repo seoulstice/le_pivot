@@ -5,7 +5,7 @@
 
 <% @store.active_items.each do |item| %>
   <%= image_tag item.image %>
-  <%= item.title %>
+  <%= link_to item.title, item_path(item) %>
   <%= item.price %>
   <%= add_to_cart_button(item) %>
   <%= management_to_edit_item(@store, item) %>
