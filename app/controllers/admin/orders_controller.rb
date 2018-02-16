@@ -6,12 +6,12 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    order = current_user.orders.find(params[:id])
+    order = Order.find(params[:id])
     order.assign_attributes(order_params)
     try_save(order,
-      dashboard_path,
-      dashboard_path,
-      "Order ##{order.id} is now #{store.status}."
+      admin_orders_path,
+      admin_orders_path,
+      "Order ##{order.id} is now #{order.status}."
     )
   end
 
