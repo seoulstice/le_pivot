@@ -17,8 +17,7 @@ feature "Password Recovery" do
       expect(current_path).to eq(twilio_confirmation_path)
       expect(page).to have_content("Please enter the secret key we've just texted you:")
 
-      last_message = TwilioServices.new(user).create_client.messages.list.first.body[-6..-1]
-      fill_in "password_reset[key]", with: last_message
+      fill_in "password_reset[key]", with: "HJKLPO"
       click_button "Submit"
 
       expect(current_path).to eq('/new-password')
