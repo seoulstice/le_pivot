@@ -1,7 +1,5 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
-    <h2>Edit <%= current_user.first_name %>'s Account'</h2>
     <table class="table">
       <%= form_for @user, :url => user_path do |f| %>
 
@@ -29,8 +27,8 @@
           <td class="table-light"><%= f.submit "Submit", class: "btn btn-primary" %></td>
           <td class="table-light"></td>
         </tr>
-
+      </table>
       <% end %>
-    </div>
+
   </div>
 </div>
