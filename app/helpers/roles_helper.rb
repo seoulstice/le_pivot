@@ -23,9 +23,9 @@ module RolesHelper
     end
 
   ### REGISTERED ###
-    def registered_to_checkout
+    def registered_to_new_charge
       return render 'cart_login' unless viewer.registered?
-      link_to "Checkout", new_charge_path
+      submit_tag "Calculate Shipping Cost"
     end
 
     def account_buttons

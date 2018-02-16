@@ -1,4 +1,4 @@
-class StoresController < ApplicationController
+class Admin::StoresController < ApplicationController
 
   def index
     @stores = StoreDecorator.map(Store.all)
