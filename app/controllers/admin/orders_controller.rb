@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
 
   def index
     @orders = OrderDecorator.map(Order.filter_by_status(params[:status]))
-    @by_status = Order.counts_by_status
+    @by_status = Order.count_by_status
   end
 
   def update

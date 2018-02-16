@@ -31,14 +31,12 @@
         <br>
         <%= label_tag :zip, "Enter Destination Zip Code" %>
         <%= text_field_tag :zip, nil, required: true %>
-        <%= submit_tag "Calculate Shipping Cost" %>
+        
+        <div class="total">
+          <p><b>Total: <%= number_to_currency(cart.total_price) %></b></p>
+        </div>
+        <%= registered_to_new_charge %>
       <% end  %>
     </div>
-    <div class="total">
-      <p><b>Total: <%= number_to_currency(cart.total_price) %></b></p>
-    </div>
-    <div class="checkout">
-      <%= registered_to_checkout %>
-    </tbody>
   </table>
 </div>
