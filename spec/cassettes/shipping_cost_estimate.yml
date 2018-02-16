@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://production.shippingapis.com/ShippingApi.dll?API=RateV4&XML=%3CRateV4Request%20USERID=%27030STUDE3810%27%3E%0A%20%20%20%20%20%20%20%20%3CPackage%20ID=%271ST%27%3E%0A%20%20%20%20%20%20%20%20%20%20%3CService%3EPRIORITY%3C/Service%3E%0A%20%20%20%20%20%20%20%20%20%20%3CZipOrigination%3E80211%3C/ZipOrigination%3E%0A%20%20%20%20%20%20%20%20%20%20%3CZipDestination%3E90201%3C/ZipDestination%3E%0A%20%20%20%20%20%20%20%20%20%20%3CPounds%3E66%3C/Pounds%3E%0A%20%20%20%20%20%20%20%20%20%20%3COunces%3E14%3C/Ounces%3E%0A%20%20%20%20%20%20%20%20%20%20%3CContainer%3ESM%20FLAT%20RATE%20BOX%3C/Container%3E%0A%20%20%20%20%20%20%20%20%20%20%3CSize%3EREGULAR%3C/Size%3E%0A%20%20%20%20%20%20%20%20%3C/Package%3E%0A%20%20%20%20%20%20%3C/RateV4Request%3E
+    uri: http://production.shippingapis.com/ShippingApi.dll?API=RateV4&XML=%3CRateV4Request%20USERID=%27030STUDE3810%27%3E%0A%20%20%20%20%20%20%20%20%3CPackage%20ID=%271ST%27%3E%0A%20%20%20%20%20%20%20%20%20%20%3CService%3EPRIORITY%3C/Service%3E%0A%20%20%20%20%20%20%20%20%20%20%3CZipOrigination%3E80211%3C/ZipOrigination%3E%0A%20%20%20%20%20%20%20%20%20%20%3CZipDestination%3E90201%3C/ZipDestination%3E%0A%20%20%20%20%20%20%20%20%20%20%3CPounds%3E55%3C/Pounds%3E%0A%20%20%20%20%20%20%20%20%20%20%3COunces%3E14%3C/Ounces%3E%0A%20%20%20%20%20%20%20%20%20%20%3CContainer%3ESM%20FLAT%20RATE%20BOX%3C/Container%3E%0A%20%20%20%20%20%20%20%20%20%20%3CSize%3EREGULAR%3C/Size%3E%0A%20%20%20%20%20%20%20%20%3C/Package%3E%0A%20%20%20%20%20%20%3C/RateV4Request%3E
     body:
       encoding: US-ASCII
       string: ''
@@ -31,9 +31,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 16 Feb 2018 03:04:04 GMT
+      - Fri, 16 Feb 2018 03:58:19 GMT
       X-Global-Transaction-Id:
-      - '939497079'
+      - '368107329'
       Access-Control-Allow-Origin:
       - "*"
       Connection:
@@ -43,12 +43,12 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Content-Length:
-      - '308'
+      - '305'
     body:
       encoding: ASCII-8BIT
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <RateV4Response><Package ID="1ST"><ZipOrigination>80211</ZipOrigination><ZipDestination>90201</ZipDestination><Pounds>66</Pounds><Ounces>14</Ounces><Container>SM FLAT RATE BOX</Container><Size>REGULAR</Size><Zone>5</Zone><Postage CLASSID="28"><MailService>Priority Mail 3-Day&amp;lt;sup&amp;gt;&amp;#8482;&amp;lt;/sup&amp;gt; Small Flat Rate Box</MailService><Rate>7.20</Rate></Postage></Package></RateV4Response>
+        <RateV4Response><Package ID="1ST"><ZipOrigination>80211</ZipOrigination><ZipDestination>90201</ZipDestination><Pounds>55</Pounds><Ounces>14</Ounces><Container>SM FLAT RATE BOX</Container><Size>REGULAR</Size><Zone>5</Zone><Postage CLASSID="28"><MailService>Priority Mail 3-Day&amp;lt;sup&amp;gt;&amp;#8482;&amp;lt;/sup&amp;gt; Small Flat Rate Box</MailService><Rate>7.20</Rate></Postage></Package></RateV4Response>
     http_version: 
-  recorded_at: Fri, 16 Feb 2018 03:04:04 GMT
+  recorded_at: Fri, 16 Feb 2018 03:58:20 GMT
 recorded_with: VCR 4.0.0
