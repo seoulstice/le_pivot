@@ -14,7 +14,7 @@ class OrderDecorator < ApplicationDecorator
     return unless ordered? || paid?
     link_to(
       "Cancel",
-      order_path(self, status: "cancelled"),
+      admin_order_path(self, status: "cancelled"),
       method: :patch,
       class: "badge badge-warning"
     )
@@ -24,7 +24,7 @@ class OrderDecorator < ApplicationDecorator
     return unless ordered?
     link_to(
       "Mark as Paid",
-      order_path(self, status: "paid"),
+      admin_order_path(self, status: "paid"),
       method: :patch,
       class: "badge badge-success"
     )
@@ -34,7 +34,7 @@ class OrderDecorator < ApplicationDecorator
     return unless paid?
     link_to(
       "Mark as Completed",
-      order_path(self, status: "completed"),
+      admin_order_path(self, status: "completed"),
       method: :patch,
       class: "badge badge-success"
     )
