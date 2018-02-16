@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "total_price"
+    t.float "total_price_with_shipping"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -106,12 +107,6 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.index ["uid"], name: "index_twitter_accounts_on_uid", unique: true
   end
 
-  create_table "twilios", force: :cascade do |t|
-    t.string "code"
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_twilios_on_user_id"
-  end
-
   create_table "user_roles", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "store_id"
@@ -131,10 +126,6 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "screen_name"
-    t.string "uid"
-    t.string "oauth_token"
-    t.string "oauth_token_secret"
     t.string "username"
     t.string "phone"
   end
@@ -146,9 +137,8 @@ ActiveRecord::Schema.define(version: 20180215193638) do
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
-  add_foreign_key "twitter_accounts", "stores"
-  add_foreign_key "twilios", "users"
   add_foreign_key "password_recoveries", "users"
+  add_foreign_key "twitter_accounts", "stores"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "stores"
   add_foreign_key "user_roles", "users"

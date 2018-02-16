@@ -2,8 +2,6 @@ class CartDecorator < ApplicationDecorator
 
   has_many :order_items
 
-  formats_currency :total_price
-
   def total_count
     contents.values.sum
   end
@@ -13,7 +11,7 @@ class CartDecorator < ApplicationDecorator
   end
 
   def link_to_checkout
-    
+
   end
 
 end

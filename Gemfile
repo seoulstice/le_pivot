@@ -17,7 +17,8 @@ gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
 gem 'friendly_id', '~> 5.1.0'
 gem "paperclip", "~> 5.2.1"
-
+gem 'faraday'
+gem 'faraday_middleware'
 gem 'chart-js-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -25,6 +26,7 @@ gem 'twitter'
 gem 'figaro'
 gem 'active_model_serializers'
 gem 'cloudinary'
+gem 'multi_xml', '~> 0.6.0'
 gem 'stripe'
 gem 'redis'
 gem 'twilio-ruby'
@@ -49,6 +51,8 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'simplecov'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
