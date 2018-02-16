@@ -3,7 +3,7 @@ FactoryBot.define do
     category
     store
 
-    title { Faker::Commerce.product_name }
+    title { Faker::Commerce.unique.product_name }
     description { Faker::Hipster.sentence }
     price { Faker::Commerce.price }
     image "http://res.cloudinary.com/tyjoo27/image/upload/v1518213324/cp82cjhrlplyxbet4gko.png"

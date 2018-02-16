@@ -13,5 +13,6 @@ describe "As a visitor can visit category show page" do
       expect(page).to have_content("Dove")
       expect(page).to_not have_content("Light Saber")
     end
+
   end
 end
