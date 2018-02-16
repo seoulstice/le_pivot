@@ -17,7 +17,8 @@ This involved setting up the web application to consume third party API data and
 ..* [Twitter](https://developer.twitter.com/en/docs)
 ..* [Websocket](https://www.npmjs.com/package/actioncable)
 
-The following services were implemented in the e-commerce web application.
+#### The following services were implemented in the e-commerce web application.
+
 ..* Twitter OAuth 2.0 for secure authorization and authentication
 ..* Payment Processing via Stripe
 ..* Live Chat implemented with ActionCable
