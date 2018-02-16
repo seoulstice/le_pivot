@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate!
 
   def index
-    @orders = OrderDecorator.map(viewable.preload(:items))
+    @orders = OrderDecorator.map(current_user.orders.preload(:items))
   end
 
   def show
@@ -12,8 +12,23 @@ class OrdersController < ApplicationController
   def update
     order = viewable.find(params[:id])
     order.assign_attributes(order_params)
-    try_save(order, current_dashboard_path, current_dashboard_path,
-      'order status updated')
+    try_save(order, current_dashboard_path, current_dashboard_path, 'order status updated')
+    order = Order.find(params[:id])
+    flash_errors(order) unless order.update(order_params)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def create
+    usps = UspsService.new(shipping_params)
+    order = OrderCreator.create_order(current_user, cart, usps)
+    if order.valid?
+      cart.destroy
+      flash_success "Order was successfully placed."
+      redirect_to orders_path
+    else
+      flash_errors(order)
+      redirect_to cart_path
+    end
   end
 
   private

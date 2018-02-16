@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215193638) do
+ActiveRecord::Schema.define(version: 20180216065249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20180215193638) do
   create_table "api_keys", force: :cascade do |t|
     t.string "key", null: false
     t.bigint "user_id"
+    t.index ["key", "user_id"], name: "index_api_keys_on_key_and_user_id"
     t.index ["key"], name: "index_api_keys_on_key", unique: true
     t.index ["user_id"], name: "index_api_keys_on_user_id", unique: true
   end
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "total_price"
+    t.float "total_price_with_shipping"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
   create_table "stores", force: :cascade do |t|
@@ -94,6 +97,7 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.integer "status", default: 0
     t.string "slug"
     t.index ["slug"], name: "index_stores_on_slug", unique: true
+    t.index ["status"], name: "index_stores_on_status"
   end
 
   create_table "twitter_accounts", force: :cascade do |t|
@@ -114,6 +118,7 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.datetime "updated_at", null: false
     t.index ["role_id"], name: "index_user_roles_on_role_id"
     t.index ["store_id"], name: "index_user_roles_on_store_id"
+    t.index ["user_id", "store_id"], name: "index_user_roles_on_user_id_and_store_id", unique: true
     t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
@@ -127,6 +132,7 @@ ActiveRecord::Schema.define(version: 20180215193638) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "phone"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "items", "categories"

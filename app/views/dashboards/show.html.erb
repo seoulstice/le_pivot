@@ -2,24 +2,17 @@
   <div class="card text-center">
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">My Account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/orders">My Orders</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/stores">My Stores</a>
-        </li>
-
+        <%= navlink 'My Account', edit_user_path %>
+        <%= navlink 'My Orders', orders_path %>
+        <%= navlink 'My Stores', stores_path %>
+        <%= platform_admin_dashboard_tabs %>
       </ul>
     </div>
     <div class="card-body">
       <p class="card-text">
         You've been a member since <%= viewer.created_at %>. Yay!
-        The e-mail address we have on file is <%= viewer.email %>.
+        The e-mail address we have on file is  <%= viewer.email %>. <strong><%= link_to "Edit", edit_user_path(current_user), class: "edit" %></strong> your account details.
       </p>
-      <a href="/items" class="btn btn-primary">Shop our onesies</a>
     </div>
   </div>
 </div>

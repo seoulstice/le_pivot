@@ -8,7 +8,7 @@ feature "Admin Orders" do
 
     before(:each) do
       stub_logged_in_user(create(:platform_admin))
-      visit admin_dashboard_path
+      visit admin_orders_path
     end
 
     it "I can see the total number of orders for each status" do
@@ -20,7 +20,7 @@ feature "Admin Orders" do
     it "I can see orders filtered by status" do
       click_on("Ordered")
 
-      expect(current_path).to eq(admin_dashboard_path)
+      expect(current_path).to eq(admin_orders_path)
       expect(page).to have_link(order_1.id, href: order_path(order_1))
       expect(page).to_not have_link(order_2.id, href: order_path(order_2))
     end
@@ -30,7 +30,7 @@ feature "Admin Orders" do
         click_on("Cancel")
       end
 
-      expect(current_path).to eq(admin_dashboard_path)
+      expect(current_path).to eq(admin_orders_path)
 
       within(".order-#{order_2.id}") do
         expect(page).to have_content("Cancelled")
@@ -40,7 +40,7 @@ feature "Admin Orders" do
         click_on("Mark as Paid")
       end
 
-      expect(current_path).to eq(admin_dashboard_path)
+      expect(current_path).to eq(admin_orders_path)
 
       within(".order-#{order_1.id}") do
         within(".status") do
@@ -52,7 +52,7 @@ feature "Admin Orders" do
         click_on("Mark as Completed")
       end
 
-      expect(current_path).to eq(admin_dashboard_path)
+      expect(current_path).to eq(admin_orders_path)
 
       within(".order-#{order_1.id}") do
         within(".status") do

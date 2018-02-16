@@ -17,11 +17,26 @@
       <%= render cart.order_items %>
     </tbody>
   </table>
-    <div class="total">
-      <p><b>Total: <%= cart.total_price %></b></p>
+    <div class="shipping_cost">
+      <%= form_tag(new_charge_path, method: :get) do |f|  %>
+        <p>Pick a Box Size</p>
+        <%= label_tag :container_type, "SM FLAT RATE BOX"  %>
+        <%= radio_button_tag :container_type, "SM FLAT RATE BOX" %>
+
+        <%= label_tag :container_type, "MD FLAT RATE BOX"  %>
+        <%= radio_button_tag :container_type, "MD FLAT RATE BOX" %>
+
+        <%= label_tag :container_type, "LG FLAT RATE BOX"  %>
+        <%= radio_button_tag :container_type, "LG FLAT RATE BOX" %>
+        <br>
+        <%= label_tag :zip, "Enter Destination Zip Code" %>
+        <%= text_field_tag :zip, nil, required: true %>
+        
+        <div class="total">
+          <p><b>Total: <%= number_to_currency(cart.total_price) %></b></p>
+        </div>
+        <%= registered_to_new_charge %>
+      <% end  %>
     </div>
-    <div class="checkout">
-      <%= registered_checkout %>
-    </tbody>
   </table>
 </div>

@@ -1,5 +1,10 @@
 class Permission
 
+  PLATFORM_ADMIN = %i{  platform_admin  }
+  ANY_ADMIN      = %i{  platform_admin  store_admin }
+  ANY_MANAGEMENT = %i{  platform_admin  store_admin  store_manager  }
+  PUBLIC         = :PUBLIC
+
   def self.granted?(*args)
      new(*args).granted?
   end
@@ -12,110 +17,107 @@ class Permission
   end
 
   def granted?
-    allowed = permitted.dig(controller, action) || []
-    allowed.equal?(true) || user_has_role_in?(allowed)
-  rescue Exception
-    return false
-  end
+    expected_roles = permitted.try(:[], controller).try(:[], action) || []
+    return true if expected_roles == PUBLIC
+    actual_roles = user.roles.map(&:to_sym)
 
-  def user_has_role_in?(allowed)
-    roles = user.roles.map(&:to_sym)
     # single `&` below takes the intersection
-    !(roles & allowed).empty?
+    !(actual_roles & expected_roles).empty?
+  rescue
+    binding.pry
   end
 
   def permitted
-  # @@ because this should be the same everywhere always
-    @@permitted ||= {
+  # @@ because this should be the same everywhere always?
+    {
       carts: {
-        show: true,
-        create: true,
-        update: true,
-        destroy: true
+        show: PUBLIC,
+        create: PUBLIC,
+        update: PUBLIC,
+        destroy: PUBLIC
       },
       categories: {
-        show: true
+        show: PUBLIC
       },
       dashboards: {
-        show: true
+        show: PUBLIC
       },
       developers: {
-        show: true,
-        update: true,
-        create: true,
+        show: PUBLIC,
+        update: PUBLIC,
+        create: PUBLIC,
       },
       chatrooms: {
-        index: true,
-        show: true,
-        new: true,
-        create: true,
-        destroy: true
+        index: PUBLIC,
+        show: PUBLIC,
+        new: PUBLIC,
+        create: PUBLIC,
+        destroy: PUBLIC
       },
       messages: {
-        create: true
+        create: PUBLIC
       },
       items: {
-        index: true,
-        show: true
+        show: PUBLIC,
+        new: ANY_MANAGEMENT,
+        edit: ANY_MANAGEMENT,
+        create: ANY_MANAGEMENT,
+        update: ANY_MANAGEMENT
       },
       main: {
-        index: true,
+        index: PUBLIC,
       },
       orders: {
-        index: true,
-        show: true,
-        update: [:platform_admin]
+        index: PUBLIC,
+        show: PUBLIC,
       },
       sessions: {
-        new: true,
-        create: true,
-        destroy: true
+        new: PUBLIC,
+        create: PUBLIC,
+        destroy: PUBLIC
       },
       stores: {
-        index: true,
-        show: true,
-        new: true,
-        create: true,
-        update: [:platform_admin]
-
+        index: PUBLIC,
+        show: PUBLIC,
+        new: PUBLIC,
+        create: PUBLIC,
+        update: ANY_ADMIN
       },
       twitter: {
-        new:    %i{ store_admin platform_admin },
-        create: %i{ store_admin platform_admin },
-        update: %i{ store_admin platform_admin }
+        new:    ANY_ADMIN,
+        create: ANY_ADMIN,
+        update: ANY_ADMIN
       },
       password_recovery: {
-        new: true,
-        create: true,
-        confirm: true,
-        validate_key: true,
-        password_reset: true,
-        password_update: true
+        new: PUBLIC,
+        create: PUBLIC,
+        confirm: PUBLIC,
+        validate_key: PUBLIC,
+        password_reset: PUBLIC,
+        password_update: PUBLIC
       },
        charges: {
-         new: true,
-         create: true,
-         thanks: true
-       },
+         new: PUBLIC,
+         create: PUBLIC,
+         thanks: PUBLIC
+      },
       users: {
-        new: true,
-        create: true,
-        edit: true,
-        update: true
+        new: PUBLIC,
+        create: PUBLIC,
+        edit: PUBLIC,
+        update: PUBLIC
       },
 
-      'admin/dashboards': {
-        show: [:platform_admin]
+      'admin/orders': {
+        index: PLATFORM_ADMIN,
+        update: PLATFORM_ADMIN
+      },
+      'admin/stores': {
+        index: PLATFORM_ADMIN,
+        update: PLATFORM_ADMIN
       },
       'admin/analytics': {
-        show: [:platform_admin]
-      },
-      'admin/items': {
-        index: [:platform_admin],
-        new: [:platform_admin],
-        create: [:platform_admin],
-        update: [:platform_admin],
-        edit: [:platform_admin]
+        index: PLATFORM_ADMIN
       }
     }
   end

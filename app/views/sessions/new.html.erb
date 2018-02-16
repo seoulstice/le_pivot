@@ -1,7 +1,6 @@
 <div class="container">
-  <%= image_tag 'login.png' %>
   <div class="row">
-    <div class="col-3">
+    <h2>Log in to your Account</h2>
     <table class="table login-form">
       <%= form_for(:session, url: login_path) do |f| %>
         <tr>
@@ -14,12 +13,14 @@
         </tr>
         <tr class="action">
           <td class="table-light"><%= f.submit name="Login", class: "btn btn-primary" %></td>
-          <td class="table-light"><small>Don't have an account with us? <%= link_to "Create an account", new_user_path %>.</small></td>
+          <td class="table-light">Don't have an account with us? <br>
+            <%= link_to "Create an account", new_user_path %></td>
         </tr>
+        <td><%= link_to "forgot password?", twilio_new_path, class: "forgotten-password"%></td>
         <tr>
-          <td><small><%= link_to "forgot password?", twilio_new_path, class: "forgotten-password"%></small></td>
         </tr>
+      </table>
       <% end %>
-    </div>
+
   </div>
 </div>

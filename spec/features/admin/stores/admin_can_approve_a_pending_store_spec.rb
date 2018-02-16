@@ -7,13 +7,14 @@ feature "Admin approves a pending store" do
 
         stub_logged_in_user(create(:platform_admin))
         store = create(:store)
-        visit stores_path
+        visit admin_stores_path
 
         within(".store") do
           expect(page).to have_content(store.name)
           expect(page).to have_content("Status: pending")
           click_on "Activate"
         end
+
         within(".store") do
           expect(page).to have_content(store.name)
           expect(page).to have_content("Status: active")

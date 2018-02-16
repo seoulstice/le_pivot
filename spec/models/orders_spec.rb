@@ -28,6 +28,14 @@ RSpec.describe Order do
       expect(order).to respond_to(:items)
       expect(order.items.first).to be_an(Item)
     end
+
+    it 'has many order items' do
+      item = create(:item)
+      order = build(:order)
+      oi = create(:order_item,order: order, item: item)
+
+      expect(order).to respond_to(:order_items)
+    end
   end
 
   describe "instance methods" do
@@ -41,10 +49,10 @@ RSpec.describe Order do
       expect(order.total_price).to eq(21.0)
     end
 
-    xit "can return the order date" do
+    it "can return the order date" do
       order = create(:order, created_at: "2017-09-13 01:13:04 -0600")
 
-      expect(order.date).to eq("Sep. 13, 2017")
+      expect(order.created_at).to eq("2017-09-13 01:13:04 -0600")
     end
   end
 
@@ -79,6 +87,24 @@ RSpec.describe Order do
 
       expect(all_cancelled).to include(cancelled)
       expect(all_cancelled.count).to eq(1)
+    end
+
+    it "can count of completed orders" do
+      ordered   = create(:order, status: "ordered")
+      completed_1    = create(:order, status: "completed")
+      completed_2    = create(:order, status: "completed")
+      cancelled = create(:order, status: "cancelled")
+
+      expect(Order.count_of_completed_orders).to eq(2)
+    end
+
+    it "can calculate total gross price" do
+      ordered   = create(:order, status: "ordered")
+      completed_1    = create(:order, status: "completed",total_price: 2.00)
+      completed_2    = create(:order, status: "completed", total_price: 2.00)
+      cancelled = create(:order, status: "cancelled")
+
+      expect(Order.shop_total_gross).to eq(4.00)
     end
   end
 end

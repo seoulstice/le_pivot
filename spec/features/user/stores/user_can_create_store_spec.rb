@@ -4,7 +4,7 @@ describe "When visiting create store form" do
   context "as a registered User" do
     it "a user can create a store" do
 
-      Seeder.create_roles
+      Seeder.new.create_roles
       stub_logged_in_user
       visit new_store_path
       fill_in "store[name]", with: "Vandelay Industries"
