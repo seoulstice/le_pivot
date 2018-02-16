@@ -8,7 +8,7 @@ RSpec.describe Cart do
   )}
 
   describe "#total_count" do
-    xit "calculates the total number of items it holds" do
+    it "calculates the total number of items it holds" do
       expect(subject.total_count).to eq(4)
     end
   end
