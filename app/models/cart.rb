@@ -9,6 +9,14 @@ class Cart
     @total_price ||= order_items.sum(&:subtotal).round(2)
   end
 
+  def total_count
+    initial_count = 0
+    contents.map do |id, quantity|
+      initial_count += quantity
+    end
+    initial_count
+  end
+
   def order_items
     @order_items ||= contents.map do |id, quantity|
       OrderItem.new({ item_id: id, quantity: quantity })
