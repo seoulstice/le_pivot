@@ -14,13 +14,13 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    chatroom = Chatroom.new(chatroom_params)
-    try_save(chatroom, chatroom_path(chatroom), new_chatroom_path,
+    chatroom = Chatroom.create(chatroom_params)
+    try_save(chatroom, chatroom_path(chatroom.slug), new_chatroom_path,
       "Welcome to the #{chatroom.topic} room.")
   end
 
   def destroy
-    Chatroom.destroy_all(slug: params[:slug])
+    Chatroom.destroy_all
     redirect_to chatrooms_path
   end
 
