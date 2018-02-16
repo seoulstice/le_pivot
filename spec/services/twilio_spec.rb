@@ -23,10 +23,4 @@ describe TwilioServices do
       end
     end
   end
-
-  describe "send text messges via" do
-    it "can send a message to a user" do
-      
-    end
-  end
 end
