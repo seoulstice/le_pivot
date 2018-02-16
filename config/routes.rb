@@ -25,10 +25,10 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: :show
   resource :cart, only: [:show, :create, :update, :destroy]
-  resources :users , only: [:new, :create, :update]
+  resource :user, only: [:new, :create, :update]
   get 'account/edit', to: 'users#edit', as: 'edit_user'
-  resources :orders, only: [:index, :create, :show, :update]
-  resources :items, only: [:index, :show]
+  resources :orders, only: [:index, :show, :update]
+  resources :items, only: :show
   resources :categories, only: :show, param: :category_slug
   resources :charges, only: [:new, :create]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
@@ -39,9 +39,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resource :dashboard, only: :show
     resource :analytics, only: :show
-    resources :items, only: [:index, :edit, :new, :create, :update]
+    resources :orders, only: [:index, :update]
+    resources :stores, only: [:index, :update], path: '/', param: :slug
   end
 
   namespace :api do
@@ -55,8 +55,9 @@ Rails.application.routes.draw do
   resources :twitter_accounts, only: :create
 
   resources :stores, only: [:new, :create, :index]
-  resources :stores, only: [:update, :show], path: '/', param: :slug do
+  resources :stores, only: [:show, :edit, :update], path: '/', param: :slug do
     resources :tweets, only: [:new, :create]
+    resources :items, only: [:new, :edit, :update, :create]
   end
 
 end

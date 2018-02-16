@@ -8,13 +8,10 @@ class TwitterController < ApplicationController
   # MUST use render :new to avoid losing oauth data
   def create
     @account = TwitterAccount.new(twitter_params)
-    if @account.save
-      flash_success "Your Twitter account for #{store.name} has been linked"
-      redirect_to stores_path
-    else
-      flash_validation_errors(@account)
-      render :new
-    end
+    try_save(@account
+      stores_path,
+      "Your Twitter account has been linked"
+    )
   end
 
   private

@@ -5,7 +5,7 @@ describe Permission do
 
     context 'for public actions' do
       it 'returns true any user' do
-        stub_config({ controller: { action: true }})
+        stub_config({ controller: { action: Permission::PUBLIC }})
         visitor = Permission.granted?(:controller, :action, nil)
            user = Permission.granted?(:controller, :action, create(:user))
   store_manager = Permission.granted?(:controller, :action, create(:store_manager))
@@ -23,16 +23,16 @@ describe Permission do
  store_manager = Permission.granted?(:controller, :action, create(:store_manager))
    store_admin = Permission.granted?(:controller, :action, create(:store_admin))
 platform_admin = Permission.granted?(:controller, :action, create(:platform_admin))
-        #
-        expect([store_manager, platform_admin]   ).to all(be true)
+
+        expect([store_manager, platform_admin]).to all(be true)
         expect([user, visitor, store_admin]).to all(be false)
-        #
       end
     end
     context 'for namespaced controllers' do
       it 'works just fine' do
-        stub_config({ "namespace/controller": true })
+        stub_config({ "namespace/controller": { action: Permission::PUBLIC } })
         granted = Permission.granted?(:"namespace/controller", :action, nil)
+        expect(granted).to be(true)
       end
     end
 
@@ -41,11 +41,11 @@ platform_admin = Permission.granted?(:controller, :action, create(:platform_admi
 
     describe 'assumes the worst' do
       it 'for missing controllers' do
-        stub_config({ misspelled_controller: true })
+        stub_config({ misspelled_controller: { action: Permission::PUBLIC } })
         refute Permission.granted?(:controller, :action, create(:platform_admin))
       end
       it 'for missing actions' do
-        stub_config({ controller: { misspelled_action: true }})
+        stub_config({ controller: { misspelled_action: Permission::PUBLIC }})
         refute Permission.granted?(:controller, :action, create(:platform_admin))
       end
     end

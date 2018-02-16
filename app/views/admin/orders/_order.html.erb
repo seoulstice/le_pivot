@@ -2,5 +2,5 @@
   <th scope="row"><%= link_to order.id, order_path(order) %></th>
   <td><%= order.created_at %></td>
   <td class="status"><%= order.status.capitalize %></td>
-  <td><%= admin_update_order_status_buttons(order) %></td>
+  <td><%= render "orders/update_status_buttons", order: order %></td>
 </tr>

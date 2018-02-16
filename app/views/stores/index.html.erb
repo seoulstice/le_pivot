@@ -1,8 +1,9 @@
+<%= link_to "New Store", new_store_path %>
+
 <% @stores.each do |store| %>
   <div class="store">
-    <p>Name: <%= store.name %></p>
+    <%= link_to store.name, store_path(store) %>
     <p>Status: <%= store.status %></p>
     <%= store.link_to_twitter %>
-    <%= admin_update_store_status_button(store) %>
   </div>
 <% end %>

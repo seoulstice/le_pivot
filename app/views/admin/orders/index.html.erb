@@ -1,11 +1,8 @@
 <div class="container">
-  <h3>Admin Dashboard</h3>
+  <h3>Admin Orders</h3>
   <nav class="nav nav-tabs" id="myTab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-expanded="true">View Orders</a>
-    <%= link_to "View Items", admin_items_path, class: "nav-item nav-link" %>
-    <%= link_to "Update Account", edit_user_path(viewer), class: "nav-item nav-link" %>
-    <%= link_to "View Analytics", admin_analytics_path, class: "nav-item nav-link" %>
-    <%= link_to "Stores", stores_path, class: "nav-item nav-link" %>
+    <%= navlink "Dashboard", dashboard_path %>
+    <%= platform_admin_dashboard_tabs %>
   </nav>
   <div class="container">
     <div class="tab-content" id="nav-tabContent">
@@ -16,16 +13,14 @@
               Filter Orders<span class="caret" />
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <% Order.count_by_status.each do |status, count| %>
-                <li><%= link_to status.capitalize, admin_dashboard_path(status: status) %></li>
+              <% @by_status.each do |status, count| %>
+                <li><%= link_to status.capitalize, admin_orders_path(status: status) %></li>
               <% end %>
               <li role="separator" class="divider"></li>
-              <li><%= link_to 'View all', admin_dashboard_path %></li>
+              <li><%= link_to 'View all', admin_orders_path, class: "badge badge-success" %></li>
             </ul>
           </div>
         </div>
-   			<!-- <%= link_to "All Orders", admin_dashboard_path, class: "badge badge-success" %>
-   			<%= link_to "All Items", admin_items_path, class: "badge badge-success" %> -->
         <table class="table table-hover">
  	        <thead>
  	            <tr>
