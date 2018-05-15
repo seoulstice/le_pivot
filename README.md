@@ -37,9 +37,6 @@ rails server
 ```
 All users have a password of `password` if you want to login and explore.
 
-## View on Production Server
-The web application can be acccessed at https://le-pivot-turing.herokuapp.com/
-
 ## How to Run the Test Suite
 
 In order to run the full test suite, run the following command in your Terminal window:
